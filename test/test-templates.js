@@ -69,6 +69,22 @@ for (const tmpl of templates) {
       assert(content.includes('--bg') && content.includes('--text'), 'Missing --bg/--text');
       assert(content.includes('--font-display') || content.includes('--font-body'), 'Missing font tokens');
     });
+  } else if (tmpl === 'matesu-portfolio.html') {
+    test(`${tmpl}: has --font-sans token`, () => {
+      assert(content.includes('--font-sans'), 'Missing --font-sans custom property');
+    });
+    test(`${tmpl}: has --accent token`, () => {
+      assert(content.includes('--accent'), 'Missing --accent custom property');
+    });
+    test(`${tmpl}: has --grid-gap token`, () => {
+      assert(content.includes('--grid-gap'), 'Missing --grid-gap custom property');
+    });
+    test(`${tmpl}: has --max-width token`, () => {
+      assert(content.includes('--max-width'), 'Missing --max-width custom property');
+    });
+    test(`${tmpl}: has --section-gap token`, () => {
+      assert(content.includes('--section-gap'), 'Missing --section-gap custom property');
+    });
   } else {
     test(`${tmpl}: has --font-sans token`, () => {
       assert(content.includes('--font-sans'), 'Missing --font-sans custom property');

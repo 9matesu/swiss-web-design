@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matesu — Design Studio</title>
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       MATESU — Swiss Design Studio Portfolio
+       Image Treatment Recommendations
+       ═══════════════════════════════════════════════════════════════ */
+
+    :root {
+      /* ─── Design Tokens ─── */
+      --black:       #1A1A1A;
+      --dark:        #2D2D2D;
+      --mid-grey:    #6A6A6A;
+      --cool-grey:   #A9B2B1;
+      --light-grey:  #E5E5E5;
+      --off-white:   #F4F3EE;
+      --white:       #FFFFFF;
+      --accent:      #D82C2C;
+
+      --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-md: 1.25rem;
+      --text-lg: 1.563rem;
+      --text-xl: 1.953rem;
+      --text-2xl: 2.441rem;
+      --text-3xl: 3.052rem;
+      --text-4xl: 3.815rem;
+      --text-5xl: 4.768rem;
+
+      --weight-light: 300;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-bold: 700;
+
+      --leading-tight: 1.0;
+      --leading-heading: 1.1;
+      --leading-body: 1.6;
+
+      --tracking-tight: -0.02em;
+      --tracking-normal: 0;
+      --tracking-upper: 0.05em;
+
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-8: 48px;
+      --space-10: 64px;
+      --space-12: 96px;
+
+      --grid-gap: 20px;
+      --max-width: 1200px;
+      --measure: 66ch;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      font-weight: var(--weight-regular);
+      line-height: 1.6;
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       GRID
+       ═══════════════════════════════════════════════════════════ */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
+      max-width: var(--max-width, 1200px);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════════════════ */
+    .header {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-6) 0;
+      border-bottom: 2px solid var(--black);
+      margin-bottom: var(--space-10);
+    }
+    .logo {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-tight);
+    }
+    .nav { display: flex; gap: var(--space-6); list-style: none; }
+    .nav a {
+      font-size: var(--text-sm);
+      letter-spacing: var(--tracking-upper);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.15s;
+    }
+    .nav a:hover { color: var(--accent); }
+
+    /* ═══════════════════════════════════════════════════════════
+       IMAGE TREATMENTS
+       ═══════════════════════════════════════════════════════════
+
+       Treatment A — High Contrast (Hero)
+       Dramatic, editorial feel. Use for the hero image.
+       Contrast boosted, brightness pulled down for depth.
+    */
+    .treatment-hero {
+      filter: contrast(1.4) brightness(0.85);
+    }
+
+    /*
+       Treatment B — Desaturated (Project Thumbnails)
+       Objective, archival feel. Removes colour so typography
+       and composition do the work. Use for all project images.
+    */
+    .treatment-desaturate {
+      filter: saturate(0) contrast(1.1);
+    }
+
+    /*
+       Treatment C — Duotone (Featured / Hero accent)
+       Wayfinder / archival hybrid. Use for the hero image
+       to give it a signature red cast that ties to the brand.
+    */
+    .treatment-duotone {
+      position: relative;
+      filter: grayscale(100%) contrast(1.2);
+    }
+    .treatment-duotone::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent, #D82C2C);
+      mix-blend-mode: multiply;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       IMAGE BASE STYLES
+       No rounded corners. No drop shadows. No decorative frames.
+       ═══════════════════════════════════════════════════════════ */
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════════════════ */
+    .header {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-6) 0;
+      border-bottom: 2px solid var(--black);
+      margin-bottom: var(--space-10);
+    }
+    .logo {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-tight);
+    }
+    .nav { display: flex; gap: var(--space-6); list-style: none; }
+    .nav a {
+      font-size: var(--text-sm);
+      letter-spacing: var(--tracking-upper);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.15s;
+    }
+    .nav a:hover { color: var(--accent); }
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO — Full-width dramatic image
+       Treatment: High contrast + duotone overlay
+       Grid: 12 columns full-bleed
+       Aspect ratio: 21:9 (cinematic)
+       ═══════════════════════════════════════════════════════════ */
+    .hero {
+      grid-column: 1 / -1;
+      position: relative;
+      margin-bottom: var(--space-10);
+      aspect-ratio: 21 / 9;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.4) brightness(0.85);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      mix-blend-mode: multiply;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: subgrid;
+      align-items: end;
+      padding: var(--space-8);
+      z-index: 1;
+    }
+    .hero-content h1 {
+      grid-column: 1 / 8;
+      font-size: var(--text-5xl);
+      font-weight: var(--weight-bold);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+      color: var(--white);
+      margin: 0;
+    }
+    .hero-content p {
+      grid-column: 1 / 6;
+      font-size: var(--text-md);
+      font-weight: var(--weight-light);
+      color: rgba(255,255,255,0.8);
+      margin-top: var(--space-4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTION HEADER
+       ═══════════════════════════════════════════════════════════ */
+    .section-head {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-6) 0;
+      border-top: 2px solid var(--black);
+      margin-bottom: var(--space-6);
+    }
+    .section-head h2 {
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-bold);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+    }
+    .section-head span {
+      font-size: var(--text-sm);
+      color: var(--mid-grey);
+      letter-spacing: var(--tracking-upper);
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PROJECT IMAGES — Desaturated treatment
+       Aspect ratio: 3:2
+       Object-fit: cover (crops to fill, never stretches)
+       ═══════════════════════════════════════════════════════════ */
+    .project-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0) contrast(1.1);
+      transition: filter 0.3s ease;
+    }
+    /* On hover, reveal a hint of the original colour */
+    .project:hover .project-image {
+      filter: saturate(0.15) contrast(1.1);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PROJECT GRID
+       ═══════════════════════════════════════════════════════════ */
+    .project {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+    .project .image-wrap {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: var(--space-3);
+    }
+    .project h2 {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-bold);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+      margin-bottom: var(--space-1);
+    }
+    .project .meta {
+      font-size: var(--text-sm);
+      color: var(--mid-grey);
+      letter-spacing: var(--tracking-upper);
+      text-transform: uppercase;
+    }
+
+    /* ─── Column span variants ─── */
+    .col-span-8  { grid-column: span 8; }
+    .col-span-7  { grid-column: span 7; }
+    .col-span-6  { grid-column: span 6; }
+    .col-span-5  { grid-column: span 5; }
+    .col-span-4  { grid-column: span 4; }
+
+    /* ─── Aspect ratio variants ─── */
+    .ratio-3-2  { aspect-ratio: 3 / 2; }
+    .ratio-4-3  { aspect-ratio: 4 / 3; }
+    .ratio-1-1  { aspect-ratio: 1 / 1; }
+    .ratio-16-9 { aspect-ratio: 16 / 9; }
+
+    /* ═══════════════════════════════════════════════════════════
+       ABOUT
+       ═══════════════════════════════════════════════════════════ */
+    .about {
+      grid-column: 1 / 7;
+      padding: var(--space-10) 0;
+      border-top: 2px solid var(--black);
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-8);
+    }
+    .about h2 {
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-bold);
+      line-height: var(--leading-tight);
+      margin-bottom: var(--space-4);
+    }
+    .about p {
+      max-width: var(--measure);
+      margin-bottom: var(--space-4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ */
+    .footer {
+      grid-column: 1 / -1;
+      padding: var(--space-6) 0;
+      border-top: 1px solid var(--black);
+      font-size: var(--text-sm);
+      color: var(--mid-grey);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 767px) {
+      .grid { grid-template-columns: 1fr; padding: 0 var(--space-4); }
+      .hero { aspect-ratio: 4 / 3; }
+      .hero-content h1 { font-size: var(--text-2xl); }
+      .hero-content p { font-size: var(--text-base); }
+      .col-span-8,
+      .col-span-7,
+      .col-span-6,
+      .col-span-5,
+      .col-span-4 { grid-column: 1; }
+      .header { flex-direction: column; gap: var(--space-4); align-items: flex-start; }
+      .about { grid-column: 1; }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .grid {
+        grid-template-columns: repeat(8, 1fr);
+        gap: 16px;
+        padding: 0 var(--space-5);
+      }
+      .col-span-8  { grid-column: span 8; }
+      .col-span-7  { grid-column: span 8; }
+      .col-span-6  { grid-column: span 8; }
+      .col-span-5  { grid-column: span 4; }
+      .col-span-4  { grid-column: span 4; }
+      .hero-content h1 { font-size: var(--text-3xl); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       GRID CONTAINER
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="grid">
+
+    <!-- ─── HEADER ─── -->
+    <header class="header">
+      <span class="logo">Matesu</span>
+      <nav>
+        <ul class="nav">
+          <li><a href="#">Work</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HERO — Full-width dramatic image
+         Treatment: High contrast + duotone (red accent)
+         Aspect ratio: 21:9 (cinematic)
+         Grid: 12 columns full-bleed
+         Placeholder: 1200×514 (21:9)
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="hero">
+      <img
+        src="https://placehold.co/1200x514/1A1A1A/E5E5E5?text=Matesu+Studio"
+        alt="Matesu Studio — Hero"
+        class="treatment-hero"
+      >
+      <div class="hero-content">
+        <h1>Form follows<br>function.</h1>
+        <p>Matesu is a design studio working at the intersection of Swiss modernism and contemporary visual culture. We build brands, editorial systems, and digital experiences that communicate with clarity.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION: SELECTED WORK
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section-head">
+      <h2>Selected Work</h2>
+      <span>2024–2026</span>
+    </div>
+
+    <!-- ─── PROJECT 1 — 8 columns, 3:2 ─── -->
+    <article class="project col-span-8">
+      <div class="image-wrap ratio-3-2">
+        <img
+          class="project-image"
+          src="https://placehold.co/800x533/1A1A1A/FFFFFF?text=Brand+Identity"
+          alt="Brand Identity — Matesu"
+          loading="lazy"
+        >
+      </div>
+      <h2>Brand Identity — Nordica</h2>
+      <span class="meta">Branding · 2026</span>
+    </article>
+
+    <!-- ─── PROJECT 2 — 4 columns, 1:1 ─── -->
+    <article class="project col-span-4">
+      <div class="image-wrap ratio-1-1">
+        <img
+          class="project-image"
+          src="https://placehold.co/400x400/F4F3EE/1A1A1A?text=Editorial"
+          alt="Editorial Design"
+          loading="lazy"
+        >
+      </div>
+      <h2>Kultur Magazine</h2>
+      <span class="meta">Editorial · 2026</span>
+    </article>
+
+    <!-- ─── PROJECT 3 — 5 columns, 3:2 ─── -->
+    <article class="project col-span-5">
+      <div class="image-wrap ratio-3-2">
+        <img
+          class="project-image"
+          src="https://placehold.co/500x333/F4F3EE/1A1A1A?text=Digital+Product"
+          alt="Digital Product Design"
+          loading="lazy"
+        >
+      </div>
+      <h2>Waypoint Dashboard</h2>
+      <span class="meta">Digital · 2026</span>
+    </article>
+
+    <!-- ─── PROJECT 4 — 7 columns, 3:2 ─── -->
+    <article class="project col-span-7">
+      <div class="image-wrap ratio-3-2">
+        <img
+          class="project-image"
+          src="https://placehold.co/700x467/1A1A1A/FFFFFF?text=Editorial+Spread"
+          alt="Editorial Spread"
+          loading="lazy"
+        >
+      </div>
+      <h2>Monograph — Vol. III</h2>
+      <span class="meta">Editorial · 2025</span>
+    </article>
+
+    <!-- ─── PROJECT 5 — 4 columns, 1:1 ─── -->
+    <article class="project col-span-4">
+      <div class="image-wrap ratio-1-1">
+        <img
+          class="project-image"
+          src="https://placehold.co/400x400/1A1A1A/FFFFFF?text=Packaging"
+          alt="Packaging Design"
+          loading="lazy"
+        >
+      </div>
+      <h2>Object No. 7</h2>
+      <span class="meta">Packaging · 2025</span>
+    </article>
+
+    <!-- ─── PROJECT 6 — 8 columns, 3:2 ─── -->
+    <article class="project col-span-8">
+      <div class="image-wrap ratio-3-2">
+        <img
+          class="project-image"
+          src="https://placehold.co/800x533/F4F3EE/1A1A1A?text=Exhibition+Poster"
+          alt="Exhibition Poster Series"
+          loading="lazy"
+        >
+      </div>
+      <h2>Exhibition Poster Series</h2>
+      <span class="meta">Poster Design · 2024</span>
+    </article>
+
+    <!-- ─── PROJECT 7 — 4 columns, 3:2 ─── -->
+    <article class="project col-span-4">
+      <div class="image-wrap ratio-3-2">
+        <img
+          class="project-image"
+          src="https://placehold.co/400x267/1A1A1A/FFFFFF?text=Type+Specimen"
+          alt="Type Specimen"
+          loading="lazy"
+        >
+      </div>
+      <h2>Type Specimen</h2>
+      <span class="meta">Typography · 2024</span>
+    </article>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ABOUT
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="about">
+      <h2>About</h2>
+      <p>Matesu is a design studio rooted in the Swiss modernist tradition. We believe every project begins with a grid and a question: what needs to be said?</p>
+      <p>Our work spans branding, editorial, digital, and spatial design. We collaborate with cultural institutions, publishers, and brands who value clarity over decoration.</p>
+      <p>Available for selected commissions.</p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════════════════════ -->
+    <footer class="footer">
+      <span>&copy; 2026 Matesu</span>
+      <span>hello@matesu.studio</span>
+    </footer>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       DOCUMENTATION — Image Treatment Reference
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="grid" style="margin-top: var(--space-12); border-top: 2px solid var(--black); padding-top: var(--space-8);">
+    <div style="grid-column: 1 / -1;">
+      <h2 style="font-size: var(--text-2xl); font-weight: var(--weight-bold); margin-bottom: var(--space-6);">Image Treatment Reference</h2>
+    </div>
+
+    <div style="grid-column: 1 / 7; margin-bottom: var(--space-8);">
+      <h3 style="font-size: var(--text-lg); font-weight: var(--weight-bold); margin-bottom: var(--space-3);">1. Hero Image</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.5;">
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Treatment</td><td style="padding: 4px 0;">High contrast + duotone (red)</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">CSS</td><td style="padding: 4px 0;"><code>filter: contrast(1.4) brightness(0.85)</code> + <code>::after</code> duotone overlay</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Aspect ratio</td><td style="padding: 4px 0;">21:9 (1200×514)</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Grid span</td><td style="padding: 4px 0;">12 columns (full-bleed)</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Placeholder</td><td style="padding: 4px 0;"><code>https://placehold.co/1200x514/1A1A1A/E5E5E5?text=Matesu+Studio</code></td></tr>
+      </table>
+    </div>
+
+    <div style="grid-column: 7 / -1; margin-bottom: var(--space-8);">
+      <h3 style="font-size: var(--text-lg); font-weight: var(--weight-bold); margin-bottom: var(--space-3);">2. Project Thumbnails</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.5;">
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Treatment</td><td style="padding: 4px 0;">Desaturated (<code>saturate(0) contrast(1.1)</code>)</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Aspect ratio</td><td style="padding: 4px 0;">3:2 (primary), 1:1 (secondary)</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Object-fit</td><td style="padding: 4px 0;"><code>cover</code> — crops to fill, never stretches</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Hover</td><td style="padding: 4px 0;">Reveals 15% saturation — subtle colour hint</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Borders</td><td style="padding: 4px 0;">None. No radius. No shadow.</td></tr>
+      </table>
+    </div>
+
+    <div style="grid-column: 7 / -1; margin-bottom: var(--space-8);">
+      <h3 style="font-size: var(--text-lg); font-weight: var(--weight-bold); margin-bottom: var(--space-3);">3. Grid Placement</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.5;">
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Hero</td><td style="padding: 4px 0;">12 cols · 21:9 · high contrast + duotone</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Project 1</td><td style="padding: 4px 0;">8 cols · 3:2 · desaturated</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Project 2</td><td style="padding: 4px 0;">4 cols · 1:1 · desaturated</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Project 3</td><td style="padding: 4px 0;">5 cols · 3:2 · desaturated</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Project 4</td><td style="padding: 4px 0;">7 cols · 3:2 · desaturated</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Project 5</td><td style="padding: 4px 0;">4 cols · 1:1 · desaturated</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Project 6</td><td style="padding: 4px 0;">8 cols · 3:2 · desaturated</td></tr>
+        <tr><td style="padding: 4px 8px 4px 0; font-weight: 700;">Project 7</td><td style="padding: 4px 0;">4 cols · 3:2 · desaturated</td></tr>
+      </table>
+    </div>
+
+    <div style="grid-column: 1 / -1; margin-bottom: var(--space-8);">
+      <h3 style="font-size: var(--text-lg); font-weight: var(--weight-bold); margin-bottom: var(--space-3);">4. Placeholder Image URL Reference</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.5;">
+        <thead>
+          <tr style="border-bottom: 1px solid var(--black);">
+            <th style="text-align: left; padding: 4px 8px 4px 0; font-weight: 700;">Role</th>
+            <th style="text-align: left; padding: 4px 8px 4px 0; font-weight: 700;">Dimensions</th>
+            <th style="text-align: left; padding: 4px 8px 4px 0; font-weight: 700;">Aspect</th>
+            <th style="text-align: left; padding: 4px 0; font-weight: 700;">Placeholder URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding: 4px 8px 4px 0;">Hero</td><td style="padding: 4px 8px 4px 0;">1200×514</td><td style="padding: 4px 8px 4px 0;">21:9</td><td style="padding: 4px 0;"><code>https://placehold.co/1200x514/1A1A1A/E5E5E5?text=Matesu+Studio</code></td></tr>
+          <tr><td style="padding: 4px 8px 4px 0;">Project (8 col)</td><td style="padding: 4px 8px 4px 0;">800×533</td><td style="padding: 4px 8px 4px 0;">3:2</td><td style="padding: 4px 0;"><code>https://placehold.co/800x533/1A1A1A/FFFFFF?text=Project+Title</code></td></tr>
+          <tr><td style="padding: 4px 8px 4px 0;">Project (7 col)</td><td style="padding: 4px 8px 4px 0;">700×467</td><td style="padding: 4px 8px 4px 0;">3:2</td><td style="padding: 4px 0;"><code>https://placehold.co/700x467/F4F3EE/1A1A1A?text=Project+Title</code></td></tr>
+          <tr><td style="padding: 4px 8px 4px 0;">Project (5 col)</td><td style="padding: 4px 8px 4px 0;">500×333</td><td style="padding: 4px 8px 4px 0;">3:2</td><td style="padding: 4px 0;"><code>https://placehold.co/500x333/F4F3EE/1A1A1A?text=Project+Title</code></td></tr>
+          <tr><td style="padding: 4px 8px 4px 0;">Project (4 col)</td><td style="padding: 4px 8px 4px 0;">400×267</td><td style="padding: 4px 8px 4px 0;">3:2</td><td style="padding: 4px 0;"><code>https://placehold.co/400x267/1A1A1A/FFFFFF?text=Project+Title</code></td></tr>
+          <tr><td style="padding: 4px 8px 4px 0;">Project (4 col sq)</td><td style="padding: 4px 8px 4px 0;">400×400</td><td style="padding: 4px 8px 4px 0;">1:1</td><td style="padding: 4px 0;"><code>https://placehold.co/400x400/1A1A1A/FFFFFF?text=Project+Title</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="grid-column: 1 / -1; margin-bottom: var(--space-10);">
+      <h3 style="font-size: var(--text-lg); font-weight: var(--weight-bold); margin-bottom: var(--space-3);">5. Responsive Behaviour</h3>
+      <table style="width: 100%; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.5;">
+        <thead>
+          <tr style="border-bottom: 1px solid var(--black);">
+            <th style="text-align: left; padding: 4px 8px 4px 0; font-weight: 700;">Breakpoint</th>
+            <th style="text-align: left; padding: 4px 8px 4px 0; font-weight: 700;">Grid</th>
+            <th style="text-align: left; padding: 4px 0; font-weight: 700;">Image Behaviour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding: 4px 8px 4px 0;">≥ 1024px</td><td style="padding: 4px 8px 4px 0;">12 columns</td><td style="padding: 4px 0;">Full compositional freedom. Hero 21:9. Projects at assigned spans.</td></tr>
+          <tr><td style="padding: 4px 8px 4px 0;">768–1023px</td><td style="padding: 4px 8px 4px 0;">8 columns</td><td style="padding: 4px 0;">Hero collapses to 16:9. 8-col projects stay full. 4-col projects pair side-by-side.</td></tr>
+          <tr><td style="padding: 4px 8px 4px 0;">&lt; 768px</td><td style="padding: 4px 8px 4px 0;">1 column</td><td style="padding: 4px 0;">All images full-width. Hero becomes 4:3. Projects stack vertically. No side-by-side.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="grid-column: 1 / -1; margin-bottom: var(--space-10);">
+      <h3 style="font-size: var(--text-lg); font-weight: var(--weight-bold); margin-bottom: var(--space-3);">5. CSS Filter Reference</h3>
+      <pre style="font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: var(--text-sm); background: var(--off-white); padding: var(--space-4); border: 1px solid var(--black); line-height: 1.6; overflow-x: auto;">
+/* ─── HERO: High contrast + duotone ─── */
+.hero img {
+  filter: contrast(1.4) brightness(0.85);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent, #D82C2C);
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ─── PROJECT THUMBNAILS: Desaturated ─── */
+.project-image {
+  filter: saturate(0) contrast(1.1);
+  transition: filter 0.3s ease;
+}
+.project:hover .project-image {
+  filter: saturate(0.15) contrast(1.1);
+}
+
+/* ─── ASPECT RATIOS ─── */
+.ratio-3-2  { aspect-ratio: 3 / 2; }
+.ratio-1-1  { aspect-ratio: 1 / 1; }
+.ratio-21-9 { aspect-ratio: 21 / 9; }
+
+/* ─── OBJECT FIT ─── */
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+}
+      </pre>
+    </div>
+  </div>
+
+</body>
+</html>
