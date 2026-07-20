@@ -1,0 +1,45 @@
+{
+  "name": "swiss-web-design",
+  "version": "1.0.0",
+  "description": "Swiss Style / International Typographic design skill for AI coding agents — grid systems, typographic hierarchy, asymmetric composition, and whitespace as material",
+  "keywords": [
+    "opencode",
+    "antigravity",
+    "skill",
+    "swiss-design",
+    "swiss-style",
+    "typography",
+    "graphic-design",
+    "grid-system",
+    "wayfinder",
+    "brutalist",
+    "cargo-site",
+    "agent-skills"
+  ],
+  "homepage": "https://github.com/matco/swiss-web-design#readme",
+  "bugs": {
+    "url": "https://github.com/matco/swiss-web-design/issues"
+  },
+  "license": "MIT",
+  "author": "matco",
+  "bin": {
+    "swiss-web-design": "./bin/install.js"
+  },
+  "files": [
+    ".opencode/skills/",
+    ".opencode/agents/",
+    "templates/",
+    "examples/",
+    "bin/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matco/swiss-web-design.git"
+  }
+}

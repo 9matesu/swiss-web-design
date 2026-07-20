@@ -1,85 +1,98 @@
 # Swiss Web Design
 
-An opencode skill system for building websites in the Swiss Style /
-International Typographic tradition — cargo.site portfolios, Wayfinder-style
-brand sites, brutalist web, editorial layouts, and European modernist web
-design. Framed for **graphic designers directing web output**, not frontend
-developers.
+[![npm version](https://img.shields.io/npm/v/swiss-web-design.svg)](https://www.npmjs.com/package/swiss-web-design)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](package.json)
 
-## Repository Structure
+A design skill system for AI coding agents that teaches them to build websites
+the way a graphic designer would — composing with type, grid, and space rather
+than components, state, and breakpoints. Works with **OpenCode**, **Google
+Antigravity**, **Claude Code**, and **Cursor**.
 
-```
-I:\swiss-web-design\
-├── .opencode/
-│   ├── skills/swiss-web-design/SKILL.md   ← 19-section master skill definition
-│   └── agents/
-│       ├── design-director.md      ← Primary agent (orchestrator)
-│       ├── grid-architect.md       ← Grid & layout specialist
-│       ├── typographer.md          ← Type & hierarchy specialist
-│       ├── colorist.md             ← Palette generation specialist
-│       ├── texture-artist.md       ← Halftone, grain, noise specialist
-│       ├── image-editor.md         ← Photography treatment specialist
-│       ├── cargo-builder.md        ← Cargo.site-specific builder
-│       └── design-critic.md        ← Review & QA (read-only)
-├── examples/
-│   ├── b1.jpg                      ← Reference image
-│   ├── b2.jpg                      ← Reference image
-│   └── analyze-images.js           ← Metadata extraction script (requires sharp)
-├── templates/
-│   ├── portfolio-swiss.html        ← 12-column Swiss grid portfolio
-│   ├── portfolio-brutalist.html    ← Raw system-font brutalist portfolio
-│   ├── editorial-article.html      ← Magazine spread layout
-│   ├── wayfinder-landing.html      ← Dark canvas title-card landing
-│   └── archive-grid.html           ← Masonry archive / gallery
-└── README.md
+> Framed for **graphic designers directing web output**, not frontend
+> developers.
+
+## Quick start
+
+```bash
+npx swiss-web-design --opencode
 ```
 
-## Skill Domains (19 sections)
+Or for another agent:
 
-The master skill at `.opencode/skills/swiss-web-design/SKILL.md` covers:
+```bash
+npx swiss-web-design --antigravity   # Google Antigravity
+npx swiss-web-design --claude        # Claude Code
+npx swiss-web-design --cursor        # Cursor
+npx swiss-web-design --global        # Install globally (all projects)
+npx swiss-web-design --dry-run       # Preview without copying
+```
 
-| § | Domain | Description |
-|---|--------|-------------|
-| 1 | Philosophy | 6 core principles |
-| 2 | Grid Systems | 12-column modular grid, asymmetric spans |
-| 3 | Typography as Interface | Typeface selection, scale, hierarchy |
-| 4 | Whitespace as Material | Spacing philosophy, 20% rule |
-| 5 | Colour | Minimal palette, single accent |
-| 6 | Photography over Illustration | Image treatment principles |
-| 7 | Asymmetric Composition | 5 compositional patterns |
-| 8 | Cargo.site Patterns | Template mapping, CSS overrides |
-| 9 | Wayfinder Design Patterns | Dark canvas, thin type, centred |
-| 10 | CSS Framework / Design Tokens | Complete custom property set |
-| 11 | Spacing Scale | 8px-based from 0 to 128px |
-| 12 | Responsive Behaviour | Breakpoints, collapse strategy |
-| 13 | Key Historical References | Foundational texts & designers |
-| 14 | Contemporary Reference Sites | Live examples + Pinterest board |
-| 15 | Design Review Checklist | 30+ point evaluation |
-| 16 | Poster-to-Web Translation | Print to screen adaptation |
-| 17 | Brutalist Web Design | Raw, intentional anti-aesthetic |
-| 18 | Texture & Material | Halftone, grain, noise, gradients |
-| 19 | Editorial / Magazine Layout | Multi-column, pulls, spreads |
+Then restart your AI assistant and ask:
+
+> *"Design a Swiss-style portfolio with a red accent and asymmetric grid."*
+
+---
+
+## What this skill covers
+
+The master skill at `.opencode/skills/swiss-web-design/SKILL.md` contains
+**20 sections** spanning three overlapping traditions:
+
+| | Tradition | Description |
+|---|-----------|-------------|
+| **Swiss Style** | International Typographic Style (1950s) | Grids, sans-serif type, asymmetric balance — Müller-Brockmann, Ruder, Hofmann |
+| **Cargo.site** | Contemporary portfolio platform | Constraint model, pinned pages, image-centric grids, CSS overrides |
+| **Wayfinder** | 2020s evolution | Dark canvas, ultra-thin type, asynchronous gradients, path-based typography |
+
+### 20 skill domains
+
+| § | Domain | What the agent learns |
+|---|--------|----------------------|
+| 1 | Philosophy | 6 principles: form follows function, clarity, reduction, objectivity, mathematics, type as interface |
+| 2 | Grid Systems | 12-column modular grid, asymmetric spans, 8px baseline |
+| 3 | Typography as Interface | Typeface selection, modular scale (perfect fourth), hierarchy |
+| 4 | Whitespace as Material | Section gaps, breathing room, 20% emptiness rule |
+| 5 | Colour | Minimal palette, single accent, WCAG contrast |
+| 6 | Photography over Illustration | Image treatment, cropping, duotone |
+| 7 | Asymmetric Composition | 5 compositional patterns, tension, balance |
+| 8 | Cargo.site Patterns | Template mapping, CSS injection, pinned/overlaid pages |
+| 9 | Wayfinder Design Patterns | Dark canvas, weight-300 type, path illustration |
+| 10 | CSS Framework / Design Tokens | Custom properties for every decision — no arbitrary values |
+| 11 | Spacing Scale | 8px-based | 0 to 128px |
+| 12 | Responsive Behaviour | Breakpoints (1024/768), column collapse strategy |
+| 13 | Key Historical References | Foundational texts, designers, manifestos |
+| 14 | Contemporary Reference Sites | Live examples, Pinterest board |
+| 15 | Design Review Checklist | 30+ point evaluation across grid, type, colour, content |
+| 16 | Poster-to-Web Translation | Print-to-screen adaptation patterns |
+| 17 | Brutalist Web Design | Raw, intentional anti-aesthetic — system fonts, high contrast |
+| 18 | Texture & Material | Halftone, grain, noise, gradients, ink bleed via CSS/SVG |
+| 19 | Editorial / Magazine Layout | Multi-column, pull quotes, drop caps, spreads |
+| 20 | Image Analysis & Design Extraction | Read images, extract palettes, tailor design to photographic content |
+
+---
 
 ## Agents
 
-Set `design-director` as your default agent for design work. It orchestrates
-the sub-agents automatically.
+Set **design-director** as your default agent for design work. It orchestrates
+specialist sub-agents automatically.
 
 | Agent | Mode | Role |
 |-------|------|------|
-| **design-director** | primary | Orchestrator — takes brief, delegates, composes |
+| **design-director** | primary | Orchestrator — takes brief, delegates, composes final output |
 | **grid-architect** | subagent | Grid math, layout structure, responsive collapse |
-| **typographer** | subagent | Typeface, scale, leading, tracking |
-| **colorist** | subagent | Palette, accent, contrast |
-| **texture-artist** | subagent | Halftone, grain, noise, gradients |
-| **image-editor** | subagent | Crop, filter, duotone, placement |
+| **typographer** | subagent | Typeface, modular scale, leading, tracking, measure |
+| **colorist** | subagent | Palette generation, accent strategy, WCAG contrast |
+| **texture-artist** | subagent | Halftone, grain, noise, gradients, material effects |
+| **image-editor** | subagent | Photography treatment, cropping, duotone, palette extraction |
 | **cargo-builder** | subagent | Cargo 3 setup recipes + CSS injection |
-| **design-critic** | subagent | Review against checklists (read-only) |
+| **design-critic** | subagent | Review against comprehensive checklists (read-only) |
+
+---
 
 ## Templates
 
-Each template is a standalone HTML file — open in any browser or drop into
-your CMS. Use `placehold.co` placeholder images as scaffolding.
+Five standalone HTML templates — open in any browser or drop into your CMS.
 
 | Template | Style | Best for |
 |----------|-------|----------|
@@ -89,33 +102,85 @@ your CMS. Use `placehold.co` placeholder images as scaffolding.
 | `wayfinder-landing.html` | Black canvas, centred title-card | Studio landing page |
 | `archive-grid.html` | Dense 6-column gallery | Photography, archive |
 
-## How to Install
+---
 
-### Skill + Agents (global)
+## Image analysis
+
+The `examples/` directory includes an analysis tool that extracts metadata from
+your reference images (dimensions, dominant colour, entropy, palette) and
+outputs structured data your AI agent can use to tailor designs.
+
+```bash
+cd examples
+npm install
+node analyze-images.js                    # writes references.yaml
+node analyze-images.js --format json      # JSON output
+node analyze-images.js --output palette   # show extracted colour palette
+```
+
+The generated `references.yaml` feeds directly into the **image-editor** agent
+so it can recommend treatments (duotone, crop, contrast) that match your
+photographic content.
+
+---
+
+## Manual install
+
+If you prefer to install manually without npm:
+
+### OpenCode
 
 ```powershell
-# Copy skill
+# Skill
 XCOPY /E /I ".opencode\skills\swiss-web-design" "$env:USERPROFILE\.config\opencode\skills\swiss-web-design\"
 
-# Copy agents
+# Agents
 XCOPY /E /I ".opencode\agents" "$env:USERPROFILE\.config\opencode\agents\"
 ```
 
 Set your default agent in `opencode.json`:
+
 ```json
 {
   "default_agent": "design-director"
 }
 ```
 
-Then restart opencode.
+### Antigravity
 
-### Image Analysis Script
+```powershell
+XCOPY /E /I ".opencode\skills\swiss-web-design" "$env:USERPROFILE\.gemini\antigravity\skills\swiss-web-design\"
+```
+
+### Claude Code
 
 ```bash
-cd examples
-npm install sharp js-yaml
-node analyze-images.js    # writes references.yaml
+cp -r .opencode/skills/swiss-web-design .claude/skills/swiss-web-design
+```
+
+---
+
+## Repository structure
+
+```
+swiss-web-design/
+  .opencode/
+    skills/swiss-web-design/SKILL.md   — 20-section master skill definition
+    agents/                            — 8 agent definitions
+      design-director.md               —   Orchestrator (primary)
+      grid-architect.md                —   Grid & layout
+      typographer.md                   —   Type & hierarchy
+      colorist.md                      —   Palette & accent
+      texture-artist.md                —   Halftone, grain, noise
+      image-editor.md                  —   Photography, extraction
+      design-critic.md                 —   Review & QA
+      cargo-builder.md                 —   Cargo.site builder
+  templates/                           — 5 HTML templates
+  examples/                            — Reference images + analysis tool
+  bin/install.js                       — Multi-agent installer
+  test/                                — Test suite
+  package.json                         — npm package
+  README.md                            — This file
 ```
 
 ## References
@@ -124,12 +189,10 @@ node analyze-images.js    # writes references.yaml
 - Emil Ruder — *Typographie*
 - Armin Hofmann — *Graphic Design Manual*
 - Jan Tschichold — *Die neue Typographie*
-- cargo.site — platform for designer portfolios
-- wayfinder.com — Wayfinder Ventures by HEX.inc
-- hex.inc/work/wayfinder — Case study
-- swissincss.com — Swiss posters in CSS
-- swissthemes.design — Swiss design templates
-- br.pinterest.com/mytezy/imagery/ — Personal design reference board
+- [cargo.site](https://cargo.site) — platform for designer portfolios
+- [wayfinder.com](https://wayfinder.com) — Wayfinder Ventures by HEX.inc
+- [swissincss.com](https://swissincss.com) — Swiss posters in CSS
+- [swissthemes.design](https://swissthemes.design) — Swiss design templates
 
 ## Licence
 

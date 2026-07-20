@@ -1,0 +1,25 @@
+generated: '2026-07-20T22:37:13.736Z'
+total: 2
+references:
+  - file: b1.jpg
+    format: jpeg
+    width: 590
+    height: 388
+    aspectRatio: '1.521'
+    sizeKB: 26
+    dominantColour: '#f8f8f8'
+    channels: 3
+    hasAlpha: false
+    entropy: 3.63
+    exif: null
+  - file: b2.jpg
+    format: jpeg
+    width: 1024
+    height: 643
+    aspectRatio: '1.593'
+    sizeKB: 141
+    dominantColour: '#f8f8f8'
+    channels: 3
+    hasAlpha: false
+    entropy: 6.4
+    exif: null

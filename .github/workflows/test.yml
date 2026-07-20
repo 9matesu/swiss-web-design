@@ -1,0 +1,47 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node-version: [18, 20, 22]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install test dependencies
+        run: |
+          cd examples && npm install
+        shell: bash
+
+      - name: Run skill structure tests
+        run: node test/test-skill-structure.js
+        shell: bash
+
+      - name: Run installer tests
+        run: node test/test-installer.js
+        shell: bash
+
+      - name: Run template tests
+        run: node test/test-templates.js
+        shell: bash
+
+      - name: Run image analysis tests
+        run: node test/test-analyze-images.js
+        shell: bash
+
+      - name: Verify npx installer works (dry-run)
+        run: node bin/install.js --dry-run
+        shell: bash

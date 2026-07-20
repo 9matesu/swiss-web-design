@@ -51,6 +51,7 @@ breakpoints. This skill covers three overlapping traditions:
 17. Brutalist Web Design
 18. Texture & Material
 19. Editorial / Magazine Layout
+20. Image Analysis & Design Extraction
 
 ---
 
@@ -1212,6 +1213,122 @@ type maps to a different grid pattern.
 | Break | Full-bleed image or pull quote | Pause / punctuate |
 | Data | 3–4 columns of stats/charts | Evidence |
 | Close | Full-bleed image or single strong statement | Resolve |
+
+---
+
+## 20. Image Analysis & Design Extraction
+
+Photography is the primary visual material in Swiss Style. This section
+describes how to read images as data — extracting dimensions, colour palettes,
+texture complexity, and composition cues — and use that data to drive design
+decisions.
+
+### The Image Analysis Pipeline
+
+When a project includes reference images, follow this pipeline before making
+any layout or colour decision:
+
+```
+[ Reference images ] → [ Extract metadata ] → [ Generate palette ]
+    → [ Recommend treatment ] → [ Assign grid placement ]
+```
+
+### Running the Analysis Tool
+
+If `examples/analyze-images.js` exists in the project, run it to produce
+structured data:
+
+```bash
+cd examples
+node analyze-images.js                # outputs references.yaml
+node analyze-images.js --format json  # outputs references.json
+```
+
+The output contains per-image metadata with these fields and design uses:
+
+| Field | What it means | Design use |
+|-------|---------------|------------|
+| `width` / `height` | Pixel dimensions | Determines hero vs inset treatment. Full-width = 12-col hero. |
+| `aspectRatio` | width/height | Guides grid column span. 16:9 = 12col. 4:3 = 8col. 1:1 = 6col. |
+| `dominantColour` | Most frequent colour hex | Candidate for accent or background. |
+| `palette` | Top 5 colours (hex) | Full palette extraction. Map to design tokens. |
+| `entropy` | Texture complexity (0–8) | Low = flat/minimal (generous whitespace). High = busy (simple layout). |
+| `sizeKB` | File size | Performance consideration. Large files may need compression. |
+| `format` | Image format | WebP/AVIF preferred for performance. JPEG acceptable for photos. |
+
+### Extracting a Colour Palette from Images
+
+When no explicit palette is provided, extract one from the reference images:
+
+1. **Collect dominant colours** from each image's `palette` field.
+2. **Sort by frequency** — the most common neutral becomes `--off-white` or
+   `--black`. The most saturated colour becomes `--accent`.
+3. **Fill mid-tones** — intermediate colours map to `--mid-grey`,
+   `--cool-grey`, `--text-secondary`.
+4. **Output as CSS custom properties** with the standard token names.
+
+Example mapping from image analysis:
+
+```yaml
+# references.yaml output
+references:
+  - file: hero-shot.jpg
+    dominantColour: '#2A2A2A'    → --black
+    palette:
+      - '#2A2A2A'                → --black
+      - '#F4F3EE'                → --off-white
+      - '#D82C2C'                → --accent
+      - '#6A6A6A'                → --mid-grey
+      - '#A9B2B1'                → --cool-grey
+```
+
+### Tailoring Design to Image Content
+
+Use image characteristics to drive design decisions:
+
+| Image trait | Layout response | Typography response | Colour response |
+|-------------|----------------|-------------------|-----------------|
+| Low entropy, minimal | Generous whitespace, wide margins | Light weight (300), wide tracking | Off-white background, dark accent |
+| High entropy, textured | Full-bleed, simple grid | Bold weight (700), tight tracking | Solid colour background, reduce noise |
+| Dark tones | Light background or white text overlay | Thin weight on dark bg | High contrast accent |
+| Light tones | Dark text, thin borders | Regular weight, standard leading | Strong accent for hierarchy |
+| Portrait orientation | 6–8 col inset, vertical composition | Size 2xl headline, tight leading | Soft palette |
+| Landscape / wide | Full-bleed hero, 12 col | Size 4xl display, wide tracking | Bold accent |
+
+### Colour Palette Extraction Algorithm
+
+When extracting a palette from images automatically:
+
+1. **Quantise** the image to 16 colours using k-means or median cut (sharp
+   does this internally via `stats()`).
+2. **Select** the 5 most frequent colours.
+3. **Classify** each as neutral (low saturation) or accent (high saturation).
+4. **Rank** neutrals by luminance — darkest becomes `--black`, lightest
+   becomes `--off-white`.
+5. **Select** the most saturated colour as `--accent`.
+6. **Discard** colours below 5% frequency to avoid noise.
+
+### When Images Are Missing
+
+If the project has no reference images, the agent should:
+
+1. Ask the user for image descriptions or keywords.
+2. Use placehold.co scaffolding images (e.g. `https://placehold.co/800x600`).
+3. Propose a colour palette based on the brief's domain (Swiss, Wayfinder,
+   brutalist, editorial) rather than extracted from images.
+4. Note which design tokens are provisional and need real image data to
+   finalise.
+
+### Workflow for Designers
+
+When a designer provides reference images:
+
+1. **Analyse** — run the analysis tool to get structured data.
+2. **Read** — study the extracted metadata with the image-editor agent.
+3. **Extract** — pull palette candidates and composition cues.
+4. **Map** — map extracted colours to design tokens.
+5. **Design** — make grid, type, and colour decisions informed by the data.
+6. **Validate** — delegate to design-critic to review the result.
 
 ---
 
