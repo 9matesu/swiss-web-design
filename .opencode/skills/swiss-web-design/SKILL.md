@@ -47,6 +47,10 @@ breakpoints. This skill covers three overlapping traditions:
 13. Key Historical References
 14. Contemporary Reference Sites
 15. Design Review Checklist
+16. Poster-to-Web Translation
+17. Brutalist Web Design
+18. Texture & Material
+19. Editorial / Magazine Layout
 
 ---
 
@@ -771,6 +775,12 @@ columns. It is about preserving the composition across screen sizes.
 | HEX.inc Wayfinder case study | `hex.inc/work/wayfinder` | Full branding case study |
 | HEX.inc | `hex.inc` | Studio behind Wayfinder — see their other work |
 
+### Personal Reference Board
+
+| Source | URL | Notes |
+|--------|-----|-------|
+| Pinterest Imagery Board | `br.pinterest.com/mytezy/imagery/` | ~500 pins — graphic design posters, brutalism, experimental typography, halftone/texture, retro sports graphics, archive aesthetics, event design, kinetic type. The user's personal visual vocabulary — the intersection of Swiss rigour with expressive/experimental elements. |
+
 ### Broader Inspirations
 
 | Site | URL | Why |
@@ -831,6 +841,377 @@ Before considering any design complete, evaluate every point:
 - [ ] Are UI controls icon-only, monochrome, no labels?
 - [ ] Does illustration occupy the full viewport?
 - [ ] Is there a single, composed moment rather than a scroll of sections?
+
+### Poster-to-Web / Graphic Design Transfer (if applicable)
+- [ ] Does the composition translate to a screen with variable height?
+- [ ] Is there a clear focal point (as a poster has)?
+- [ ] Does type scale appropriately for the viewport (not fixed poster sizes)?
+- [ ] Is the layout still legible when scrolled (not dependent on single-viewport visibility)?
+- [ ] Are print conventions (bleed, trim marks, fold) used intentionally rather than accidentally?
+
+### Brutalist (if applicable)
+- [ ] Is the rawness intentional and purposeful, not just unfinished?
+- [ ] Are system fonts used deliberately?
+- [ ] Is there a clear hierarchy despite the anti-design?
+- [ ] Does the aesthetic serve the message or just shock?
+
+### Texture & Material (if applicable)
+- [ ] Is every texture treatment serving a purpose (atmosphere, depth, focus)?
+- [ ] Are textures performant (no massive PNGs, use SVG/CSS filters)?
+- [ ] Do textures integrate with the typography rather than compete?
+
+---
+
+## 16. Poster-to-Web Translation
+
+Swiss Style was born in print, and the posters of Müller-Brockmann, Hofmann,
+and others remain the purest expression of its principles. Translating a
+poster composition to the web requires adapting fixed-canvas thinking to a
+variable-viewport medium.
+
+### Key Differences
+
+| Print Poster | Web Equivalent |
+|-------------|----------------|
+| Fixed dimensions (e.g. 90×128cm) | Variable viewport height, unknown device |
+| Single, composed view | Scrollable, composable sections |
+| One focal point | Multiple entry points across scroll |
+| Exact colour control | Unknown display calibration |
+| Physical texture (paper, ink) | CSS/SVG-simulated texture |
+
+### Translation Patterns
+
+**Pattern A: Full-Viewport Poster Hero**
+The first viewport is a composed poster. Everything below is details.
+
+```css
+.poster-hero {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  justify-items: start;
+}
+```
+
+**Pattern B: Poster Strip**
+A poster composition used as a full-width interruption within a scroll layout.
+
+```css
+.poster-strip {
+  height: 80vh;
+  min-height: 600px;
+  position: relative;
+  overflow: hidden;
+}
+```
+
+**Pattern C: Fixed-Aspect Grid Cell**
+Grid cells that maintain poster-like aspect ratios (4:3, 3:4, 2:3).
+
+```css
+.aspect-cell {
+  aspect-ratio: 3 / 4;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+```
+
+### Choosing What to Translate
+
+When analysing a print poster for web translation, identify:
+
+1. **Grid structure** — What modular grid underlies the poster? That becomes the
+   CSS grid.
+2. **Type hierarchy** — What is the primary/secondary/tertiary read? That maps
+   to h1/h2/body in HTML.
+3. **Focal point** — Where does the eye land first? That is the hero section.
+4. **Whitespace** — Where is the breathing room? That becomes section gaps and
+   padding.
+5. **Texture** — Is there paper grain, halftone, or ink bleed? That becomes
+   SVG/CSS filters.
+
+---
+
+## 17. Brutalist Web Design
+
+Brutalism in web design is not about being unfinished — it is about being
+**unpolished on purpose**. It rejects the slick, padded, rounded-corners
+aesthetic of mainstream web design in favour of raw, honest, confrontational
+communication. It shares Swiss Style's commitment to clarity and reduction,
+but replaces mathematical neutrality with aggressive directness.
+
+### Core Principles
+
+| Principle | Meaning |
+|-----------|---------|
+| **Authenticity over elegance** | The design shows its bones. Raw HTML, unfiltered. |
+| **Function over beauty** | If it works, it stays. Aesthetics are secondary. |
+| **Confrontation** | The design should make you feel something — discomfort, surprise, urgency. |
+| **Honesty of materials** | System fonts, default link colours, unstyled elements are features, not bugs. |
+| **Maximalism within constraint** | Oversized type, harsh colours, intentionally broken grids. |
+
+### Visual Vocabulary
+
+| Element | Brutalist Approach |
+|---------|-------------------|
+| Typeface | System sans-serif (Arial/Helvetica) or monospace (Courier New/CONSOLA). No custom webfonts. |
+| Type size | Often 2–3× larger than standard. H1 at 4–6rem. |
+| Colour | High contrast. Default blue links (#0000EE), lime green on black, highlighter yellow. |
+| Grid | 1-column or intentionally broken multi-column. Elements overlap. Margins are tight or zero. |
+| Borders | Thick (`3px`–`5px`), black, solid. Underlines on everything. |
+| Backgrounds | White, black, or aggressively coloured. No subtle greys. |
+| Navigation | Visible list of links. Underlined. Blue. Like 1998. |
+| Cursors | Use `cursor: pointer` or `cursor: crosshair` as a statement. |
+| Interaction | Links change colour on hover. That's it. No animations, no micro-interactions. |
+
+### When to Use Brutalist vs Swiss
+
+| Context | Approach |
+|---------|----------|
+| Portfolio — minimal work | Swiss |
+| Portfolio — loud, political, urgent work | Brutalist |
+| Personal site / experimental | Brutalist |
+| Corporate / brand site | Swiss |
+| Art / gallery | Either |
+| Blog — content-first | Swiss editorial |
+| Blog — manifesto / polemic | Brutalist |
+| Archive / directory | Brutalist |
+
+### Code Pattern
+
+```html
+<!-- A brutalist page — minimal CSS, raw HTML, system defaults respected -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>brutal</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #fff;
+      color: #000;
+    }
+    h1 { font-size: 3.5rem; line-height: 1; margin-bottom: 0.5rem; }
+    h2 { font-size: 2rem; }
+    a { color: #0000EE; text-decoration: underline; }
+    a:visited { color: #551A8B; }
+    img { display: block; width: 100%; border: 3px solid #000; }
+    hr { border: none; border-top: 4px solid #000; margin: 2rem 0; }
+    ul { padding-left: 1.5rem; }
+    .warning { background: #FF0; color: #000; padding: 1rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>This is a<br>brutalist page.</h1>
+  <hr>
+  <p>It looks like this because it has something to say.</p>
+  <ul>
+    <li><a href="/work">Work</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <hr>
+  <img src="photo.jpg" alt="Work sample">
+  <p class="warning">⚠ This site uses system fonts and default link colours.</p>
+</body>
+</html>
+```
+
+---
+
+## 18. Texture & Material
+
+Swiss design traditionally favours flat, untextured surfaces — but the
+contemporary Swiss-adjacent vocabulary (including your Pinterest board) often
+incorporates material texture: halftone dots, paper grain, ink bleed, noise,
+and complex gradients.
+
+### Texture Typeface
+
+| Texture | Technique | Performance |
+|---------|-----------|-------------|
+| **Halftone** | SVG pattern or Canvas-generated dots | Medium |
+| **Paper grain** | CSS `::after` with SVG noise filter | Good |
+| **Photographic grain** | CSS `filter: contrast(1.2) brightness(0.9) saturate(0.3)` | Good |
+| **Ink bleed / spread** | SVG filter `feGaussianBlur` + `feColorMatrix` | Medium |
+| **Asynchronous gradient** | CSS `background` with multiple radial stops, `animation` | Good |
+| **Noise texture** | CSS `::after` with tiny base64 noise PNG or SVG filter | Best |
+| **Scan lines / CRT** | CSS `repeating-linear-gradient` overlay | Best |
+
+### SVG Noise Filter (Paper Grain)
+
+```css
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background: transparent;
+  pointer-events: none;
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3C/svg%3E#n");
+}
+```
+
+### Halftone Pattern (CSS)
+
+```css
+.halftone {
+  background-image:
+    radial-gradient(circle, #000 1px, transparent 1px);
+  background-size: 4px 4px;
+  background-color: #fff;
+}
+```
+
+### Halftone (SVG Pattern)
+
+```css
+.halftone-svg {
+  background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='1.5' fill='%23000'/%3E%3C/svg%3E");
+}
+```
+
+### Asynchronous Gradient (Wayfinder-style)
+
+```css
+.gradient-mesh {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(255,100,50,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(50,100,255,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(255,50,150,0.08) 0%, transparent 50%);
+}
+```
+
+### When to Add Texture
+
+| Context | Texture Recommendation |
+|---------|----------------------|
+| Swiss portfolio (light) | None or very subtle paper grain |
+| Swiss portfolio (dark) | Subtle noise |
+| Editorial / magazine | Paper grain, ink bleed |
+| Brutalist | Halftone, scan lines, CRT |
+| Wayfinder-style | Asynchronous gradients, noise |
+| Poster hero section | Halftone, grain |
+| Archive / collection | Halftone, paper texture |
+
+---
+
+## 19. Editorial / Magazine Layout
+
+Editorial design for the web adapts magazine spreads — multi-column text, pull
+quotes, image hero spreads, captions, bylines — into responsive, scrollable
+compositions.
+
+### Spread Anatomy
+
+A magazine spread on the web is a series of section grids, each with a
+distinct layout:
+
+```
+Section 1: Hero Spread (full-bleed)
+  [  image — 12 cols full-width  ]
+  [  headline, byline — 6 cols, inset  ]
+
+Section 2: Text Spread (two-column)
+  [  body — 5 cols  |  body — 5 cols  |  gutter — 2  ]
+
+Section 3: Image + Caption
+  [  image — 8 cols  |  caption — 4 cols  ]
+
+Section 4: Pull Quote Spread
+  [  quote — 10 cols, centred  ]
+  [  attribution — 4 cols, offset right  ]
+```
+
+### CSS Multi-Column for Editorial Text
+
+```css
+.editorial-text {
+  column-count: 2;
+  column-gap: var(--space-6, 32px);
+  max-width: var(--measure, 66ch);
+}
+
+@media (max-width: 767px) {
+  .editorial-text {
+    column-count: 1;
+  }
+}
+```
+
+### Pull Quote
+
+```css
+.pull-quote {
+  grid-column: 2 / 12;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  padding: var(--space-6) 0;
+  border-top: 2px solid var(--black);
+  border-bottom: 2px solid var(--black);
+  margin: var(--space-8) 0;
+}
+```
+
+### Drop Cap
+
+```css
+.drop-cap::first-letter {
+  font-size: 4em;
+  font-weight: var(--weight-bold);
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.15em;
+  padding-top: 0.1em;
+}
+```
+
+### Byline / Meta Block
+
+```css
+.byline {
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-upper);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+```
+
+### Editorial Type Scale
+
+| Role | Size | Weight | Leading |
+|------|------|--------|---------|
+| Headline | 3xl–4xl | Bold (700) | 1.0 |
+| Subhead | xl | Regular (400) | 1.1 |
+| Body | base | Regular (400) | 1.6 |
+| Caption | sm | Medium (500) | 1.2 |
+| Pull quote | 2xl | Light (300) | 1.0 |
+| Byline | xs | Medium (500) | 1.2 |
+
+### Section Rhythms
+
+Editorial pages follow a rhythm: open strong (hero), go deep (text/analysis),
+punctuate (pull quote/image break), resolve (closing spread). Each section
+type maps to a different grid pattern.
+
+| Rhythm | Grid Pattern | Purpose |
+|--------|-------------|---------|
+| Hero | Full-bleed image + inset headline | Open the story |
+| Text | 2-column or single narrow column | Depth / analysis |
+| Break | Full-bleed image or pull quote | Pause / punctuate |
+| Data | 3–4 columns of stats/charts | Evidence |
+| Close | Full-bleed image or single strong statement | Resolve |
 
 ---
 
