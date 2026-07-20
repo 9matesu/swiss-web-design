@@ -43,7 +43,7 @@ The master skill at `.opencode/skills/swiss-web-design/SKILL.md` contains
 |---|-----------|-------------|
 | **Swiss Style** | International Typographic Style (1950s) | Grids, sans-serif type, asymmetric balance — Müller-Brockmann, Ruder, Hofmann |
 | **Cargo.site** | Contemporary portfolio platform | Constraint model, pinned pages, image-centric grids, CSS overrides |
-| **Wayfinder** | 2020s evolution | Dark canvas, ultra-thin type, asynchronous gradients, path-based typography |
+| **Wayfinder** | 2020s evolution | Dark canvas, ultra-thin type, path-based typography, geometric decoration, layering |
 
 ### 20 skill domains
 
@@ -57,7 +57,7 @@ The master skill at `.opencode/skills/swiss-web-design/SKILL.md` contains
 | 6 | Photography over Illustration | Image treatment, cropping, duotone |
 | 7 | Asymmetric Composition | 5 compositional patterns, tension, balance |
 | 8 | Cargo.site Patterns | Template mapping, CSS injection, pinned/overlaid pages |
-| 9 | Wayfinder Design Patterns | Dark canvas, weight-300 type, path illustration |
+| 9 | Wayfinder Design Patterns | Dark canvas, weight-300 type, path illustration, geometric symbols, multi-layering |
 | 10 | CSS Framework / Design Tokens | Custom properties for every decision — no arbitrary values |
 | 11 | Spacing Scale | 8px-based | 0 to 128px |
 | 12 | Responsive Behaviour | Breakpoints (1024/768), column collapse strategy |

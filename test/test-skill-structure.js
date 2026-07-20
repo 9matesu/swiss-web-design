@@ -176,7 +176,6 @@ console.log('\nTemplates:');
 const expectedTemplates = [
   'archive-grid.html',
   'editorial-article.html',
-  'matesu-portfolio.html',
   'portfolio-brutalist.html',
   'portfolio-swiss.html',
   'wayfinder-landing.html',
@@ -204,12 +203,6 @@ for (const tmpl of expectedTemplates) {
       // Wayfinder uses its own token set
       assert(content.includes('--bg') && content.includes('--text'), 'Missing Wayfinder tokens');
       assert(content.includes('--font-display') || content.includes('--font-body'), 'Missing Wayfinder font tokens');
-    } else if (tmpl === 'matesu-portfolio.html') {
-      // Matesu uses the full Swiss token set
-      assert(content.includes('--font-sans'), 'Missing --font-sans token');
-      assert(content.includes('--accent'), 'Missing --accent token');
-      assert(content.includes('--grid-gap'), 'Missing --grid-gap token');
-      assert(content.includes('--section-gap'), 'Missing --section-gap token');
     } else {
       assert(content.includes('--font-sans'), 'Missing --font-sans token');
       assert(content.includes('--accent'), 'Missing --accent token');

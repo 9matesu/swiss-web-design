@@ -54,3 +54,9 @@ No borders
 
 Use pinned pages for persistent navigation, overlaid pages for image+type
 layering. Reference the Swiss Web Design skill for CSS design tokens.
+
+### Strict Swiss Rules for Cargo
+
+- **No Image Zoom:** Cargo's default image zoom/lightbox must be disabled via CSS (`pointer-events: none` on zoom wrappers) or settings.
+- **Hover Effects:** No generic effects (e.g., scale, rotate, shadows). Hover states should strictly rely on colour changes (e.g., saturation or background tint changes) to maintain objectivity.
+- **Typography:** Strictly enforce Helvetica/Helvetica Neue as the primary font family. Remove any modern fallbacks like 'Inter'.

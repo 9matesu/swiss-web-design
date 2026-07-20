@@ -424,7 +424,7 @@ approach because the platform itself is image-and-type-centric.
 ```css
 /* Typography refinements */
 body {
-  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #1A1A1A;
@@ -434,6 +434,15 @@ body {
 img {
   border-radius: 0 !important;
   box-shadow: none !important;
+}
+
+/* Strict Swiss Image Behaviours */
+.cargo-image-zoom {
+  pointer-events: none !important; /* Disable image zoom */
+}
+.cargo-image:hover, .thumbnails a:hover {
+  filter: saturate(0.2) contrast(1.1) !important; /* Only colour changes for hover, no generic effects */
+  transform: none !important;
 }
 
 /* Tighten navigation */
@@ -515,6 +524,50 @@ contemporary evolution of Swiss principles into a dark, cinematic direction.
 | Content-heavy reading site | Standard Swiss |
 | Art / experimental | Either, leaning Wayfinder |
 
+### Decorative Symbols (Wayfinder & Metro)
+
+Modernist wayfinding design heavily utilizes geometric and functional symbols rather than illustrative icons. These should be set in-line with display text or used in background layouts as framing devices.
+
+#### Arrow Set (Directional Navigation)
+- `→` Arrow Right (Standard navigation / button accents)
+- `↳` Arrow Down-Right (Index sub-items, tree menus)
+- `▲` Triangle Up (Back to top / ascending status)
+- `▼` Triangle Down (Collapsible indicators / descending status)
+- `↗` / `↘` Diagonal Arrows (Outbound links / transition signs)
+
+#### Star Set (Status & Accentuation)
+- `✦` Black Four Pointed Star (Primary wayfinder accent, clean)
+- `✧` White Four Pointed Star (Secondary wayfinder accent)
+- `★` Black Star / `☆` White Star (Status / bookmarking)
+- `✶` Six Pointed Star (Archival / catalog indicators)
+
+#### Metro & Architectural Symbols (Structural Framing)
+- `⊞` Squared Plus / `⊟` Squared Minus (Expand / collapse system structures)
+- `⊠` Squared Times (Close, delete, absolute boundary)
+- `⏀` / `⏁` / `⏂` Phase / Terminal Symbols (Terminal block endpoints, technical status)
+- `⊚` Circle Bullseye / `⊛` Circle Star / `⊜` Circle Equal (System junction points, node states)
+- `⏎` Return Key symbol (Actions, submission triggers)
+
+#### Application Guidelines
+- **Alignment:** Always align symbols using exact baseline adjustments (`vertical-align: middle` or `transform: translateY(...)`) so they feel part of the grid line.
+- **Scale:** Decorative background symbols can be blown up to huge scales (e.g., `15vw`) at low opacity (e.g., `0.05`), acting as watermarks or grid intersections.
+
+### Modernist Multi-Layering
+
+True modernist design is flat, but "Wayfinder" and "Cargo" styles create depth through structural layering. Use the following techniques to construct dimensional compositions without resorting to drop shadows or realistic gradients:
+
+1. **Overlaid Canvas Layouts:**
+   - Stack full-screen or column-wide absolute containers on top of each other.
+   - Example: A base layer containing a large background text grid, a middle layer containing desaturated imagery, and a top layer containing menus and layout rules.
+
+2. **Contrast & Difference Layering:**
+   - Use `mix-blend-mode: difference` or `mix-blend-mode: exclusion` on white text layers sitting on top of black/white images or overlapping shapes. The text will automatically invert color when crossing boundaries, creating high-contrast graphic tension.
+   - Use `mix-blend-mode: multiply` on monochrome images inside colored backgrounds (e.g., black-and-white image in a yellow box) to merge the image dynamically into the color scheme.
+
+3. **Text Border-Crossings:**
+   - Anchor large display text directly onto structural border lines using negative margins or absolute offsets (e.g. `bottom: -0.5em`).
+   - Split headings so that they cross between two colored sections, creating an asymmetric visual link.
+
 ---
 
 ## 10. CSS Framework / Design Tokens
@@ -529,7 +582,7 @@ as the single source of truth for any Swiss-Style web project.
    */
 
   /* Families */
-  --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-sans-alt: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
   --font-classic: 'Akzidenz-Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
