@@ -57,6 +57,7 @@ breakpoints. This skill covers two overlapping traditions:
 18. Texture & Material
 19. Editorial / Magazine Layout
 20. Image Analysis & Design Extraction
+21. Creative Commission Protocol
 
 ---
 
@@ -192,7 +193,8 @@ Rules (from the matesu.me reference):
 - **One family. Two weights per surface. Three sizes per zone.** Never more
   than one typeface family (except mono for data).
 - **Helvetica is the sovereign choice.** Everything on the Archive OS
-  reference — 26px nav items, 8.5px spec labels, the atlas map text — is
+  reference — the production site's 26px items, 8.5px spec labels, the atlas
+  map text (default ships one step tighter: 24px) — is
   Helvetica Neue / Helvetica / Arial.
 - **No serifs.** Ever. Garamond, Caslon, Times — all forbidden.
 - **No decorative fonts.** The typeface must be neutral, well-drawn, and
@@ -225,25 +227,22 @@ The **app scale** (Archive OS) is built from *actual interface sizes*, in px:
 
 ```css
 :root {
-  --text-item:      26px;  /* archive items / detail titles */
-  --text-body:      13px;  /* detail body, rows, novidades lead */
-  --text-ui:        12px;  /* controls, dropdowns, links */
-  --text-meta:      11px;  /* meta lines, captions, sidebar footer */
-  --text-label:     10px;  /* uppercase control labels */
-  --text-section:   9px;   /* section heads (ficha técnica) */
-  --text-spec:      8.5px; /* spec box labels, ISRC, explicit tag */
+  --text-item:      24px;  /* archive items / detail titles */
+  --text-body:      12.5px;/* detail body, rows, news lead */
+  --text-ui:        11px;  /* controls, dropdowns, links */
+  --text-meta:      10.5px;/* meta lines, captions, sidebar footer */
+  --text-label:     9.5px; /* control labels — sentence case */
+  --text-section:   9px;   /* section heads */
+  --text-spec:      8.5px; /* spec keys, ISRC, explicit tag */
 }
 ```
 
-Two opposite tracking poles do all the expressive work in an Archive OS page:
-
-| Pole | Value | Used for |
-|------|-------|----------|
-| **Tight** | `-0.01em` … `-0.04em` | Everything typographic: 26px items and titles use `-0.04em`; body/meta use `-0.01em … -0.015em`. |
-| **Wide** | `0.08em … 0.16em` | Micro-labels only — 9–10px uppercase section heads and control labels. |
-
-Negative tracking on display + wide tracking on micro-labels is the signature
-pair. If a draft uses wide tracking on a big title, it is wrong.
+Tracking has one working pole: tight, and tight means *tight*. App-scale
+items and titles use `-0.05em`; body and meta use `-0.02em`. Labels
+(`9.5px` controls, `9px` section heads, `8.5px` spec keys) get **sentence
+case and zero letter-spacing** — no uppercase transforms, no wide tracking.
+A draft that shouts in tracked-out ALL-CAPS reads as a machine-mannerism,
+not as Swiss discipline.
 
 ### Weight Distribution
 
@@ -262,7 +261,7 @@ alpha steps (never pure grey blocks — stepped alphas, see §10).
 
 | Role | Line Height | Notes |
 |------|-------------|-------|
-| Items / display | 1.0 – 1.1 | Tight. 26px items run at 1.1. |
+| Items / display | 1.0 – 1.1 | Tight. 24px items run at 1.1. |
 | Body text | 1.4 – 1.6 | Detail body 1.45; editorial body 1.6. |
 | Captions / Meta | 1.2 – 1.45 | Spec labels 1.2; detail meta 1.25. |
 
@@ -324,8 +323,8 @@ deliberately as around the type.
 4. **Don't fill the margins.** Resist the reflex to add a banner, a button, or
    a third image just because there is room.
 5. **On dark, emptiness is the canvas.** In the Archive OS frame the void
-   (`#141414`) is the material; hairlines only ever *divide* it. A page of
-   nothing but 26px neutral type floating in the dark is a composed page —
+   (`#141414`) is the material; rules only ever *divide* it, sparingly. A page
+   of nothing but 24px neutral type floating in the dark is a composed page —
    not an empty one.
 
 ### Section Gaps
@@ -434,7 +433,9 @@ reality without the designer's hand interposing.
   3D renders, not decorative iconography.
 - **Full-bleed images** are the default in editorial layouts. Let images reach
   the edge of the grid or the viewport. In OS layouts, images live in *slots*
-  with hairline borders (`--field-bg` fits behind the slot).
+  with hairline borders (`--field-bg` fits behind the slot). No reference
+  photo yet? Ship the empty slot — never a fake, borrowed, or mismatched
+  photo.
 - **Scale by width, not height.** Images fill their container horizontally and
   crop vertically (`object-fit: cover`).
 - **No drop shadows on images. No rounded corners. No decorative frames.**
@@ -541,11 +542,10 @@ img {
   transform: none !important;
 }
 
-/* Tighten navigation */
+/* Navigation — sentence case, no tracked-out caps */
 nav, .nav, [role="navigation"] {
   font-size: 14px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
 }
 
 /* Wider gutters */
@@ -588,7 +588,7 @@ brochure.
 │  "matesu"   ├──────────────────────────────────────────────┤
 │  bio text   │ #stage — horizontal archive columns          │
 │  keyword    │  folder → folder → item → detail             │
-│  bold words │  26px / -0.04em · counts superscripted       │
+│  bold words │  24px / -0.05em · counts superscripted       │
 │  link list  ├──────────────────────────────────────────────┤
 │  footer     │ #homepage — novidades sheet        26vh      │
 │             │  lead + rows, resizable from the grabber     │
@@ -609,14 +609,14 @@ brochure.
 
 | Zone | Spec |
 |------|------|
-| Archive items | 26px / weight 400 / `-0.04em` / brightens on hover / active = 500 |
+| Archive items | 24px / weight 400 / `-0.05em` / brightens on hover / active = 500 |
 | Item count badges | 13px superscripted, faint |
-| Detail title | 26px / 600 / `-0.04em` |
+| Detail title | 24px / 600 / `-0.05em` |
 | Detail meta/body | 12.5–13px / muted / justified with `hyphens: auto` |
 | Track rows | 12.5px titles, 10.5px numbers+durations, 9px ISRC |
-| Section heads | 9px caps, `0.16em`, with a hairline rule filling the rest of the row |
-| Spec labels | 8.5px caps `0.15em` over 12px values |
-| Dropdown labels | 10px caps `0.03em` |
+| Section heads | 10px sentence case, zero tracking, weight 500 |
+| Spec labels | 9px sentence case over 12px values |
+| Dropdown labels | 10px sentence case |
 
 ### Interaction Vocabulary
 
@@ -637,6 +637,25 @@ Honest, machine-like, and restrained:
    offers scrollbar-free motion (wheel, drag, touch) instead.
 5. **Anchors open target blanks** with `rel="noopener"`. Every external link
    is honest about leaving the instrument.
+
+### Machine Tells (banned)
+
+The frame reads as an instrument because the interactions are honest, not
+because it wears gadgetry. Never ship:
+
+- **Status/utility dots** — the green "available" dot of chat apps and its
+  cousins (red recording dots, pulsing presence dots) pasted onto a portfolio.
+- **Dotted labels** — dot-leaders, dotted underlines on non-link text, spotted
+  micro-labels. Dots belong to images (halftone) and drawn paper, not to UI
+  chrome.
+- **Tracked-out ALL-CAPS labels** — use sentence case for every label, badge,
+  kicker, and section head. Conventional capitalization, zero letter-spacing
+  games.
+- **Flavor text** — every sentence must carry a fact: a date, a name, a
+  dimension, a credit. No "welcome", no manifesto fragments, no template
+  self-description, no decorative jargon ("field notes", "musings", "on craft").
+- **Badges and signature props** — "made with", "powered by", decor emoji,
+  ornamental separators (`— ✦ —`), fake status meters.
 
 ### The Archive Tree (data as content)
 
@@ -695,7 +714,7 @@ Drawing vocabulary:
 - **Route lines** — dashed `stroke-dasharray: 14 10` marching-ants animation
   (`@keyframes mapMarch { to { stroke-dashoffset: -24; } }` at 2.8s) linking
   the navigation marks.
-- **Marks** — 11px dots with paper fill + 2px ink stroke; labels in 26px
+- **Marks** — 11px dots with paper fill + 2px ink stroke; labels in 24px
   Helvetica (`paint-order: stroke` with a 6px paper stroke so type never
   collides with linework); active marks bold; the current mark pulses a halo
   (3s ease-in-out).
@@ -719,7 +738,7 @@ Data is filed in a one-pixel-gap grid, not cards:
   border: 1px solid var(--border-subtle);
 }
 .spec-box { padding: 8px 10px; background: var(--bg-main); }
-.spec-label { font-size: 8.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-faint); }
+.spec-label { font-size: 9px; color: var(--text-faint); }
 .spec-value { font-size: 12px; color: var(--text-bright); overflow-wrap: anywhere; }
 ```
 
@@ -786,12 +805,12 @@ as the single source of truth for any Swiss-Style web project.
   --text-4xl: 3.815rem;
   --text-5xl: 4.768rem;
 
-  /* App size scale (Archive OS) */
-  --text-item: 26px;
-  --text-body-app: 13px;
-  --text-ui: 12px;
-  --text-meta: 11px;
-  --text-label: 10px;
+  /* App size scale (Archive OS, compact) */
+  --text-item: 24px;
+  --text-body-app: 12.5px;
+  --text-ui: 11px;
+  --text-meta: 10.5px;
+  --text-label: 9.5px;
   --text-section: 9px;
   --text-spec: 8.5px;
 
@@ -808,11 +827,9 @@ as the single source of truth for any Swiss-Style web project.
   --leading-caption: 1.2;
 
   /* Tracking */
-  --tracking-tight: -0.04em;     /* OS items & display */
-  --tracking-snug: -0.01em;      /* body & meta */
-  --tracking-normal: 0;
-  --tracking-upper: 0.05em;
-  --tracking-label: 0.15em;      /* micro-labels (spec/section) */
+  --tracking-tight: -0.05em;     /* OS items & display */
+  --tracking-snug: -0.02em;      /* body & meta */
+  --tracking-normal: 0;          /* labels — sentence case, never wide */
 
   /*
    * ─── Spacing (8px base) ──────────────────────────────────
@@ -1096,7 +1113,7 @@ Before considering any design complete, evaluate every point:
 - [ ] Is body text flush left, ragged right (or justified only in narrow hyphenated columns)?
 - [ ] Is the measure constrained to ~66ch on text-heavy sections?
 - [ ] Are line heights generous (1.4–1.6 for body)?
-- [ ] Is tracking at the correct pole (display tight, micro-labels wide)?
+- [ ] Is tracking tight on display, -0.01em on body, zero on labels?
 - [ ] Are all data numerals tabular?
 
 ### Whitespace
@@ -1124,7 +1141,7 @@ Before considering any design complete, evaluate every point:
 
 ### Archive-OS-Specific (if applicable)
 - [ ] Is the canvas `#141414` (or the theme's token), not pure black?
-- [ ] Are nav items 26px with `-0.04em` tracking?
+- [ ] Are nav items 24px with `-0.05em` tracking?
 - [ ] Is the sidebar a real panel with a real 48px collapse tab, not a hamburger?
 - [ ] Does every interactive element use inversion/hairline feedback at `0.16s`?
 - [ ] Does wheeled/touched/drag navigation move the archive without vertical page jumps?
@@ -1134,6 +1151,14 @@ Before considering any design complete, evaluate every point:
 - [ ] Are cursors documenting affordances (grab, crosshair, grabbing, ns-resize)?
 - [ ] Does `prefers-reduced-motion` stop routes, halos, and pushes?
 - [ ] Are hidden scrollbars compensated by visible affordances (grabber, marks)?
+
+### Machine Tells (always run)
+- [ ] Are there zero status/utility dots (green presence dots, recording dots, pulse dots)?
+- [ ] Are there zero dotted labels, dot-leaders, or dotted decorative rules?
+- [ ] Is every label, kicker, and badge in sentence case — no ALL-CAPS, no tracked-out caps?
+- [ ] Does every sentence of copy carry a fact (title, date, name, credit, dimension)?
+- [ ] Are "made with"/"powered by" badges, ornamental separators, and decor emoji absent?
+- [ ] Is at least one graphic treatment earning its presence (SVG filter, gradient map, heatmap, drawn map, interactive canvas) instead of decorative chrome?
 
 ### Poster-to-Web / Graphic Design Transfer (if applicable)
 - [ ] Does the composition translate to a screen with variable height?
@@ -1336,13 +1361,20 @@ Archive OS, texture is *adjustable* and always one level quieter than the type.
 
 | Texture | Technique | Performance |
 |---------|-----------|-------------|
-| **Halftone** | SVG pattern or sharp-generated dot screens | Medium |
+| **Halftone** | SVG pattern or sharp-generated dot screens — photos only, never UI chrome | Medium |
 | **Paper grain** | CSS `::after` with SVG noise filter | Good |
 | **Threshold print** | `filter: grayscale(1) contrast(16)` or `.threshold()` pre-baked | Best |
+| **Gradient map** | grayscale source + `mix-blend-mode: color` gradient layer, or `feComponentTransfer` tables | Good |
+| **Heatmap** | blurred mono source mapped through a colour ramp (see recipe) | Good |
+| **Displacement** | `feTurbulence` + `feDisplacementMap` on photos or drawn maps | Medium |
 | **Ink bleed / spread** | SVG filter `feGaussianBlur` + `feColorMatrix` | Medium |
 | **Atlas mesh** | Radial vignette over drawn paper (atlas only) | Good |
 | **Noise texture** | CSS `::after` with tiny base64 noise PNG or SVG filter | Best |
 | **Scan lines / CRT** | CSS `repeating-linear-gradient` overlay | Best |
+
+Dot screens, ramp maps, and filters belong to *images and drawn canvases*.
+They never become UI chrome — no dotted labels, no coloured status dots, no
+decorative dot grids beside text.
 
 ### SVG Noise Filter (Paper Grain)
 
@@ -1366,7 +1398,7 @@ Production grade (the reference's own recipe):
   inset: 0;
   pointer-events: none;
   z-index: 55;
-  opacity: 0;                          /* driven by the gião/adjustments slider */
+  opacity: 0;                          /* driven by the grain/adjustments slider */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
   background-size: 180px 180px;
   mix-blend-mode: overlay;
@@ -1405,6 +1437,69 @@ Production grade (the reference's own recipe):
 Pair a normal photo and a thresholded photo in the same slot and crossfade on
 hover — the document answer replaces the photograph answer.
 
+### Gradient Map (image treatment)
+
+Sink a grayscale source into two or three colours. CSS version:
+
+```css
+.gradmap { position: relative; }
+.gradmap img { filter: grayscale(1) contrast(1.1); display: block; }
+.gradmap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #0b2f47 0%, #f5f5f7 55%, #d82c2c 100%);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+```
+
+Precise version with `feComponentTransfer` — map luminosity through colour
+ramp tables (change `tableValues` per palette):
+
+```html
+<filter id="gradmap" color-interpolation-filters="sRGB">
+  <feColorMatrix type="saturate" values="0"/>
+  <feComponentTransfer>
+    <feFuncR type="table" tableValues="0.04 0.49 0.96"/>
+    <feFuncG type="table" tableValues="0.05 0.55 0.19"/>
+    <feFuncB type="table" tableValues="0.08 0.60 0.17"/>
+  </feComponentTransfer>
+</filter>
+```
+
+### Heatmap (data or photo intensity)
+
+Convert a blurred grayscale layer into an intensity ramp. On a photo:
+
+```html
+<filter id="heat" color-interpolation-filters="sRGB">
+  <feColorMatrix type="saturate" values="0"/>
+  <feGaussianBlur stdDeviation="6"/>
+  <feComponentTransfer>
+    <feFuncR type="table" tableValues="0.05 0.2 0.95 1"/>
+    <feFuncG type="table" tableValues="0.05 0.7 0.75 0.2"/>
+    <feFuncB type="table" tableValues="0.1 0.95 0.15 0"/>
+  </feComponentTransfer>
+</filter>
+```
+
+On real data (values plotted over a map or a grid), prefer explicit surfaces:
+a canvas of radial-gradient stops blended with `mix-blend-mode: screen` over
+the drawn map, or a `<table>`-driven set of positioned stops. The heat layer
+must follow real values — heat that doesn't map to data is decoration.
+
+### Displacement (photo or drawn map edges)
+
+```html
+<filter id="displace" color-interpolation-filters="sRGB">
+  <feTurbulence type="turbulence" baseFrequency="0.012 0.004" numOctaves="2" result="warp"/>
+  <feDisplacementMap in="SourceGraphic" in2="warp" scale="24" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+```
+
+Use it to imprint print behaviour on an atlas sheet or a photo slot — not on
+text. Scale below ~30 keeps type untouched.
+
 ### Atlas Mesh (atmospheric, atlas canvases only)
 
 ```css
@@ -1424,7 +1519,8 @@ hover — the document answer replaces the photograph answer.
 | Brutalist | Halftone, scan lines, CRT |
 | Atlas hero | Vignette + drawn grain at 0.07, always |
 | Poster hero section | Halftone, grain |
-| Archive / collection | Halftone, paper texture |
+| Archive / collection | Halftone, gradient map, paper texture |
+| Data over a map or grid | Heatmap ramp driven by real values |
 
 ---
 
@@ -1505,8 +1601,6 @@ Section 4: Pull Quote Spread
 ```css
 .byline {
   font-size: var(--text-sm);
-  letter-spacing: var(--tracking-upper);
-  text-transform: uppercase;
   color: var(--text-secondary);
 }
 ```
@@ -1645,8 +1739,11 @@ When extracting a palette from images automatically:
 
 If the project has no reference images, the agent should:
 
-1. Ask the user for image descriptions or keywords.
-2. Use placehold.co scaffolding images (e.g. `https://placehold.co/800x600`).
+1. Ask the user for image descriptions or keywords (the grill-me briefing
+   covers this in §21).
+2. Ship empty slots in OS surfaces, and placehold.co scaffolding images
+   (e.g. `https://placehold.co/800x600`) in editorial layouts — sized to the
+   slot's aspect ratio, on the domain palette.
 3. Propose a colour palette based on the brief's domain (Swiss, Archive OS,
    brutalist, editorial) rather than extracted from images.
 4. Note which design tokens are provisional and need real image data to
@@ -1667,6 +1764,102 @@ When a designer provides reference images:
 
 ---
 
+## 21. Creative Commission Protocol
+
+Every commission starts as an interrogation and lands as a compact,
+over-composed page — a magazine spread diagrammed by European designers, not
+a template filled in. Three disciplines govern this section: ask before you
+build, prefer the smaller and denser, dare through contrast rather than
+decoration.
+
+### Grill-me briefing (always first)
+
+Before any layout output, interrogate the owner in rounds. Each round offers
+a default so the flow survives silence:
+
+1. **Reference** — name the live reference for this project (a site, a person,
+   a publication). Ask for up to three items, images, or documents that anchor
+   the identity — and one thing the design must *not* look like. Default: the
+   Archive OS reference.
+2. **Facts** — collect real material: exact names, dates, credits, catalogue
+   codes, real links, real photos (offer the analysis pipeline on them). No
+   invented brands, no sample copy. Default: the brief as stated.
+3. **Grid & layout** — propose two or three panel/column maps as ASCII, state
+   the collapse strategy, and make the owner choose. Default: your strongest
+   recommendation, named as such.
+4. **Boldness** — offer two or three anti-design moves from the ledger below.
+   Make the owner commit to at most two per page. Default: pick the move the
+   content most clearly earns.
+5. **Spec sheet** — print a one-page decision list (reference, palette, grid
+   map, type scale, texture budget, boldness moves) and build from it.
+
+The agent's creativity leads every round; the reference disciplines it.
+Adapt and innovate on the ideas — the questions exist to extract the
+material that makes originality possible, not to converge on sameness.
+
+### Compact doctrine
+
+- **Shorter copy everywhere.** No paragraph longer than three sentences on
+  app surfaces. Lead ≤ 40 words. Captions, one line. Data beats prose:
+  a date, a credit, a dimension, ISRC — filed in spec boxes, not explained.
+- **Smaller sizes, denser rhythm.** App scale runs 24 → 8.5px (§3). Body
+  copy on admin/editorial pages lands at 13–14px, never 16px, with leading
+  1.35–1.45. Paddings compress to 10–14px inside panels; gaps 8–12px.
+  Generous space belongs to the page margins, never to component padding.
+- **Reduced kerning.** Display and items `-0.05em`; body `-0.02em`; zero on
+  labels. Never compensate readability by loosening tracking — tighten,
+  resolve at high weights, and let size breathe instead.
+
+### Justified dossier
+
+Justification earns its place when text lives inside a frame: a bio card, a
+detail sheet, a synopsis box. The text block justifies to match the frame's
+edges exactly — that is why the box exists.
+
+```css
+.boxed-text {
+  font-size: var(--text-body-app);   /* 12.5px */
+  line-height: 1.42;
+  letter-spacing: var(--tracking-snug);
+  text-align: justify;
+  hyphens: auto;
+  text-justify: inter-word;
+  text-align-last: left;
+  /* the box */
+  padding: 10px 12px;
+  border-left: 1px solid var(--border-link);
+}
+```
+
+Rules: column 300–340px; `hyphens: auto` is mandatory (`lang` must be set);
+never justify a full-width measure or anything past 66ch; if hyphenation
+degrades rag quality, go ragged instead. This pattern is the reference's
+own bio column at reduced scale.
+
+### Anti-design ledger (commit to two per page)
+
+Boldness here is *contrast and compression*, never decoration. The page is
+read as a magazine spread: every viewport a spread, type the hero, images
+the documents.
+
+| Move | Execution |
+|------|-----------|
+| **Scale jump** | Adjacent type at ×3 ratio (12.5px meta against a 96–127px numeral). The jump *is* the hierarchy. |
+| **Full-bleed interruption** | One image or rule crossing all columns, then back inside the margins. |
+| **Vertical marginalia** | One caption, one folio, or one label set in `writing-mode: vertical-rl` at the margin — never navigation. |
+| **Inverted spread** | One block flips locally (bright field on dark page or the reverse), exactly once, like a magazine plate. |
+| **Quote as poster** | A pull quote set at 2xl–4xl with `-0.05em`, tight leading, no quotation furniture. |
+| **Folio data at the margins** | Index numbers, dates, and counts living at the edge as marginalia. |
+| **Heatmap or gradient map** | Over real data or a real photo (§18 recipes). Heat without data is forbidden. |
+| **Map as navigation** | The atlas/series of drawn sheets, interactive where the content is a route. |
+
+Anti-design means anti-decorative and anti-mannerism — it never means
+anti-clarity. The reader must still resolve the page in under one second.
+Two moves per page, maximum. Every move must trace back to a fact collected
+in the briefing.
+
+---
+
 ## Usage Notes
 
 When a user says "Swiss style", "archive", "OS interface", "cargo.site",
@@ -1678,7 +1871,7 @@ Output decisions as a designer would: reference grid columns, type scale
 steps, and spacing units rather than breakpoints or component props. For
 example, say *"this headline spans 8 columns at size 2xl"* not *"this h1 is
 32px at desktop"* — or *"archive item at app scale, weight 400, tracking
-tight"* not *"26px button"*.
+tight"* not *"a button in 24px"*.
 
 When writing CSS, always use the design tokens defined above. Never use
 arbitrary values. Every margin, font-size, and colour should come from the

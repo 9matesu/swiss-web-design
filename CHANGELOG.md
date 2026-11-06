@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.4.0 (2026-11-06)
+
+- Doctrine revision from the owner: sentence case everywhere (no tracked-out
+  caps labels), machine-tells ban (no status dots, dotted labels, flavor text,
+  badges), hairlines downgraded to a rare dividing device.
+- Cut the type down and in: app scale tightened (24px items, 12.5px body,
+  9.5px labels), display tracking to -0.05em, body to -0.02em; condensed
+  paddings and gaps; data over prose.
+- New §21 Creative Commission Protocol: grill-me briefing rounds (reference,
+  facts, grid, boldness, spec sheet), the justified-dossier recipe, and an
+  anti-design ledger — bold through contrast and compression, not decoration.
+- §18 expanded to cover what the owner can push: gradient maps, heatmaps,
+  displacement maps — with filter recipes; dot patterns kept for images only.
+- Personal photography pulled from the repo. Templates now ship with empty
+  photo slots and the two signage reference sheets; `treat-images.js` turned
+  into a generic, recipe-driven pipeline; `references.yaml` regenerated.
+
 ## 1.3.0 (2026-11-06)
 
 - Rebased the dark direction on **www.matesu.me** (Archive OS): the skill's

@@ -36,7 +36,7 @@ The master skill at `.opencode/skills/swiss-web-design/SKILL.md` contains **20 s
 | **Cargo.site** | Contemporary portfolio platform | Constraint model, pinned pages, image-centric grids, CSS overrides |
 | **Archive OS** | 2020s dark direction (reference: [www.matesu.me](https://www.matesu.me)) | Dark canvas `#141414`, fixed bio sidebar, search/filter topbar, typographic archive columns, topographic atlas hero, hairline spec boxes, adjustable canvas |
 
-### 20 skill domains
+### 21 skill domains
 
 | § | Domain | What the agent learns |
 | --- | --- | --- |
@@ -60,6 +60,7 @@ The master skill at `.opencode/skills/swiss-web-design/SKILL.md` contains **20 s
 | 18 | Texture & Material | Halftone, grain, threshold, atlas vignette via CSS/SVG (grain is opt-in) |
 | 19 | Editorial / Magazine Layout | Multi-column, pull quotes, drop caps, spreads |
 | 20 | Image Analysis & Design Extraction | Read images, extract palettes, treat and refactor images |
+| 21 | Creative Commission Protocol | Grill-me briefing rounds, compact doctrine, justified dossier, anti-design ledger |
 
 ---
 
@@ -89,19 +90,20 @@ Five standalone HTML templates — open in any browser or drop into your CMS.
 | `portfolio-swiss.html` | Swiss grid, off-white, red accent | Design portfolio |
 | `portfolio-brutalist.html` | System fonts, raw, high contrast | Loud/urgent portfolio |
 | `editorial-article.html` | Multi-column, hero spread | Magazine, long-form |
-| `archive-os.html` | Dark canvas `#141414`, bio sidebar, search/filter/order, atlas SVG hero, spec boxes, adjustable canvas | Archive OS portfolio (matesu.me direction) |
+| `archive-os.html` | Dark canvas `#141414`, bio sidebar, search/filter/order, atlas SVG hero, spec boxes, photo slots awaiting your treated images, adjustable canvas | Archive OS portfolio (matesu.me direction) |
 | `archive-grid.html` | Dense 6-column gallery | Photography, archive |
 
 ---
 
 ## Examples
 
-The `examples/` folder is a worked reference:
+The `examples/` folder ships the working tools and two reference sheets —
+your own photography stays yours.
 
-- `img/` — treated photography in the two canonical states (**normal build** and **threshold print**) plus halftone dots, refactored to consistent sizes by the pipeline below. Original camera files stay untouched.
-- `img/signage-toronto.jpg`, `img/signage-swiss.jpg` — Helvetica-working-as-interface reference sheets (transit and traffic signage).
-- `matesu-grid-system.html` — the grid-system specification example, refactored to the token set.
+- `img/` — two Helvetica-as-interface reference sheets (transit and traffic signage). The archive template ships with empty photo slots, not stock photos.
+- `matesu-grid-system.html` — the grid-system specification example on the token set, using scaffolding images where photos would go.
 - `analyze-images.js` — extracts metadata (dimensions, dominant colour, entropy, palette) into `references.yaml` for the agents.
+- `treat-images.js` — the refactor pipeline: resize cap, threshold print, halftone build. Declare your own recipes; originals are never touched.
 
 ```
 cd examples
@@ -109,7 +111,7 @@ npm install
 node analyze-images.js                    # writes references.yaml
 node analyze-images.js --format json      # JSON output
 node analyze-images.js --output palette   # show extracted colour palette
-node treat-images.js                      # resize cap + threshold + halftone builds
+node treat-images.js                      # runs after you add RECIPES entries
 ```
 
 ---

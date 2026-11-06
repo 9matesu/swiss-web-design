@@ -3,15 +3,15 @@
 /**
  * treat-images.js
  *
- * The image refactor pipeline for the examples directory.
- * Generates design-ready working copies from the ORIGINAL reference
- * images, in the two canonical states of the skill:
+ * Image refactor pipeline for your own reference photos.
+ * Generates design-ready working copies in the two canonical states
+ * of the skill:
  *
- *   normal build    — grayscale, contrast lifted, resize-capped
- *   threshold print — hard grayscale threshold (grayscale + contrast 16 look)
+ *   normal build    — grayscale, gentle lift, resize-capped
+ *   threshold print — hard grayscale cut (the document state)
  *
- * The originals are moved to img/original/ the first time this runs and
- * are never modified afterwards. Run again any time to regenerate.
+ * Originals are filed into img/original/ the first time this runs and
+ * are never modified afterwards. Re-run any time to regenerate builds.
  *
  * Usage:
  *   node treat-images.js            # build all working copies
@@ -24,8 +24,7 @@ const fs = require('fs');
 const path = require('path');
 
 const IMG_DIR = path.join(__dirname, 'img');
-const ORIGINAL_DIR = path.join(IMG_DIR, 'original', path.sep);
-const SIGNAGE_DIR = __dirname; // legacy reference sheets live at examples root
+const ORIGINAL_DIR = path.join(IMG_DIR, 'original');
 
 const SUMMARY_FLAG = process.argv.includes('--summary');
 
@@ -38,47 +37,25 @@ try {
 }
 
 /* ── Recipe table ─────────────────────────────────────────────────────────
- * source (in img/original/) → outputs (in img/)
- * width caps keep the repo light; nothing is enlarged.
+ * Add one entry per source photo, then run this script. Each recipe
+ * declares a source (dropped in img/ first) and the builds to generate.
+ *
+ * Example:
+ * {
+ *   source: 'portrait.jpg',
+ *   outputs: [
+ *     { file: 'portrait.jpg', width: 800, treatment: 'normal' },
+ *     { file: 'portrait-threshold.jpg', width: 800, treatment: 'threshold' },
+ *   ],
+ * }
  * ─────────────────────────────────────────────────────────────────────── */
-const RECIPES = [
-  {
-    source: 'matesu-normal.jpg',
-    outputs: [
-      { file: 'matesu-normal.jpg', width: 800, treatment: 'normal' },
-      { file: 'matesu-threshold.jpg', width: 800, treatment: 'threshold' },
-    ],
-  },
-  {
-    source: 'matesu-dots.jpg',
-    outputs: [
-      { file: 'matesu-dots.jpg', width: 800, treatment: 'normal' },
-    ],
-  },
-  {
-    source: 'BMV1-9.jpg',
-    outputs: [
-      { file: 'BMV1-9.jpg', width: 1200, treatment: 'normal' },
-    ],
-  },
-  {
-    source: 'BMV1-21.jpg',
-    outputs: [
-      { file: 'BMV1-21.jpg', width: 1200, treatment: 'normal' },
-    ],
-  },
-];
-
-const SIGNAGE = [
-  { from: 'b1.jpg', to: path.join('img', 'signage-toronto.jpg'), name: 'signage-toronto.jpg' },
-  { from: 'b2.jpg', to: path.join('img', 'signage-swiss.jpg'), name: 'signage-swiss.jpg' },
-];
+const RECIPES = [];
 
 function ensureDir(p) {
   fs.mkdirSync(p, { recursive: true });
 }
 
-/** Collect original sources into img/original/ exactly once. */
+/** Collect source photos into img/original/ exactly once. */
 function collectOriginals() {
   ensureDir(ORIGINAL_DIR);
   let moved = 0;
@@ -113,23 +90,17 @@ async function build(sourceFile, out) {
   return dst;
 }
 
-async function moveSignage() {
-  for (const s of SIGNAGE) {
-    const from = path.join(SIGNAGE_DIR, s.from);
-    const to = path.join(__dirname, s.to);
-    if (fs.existsSync(from) && !fs.existsSync(to)) {
-      fs.renameSync(from, to);
-      const meta = await sharp(to).metadata();
-      console.log(`  moved ${s.from} → img/${s.name} (${meta.width}×${meta.height})`);
-    }
-  }
-}
-
 async function main() {
   console.log('treat-images.js — image refactor pipeline\n');
   const moved = collectOriginals();
   if (moved) console.log(`  filed ${moved} original(s) into img/original/ (never modified again)\n`);
-  await moveSignage();
+
+  if (!RECIPES.length) {
+    console.log('  No recipes defined. Declare your photos in the RECIPES table');
+    console.log('  at the top of this file, drop the sources in img/, and re-run.');
+    if (SUMMARY_FLAG) console.log('');
+    return;
+  }
 
   const table = [];
   for (const recipe of RECIPES) {

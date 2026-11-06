@@ -32,16 +32,15 @@
       --font-display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
-      --text-item: 26px;
-      --text-body-app: 13px;
-      --text-ui: 12px;
-      --text-meta: 11px;
-      --text-label: 10px;
+      --text-item: 24px;
+      --text-body-app: 12.5px;
+      --text-ui: 11px;
+      --text-meta: 10.5px;
+      --text-label: 9.5px;
       --text-section: 9px;
       --text-spec: 8.5px;
-      --tracking-tight: -0.04em;
-      --tracking-snug: -0.01em;
-      --tracking-label: 0.15em;
+      --tracking-tight: -0.05em;
+      --tracking-snug: -0.02em;
 
       /* Spacing */
       --space-2: 8px; --space-3: 12px; --space-4: 16px;
@@ -97,7 +96,7 @@
     /* ─── Sidebar ─────────────────────────────────────────── */
     #sidebar {
       width: var(--sidebar-w); min-width: var(--sidebar-w);
-      height: 100vh; padding: 24px 20px 24px 28px;
+      height: 100vh; padding: 20px 16px 20px 24px;
       display: flex; flex-direction: column; justify-content: space-between;
       border-right: 1px solid var(--border-subtle);
       background: var(--bg); flex-shrink: 0; overflow: hidden;
@@ -122,17 +121,16 @@
     }
     .bio-photo-wrap.threshold .bio-photo { filter: grayscale(1) contrast(16); }
     .bio-photo-wrap.threshold { outline: 1px solid var(--text); outline-offset: -1px; }
-    .dot { position: absolute; width: 2px; height: 2px; background: var(--accent); border-radius: 50%; }
 
     .brand-name {
       font-family: var(--font-display);
-      font-size: 26px; line-height: 1.05; letter-spacing: var(--tracking-tight);
+      font-size: 24px; line-height: 1.05; letter-spacing: var(--tracking-tight);
       font-weight: 700; color: var(--text); width: fit-content; cursor: pointer;
     }
     .brand-name:hover { opacity: 0.85; }
 
     .bio-text {
-      font-size: 11.5px; line-height: 1.45; letter-spacing: var(--tracking-snug);
+      font-size: 11px; line-height: 1.42; letter-spacing: var(--tracking-snug);
       color: var(--text-muted); text-align: justify; hyphens: auto;
       width: min(100%, 205px);
     }
@@ -155,7 +153,7 @@
 
     #topbar {
       height: var(--header-h); flex-shrink: 0; display: flex; align-items: center;
-      gap: 14px; padding: 0 28px; border-bottom: 1px solid var(--border-subtle);
+      gap: 14px; padding: 0 24px; border-bottom: 1px solid var(--border-subtle);
       background: var(--bg); user-select: none;
     }
     .search-field {
@@ -171,7 +169,7 @@
     .results-count { font-size: var(--text-meta); color: var(--text-faint); white-space: nowrap; }
     .topbar-controls { display: flex; align-items: center; gap: 18px; margin-left: auto; }
     .control { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
-    .control-label { font-size: var(--text-label); letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-faint); }
+    .control-label { font-size: var(--text-label); color: var(--text-faint); }
     .select-wrap { position: relative; display: inline-flex; align-items: center; }
     .select-wrap::after { content: ""; width: 4px; height: 4px; margin-left: 6px; margin-top: -3px; border-right: 1px solid var(--text-dim); border-bottom: 1px solid var(--text-dim); transform: rotate(45deg); pointer-events: none; }
     .select-wrap select { appearance: none; -webkit-appearance: none; background: none; border: none; outline: none; cursor: pointer; color: var(--text-muted); font-family: inherit; font-size: var(--text-ui); letter-spacing: var(--tracking-snug); }
@@ -229,7 +227,7 @@
     #stage {
       position: relative; flex: 1; min-width: 0; display: flex; flex-direction: row;
       align-items: flex-start; overflow-x: auto; overflow-y: hidden;
-      padding: 24px 28px; gap: 28px; background: var(--bg);
+      padding: 18px 24px; gap: 26px; background: var(--bg);
       cursor: grab; touch-action: pan-y;
     }
     #stage.grabbing { cursor: grabbing; }
@@ -246,7 +244,7 @@
     }
     .item:hover { color: var(--text); }
     .item.active { color: var(--text-active); font-weight: 500; }
-    .item-count { font-size: 13px; vertical-align: super; letter-spacing: -0.02em; color: var(--text-faint); margin-left: 3px; pointer-events: none; }
+    .item-count { font-size: 12px; vertical-align: super; letter-spacing: -0.02em; color: var(--text-faint); margin-left: 3px; pointer-events: none; }
     .item:hover .item-count { color: var(--text-muted); }
     .item-thumb { width: 24px; height: 24px; object-fit: cover; margin-left: 8px; flex-shrink: 0; opacity: 0.85; }
     .item:hover .item-thumb { opacity: 1; }
@@ -258,17 +256,13 @@
     .detail-view { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; width: 340px; max-height: 100%; overflow-y: auto; animation: colEnter 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     .detail-title { font-size: var(--text-item); letter-spacing: var(--tracking-tight); font-weight: 600; color: var(--text); }
     .detail-meta { font-size: var(--text-ui); letter-spacing: var(--tracking-snug); color: var(--text-muted); }
-    .detail-body { font-size: var(--text-body-app); line-height: 1.45; letter-spacing: var(--tracking-snug); color: var(--text-body); white-space: pre-wrap; text-align: justify; hyphens: auto; }
+    .detail-body { font-size: var(--text-body-app); line-height: 1.42; letter-spacing: var(--tracking-snug); color: var(--text-body); white-space: pre-wrap; text-align: justify; hyphens: auto; text-align-last: left; padding: 10px 12px; border-left: 1px solid var(--border-link); }
     .detail-media { width: 100%; max-width: 240px; aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid var(--border-subtle); }
-
-    .section-head { display: flex; align-items: center; gap: 9px; margin-top: 4px; }
-    .section-head h4 { font-size: var(--text-section); letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); font-weight: 500; white-space: nowrap; }
-    .section-rule { flex: 1 1 auto; height: 1px; background: var(--border-subtle); }
 
     .spec-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--border-subtle); border: 1px solid var(--border-subtle); }
     .spec-box { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; background: var(--bg); }
     .spec-box.wide { grid-column: 1 / -1; }
-    .spec-label { font-size: var(--text-spec); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--text-faint); }
+    .spec-label { font-size: var(--text-spec); color: var(--text-faint); }
     .spec-value { font-size: var(--text-ui); letter-spacing: var(--tracking-snug); color: var(--text); overflow-wrap: anywhere; }
 
     .link-boxes { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -278,22 +272,21 @@
     /* ─── Novidades sheet ─────────────────────────────────── */
     #homepage {
       flex: 0 0 var(--sheet-h); height: var(--sheet-h);
-      overflow-y: auto; padding: 24px 28px 44px;
+      overflow-y: auto; padding: 18px 24px 40px;
       border-top: 1px solid var(--border-subtle); background: var(--bg); user-select: text;
     }
     .home-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
-    .home-kicker { font-size: var(--text-label); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); }
+    .home-kicker { font-size: var(--text-label); color: var(--text-faint); }
     .home-date { font-size: var(--text-meta); color: var(--text-dim); }
     .home-list { display: grid; grid-template-columns: 1.35fr 1fr; gap: 30px; align-items: start; }
     .home-lead-media { width: 100%; max-width: 240px; aspect-ratio: 1 / 1; overflow: hidden; background: var(--field-bg); margin-bottom: 14px; }
     .home-lead-media img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.2); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
     .home-lead:hover .home-lead-media img { transform: scale(1.03); }
-    .home-lead-kicker { display: block; font-size: var(--text-label); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px; }
-    .home-lead-title { font-size: 26px; line-height: 1.08; letter-spacing: var(--tracking-tight); font-weight: 600; color: var(--text); margin-bottom: 5px; }
+    .home-lead-title { font-size: 24px; line-height: 1.08; letter-spacing: var(--tracking-tight); font-weight: 600; color: var(--text); margin-bottom: 5px; }
     .home-lead-meta { font-size: var(--text-meta); color: var(--text-muted); margin-bottom: 9px; }
-    .home-lead-body { font-size: var(--text-body-app); line-height: 1.45; color: var(--text-body); max-width: 46ch; }
+    .home-lead-body { font-size: var(--text-body-app); line-height: 1.42; color: var(--text-body); max-width: 44ch; text-align: justify; hyphens: auto; text-align-last: left; }
     .home-side { display: flex; flex-direction: column; border-top: 1px solid var(--border-subtle); }
-    .home-row { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 2px; border-bottom: 1px solid var(--border-subtle); color: var(--text-muted); font-size: 13px; text-align: left; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; transition: color var(--transition-ui); }
+    .home-row { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 2px; border-bottom: 1px solid var(--border-subtle); color: var(--text-muted); font-size: 12px; text-align: left; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; transition: color var(--transition-ui); }
     .home-row:hover { color: var(--text); }
     .home-row img { width: 24px; height: 24px; object-fit: cover; flex-shrink: 0; filter: grayscale(1); }
     .home-row-title { color: var(--text-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -310,13 +303,13 @@
     }
     #settings-panel.open { display: flex; }
     .settings-head { display: flex; align-items: baseline; justify-content: space-between; }
-    .settings-head h2 { font-size: 13px; font-weight: 600; color: var(--text); }
-    .settings-head span { font-size: var(--text-label); letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-faint); }
+    .settings-head h2 { font-size: 12px; font-weight: 600; color: var(--text); }
+    .settings-head span { font-size: var(--text-label); color: var(--text-faint); }
     .theme-list { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
     .theme-swatch { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border: 1px solid var(--border-subtle); background: none; color: var(--text-muted); font-size: 11px; cursor: pointer; transition: border-color var(--transition-ui), color var(--transition-ui); }
     .theme-swatch:hover, .theme-swatch.active { color: var(--text); border-color: var(--text-dim); }
     .theme-pair i { display: block; width: 13px; height: 13px; }
-    .font-btn { padding: 8px; border: 1px solid var(--border-subtle); background: none; color: var(--text-muted); font-size: 13px; text-align: left; cursor: pointer; transition: border-color var(--transition-ui), color var(--transition-ui); }
+    .font-btn { padding: 8px; border: 1px solid var(--border-subtle); background: none; color: var(--text-muted); font-size: 12px; text-align: left; cursor: pointer; transition: border-color var(--transition-ui), color var(--transition-ui); }
     .font-btn:hover, .font-btn.active { color: var(--text); border-color: var(--border-link); }
     .slider-row { display: flex; align-items: center; gap: 10px; }
     .slider-row input[type="range"] { flex: 1; height: 2px; appearance: none; -webkit-appearance: none; background: var(--border-link); outline: none; cursor: pointer; }
@@ -354,18 +347,12 @@
   <aside id="sidebar">
     <div class="sidebar-collapsed-hint">archive</div>
     <div class="bio-top">
-      <div class="bio-photo-wrap" id="bio-photo" role="button" tabindex="0" title="press t to toggle the threshold print">
-        <img class="bio-photo" src="img/matesu-normal.jpg" alt="bio photo">
+      <div class="bio-photo-wrap" id="bio-photo" role="button" tabindex="0" title="toggle threshold">
+        <div class="bio-photo"></div>
       </div>
       <div class="brand-name">archive</div>
       <div class="bio-text">
-        This is the <b>Archive OS</b> template. Content is a tree; the interface
-        is an instrument. Navigate the columns, search, filter, and adjust.
-      </div>
-      <div class="bio-text">
-        <a href="#">columns</a> hold folders and items set at
-        <b>26px, tracking tight</b>. Details are filed in <b>spec boxes</b> —
-        one-pixel gaps rendered as hairline rules.
+        Independent work in <b>typography</b>, <b>photography</b>, and <b>code</b>.
       </div>
       <div class="bio-links">
         <a href="#"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.7 11.3 L8 2.6 L14.3 11.3" stroke-linecap="round"/><path d="M4.2 8.8 h7.6" stroke-linecap="round"/></svg><span>index</span></a>
@@ -390,15 +377,15 @@
       <span id="results-count" class="results-count" hidden></span>
       <div class="topbar-controls">
         <label class="control">
-          <span class="control-label">filter</span>
+          <span class="control-label">Filter</span>
           <span class="select-wrap"><select id="filter" aria-label="filter by section"></select></span>
         </label>
         <label class="control">
-          <span class="control-label">order</span>
+          <span class="control-label">Order</span>
           <span class="select-wrap"><select id="sort" aria-label="sort order">
-            <option value="natural">natural</option>
-            <option value="az">a-z</option>
-            <option value="za">z-a</option>
+            <option value="natural">Natural</option>
+            <option value="az">A–Z</option>
+            <option value="za">Z–A</option>
           </select></span>
         </label>
         <button class="gear-btn" id="settings-btn" type="button" aria-label="canvas settings" aria-expanded="false">
@@ -442,28 +429,27 @@
     <!-- Stage: horizontal archive tree -->
     <main id="stage"></main>
 
-    <!-- Novidades sheet -->
+    <!-- News sheet -->
     <section id="homepage" aria-label="latest">
       <div class="home-head">
-        <span class="home-kicker">latest</span>
+        <span class="home-kicker">Latest</span>
         <span class="home-date" id="home-date"></span>
       </div>
       <div class="home-list">
         <a class="home-lead" href="#">
-          <span class="home-lead-media"><img src="img/BMV1-9.jpg" alt=""></span>
-          <span class="home-lead-kicker">field notes</span>
-          <span class="home-lead-title">Archive item set at app scale</span>
-          <span class="home-lead-meta">2026 · photography over illustration</span>
-          <span class="home-lead-body">Swap these images for your own treated photos — grayscale builds, threshold prints, halftone dot screens. Never rounded, never shadowed.</span>
+          <span class="home-lead-media"></span>
+          <span class="home-lead-title">Grayscale build</span>
+          <span class="home-lead-meta">2026</span>
+          <span class="home-lead-body">Photography enters treated and normalized; colour stays the exception.</span>
         </a>
         <div class="home-side">
           <a class="home-row" href="#">
-            <img src="img/matesu-threshold.jpg" alt="">
-            <span class="home-row-text"><span class="home-row-title">Threshold print study</span><span class="home-row-meta">treatment · 2026</span></span>
+            <img src="img/signage-toronto.jpg" alt="">
+            <span class="home-row-text"><span class="home-row-title">Signage sheet</span><span class="home-row-meta">reference</span></span>
           </a>
           <a class="home-row" href="#">
-            <img src="img/matesu-dots.jpg" alt="">
-            <span class="home-row-text"><span class="home-row-title">Halftone dots study</span><span class="home-row-meta">treatment · 2026</span></span>
+            <img src="img/signage-swiss.jpg" alt="">
+            <span class="home-row-text"><span class="home-row-title">Signage field</span><span class="home-row-meta">reference</span></span>
           </a>
         </div>
       </div>
@@ -471,24 +457,24 @@
 
     <!-- Adjustments panel -->
     <section id="settings-panel" aria-label="canvas settings">
-      <div class="settings-head"><h2>settings</h2><span>canvas</span></div>
+      <div class="settings-head"><h2>Settings</h2><span>canvas</span></div>
       <div>
-        <span class="control-label">theme</span>
+        <span class="control-label">Theme</span>
         <div class="theme-list" id="theme-list"></div>
       </div>
       <div>
-        <span class="control-label">font</span>
+        <span class="control-label">Font</span>
         <div class="theme-list" id="font-list"></div>
       </div>
       <div>
-        <span class="control-label">grain</span>
+        <span class="control-label">Grain</span>
         <div class="slider-row">
           <input type="range" id="grain-range" min="0" max="100" value="0" aria-label="grain intensity">
           <span class="slider-value" id="grain-value">0%</span>
         </div>
       </div>
       <div>
-        <span class="control-label">hue</span>
+        <span class="control-label">Hue</span>
         <div class="slider-row">
           <input type="range" id="hue-range" min="-180" max="180" value="0" aria-label="hue shift">
           <span class="slider-value" id="hue-value">0°</span>
@@ -505,49 +491,41 @@
 <script>
 /* ─── Content: a tree, nothing else ─────────────────────── */
 var tree = {
-  "type studies": {
+  "typography": {
     "signage": {
       title: "Signage sheets",
-      meta: "helvetica as interface",
-      body: "Transit and traffic signage studied as working typography — the reason the interface metaphor exists in this system.",
+      meta: "Helvetica in transit and traffic signage",
+      body: "Reference sheets on signage as a working interface.",
       img: "img/signage-toronto.jpg"
-    },
-    "micro labels": {
-      title: "Micro-label pole",
-      meta: "8.5–10px · uppercase · 0.15em",
-      body: "Wide tracking belongs to micro-labels only. Display stays tight. The two poles never swap."
     }
   },
   "photography": {
     "threshold": {
       title: "Threshold print",
-      meta: "grayscale + contrast 16",
-      body: "The photograph as document: prints to a hard threshold, outlined by one hairline.",
-      img: "img/matesu-threshold.jpg"
+      meta: "grayscale, hard cut",
+      body: "Photograph reduced to two values."
     },
     "halftone": {
-      title: "Halftone dots",
-      meta: "dot screen on grayscale build",
-      body: "The second canonical state of the bio photo — crossfaded over the normal build.",
-      img: "img/matesu-dots.jpg"
+      title: "Halftone build",
+      meta: "dot screen on grayscale",
+      body: "Second state of the archive photo."
     },
-    "field notes": {
-      title: "Field notes",
-      meta: "records, 2026",
-      body: "Landscape records entering the archive at full column height, never as a carousel.",
-      img: "img/BMV1-9.jpg"
+    "landscape": {
+      title: "Landscape",
+      meta: "2026",
+      body: "Records filed at full column height; no carousel."
     }
   },
   "atlas": {
     "routes": {
-      title: "Route lines",
-      meta: "dashed 14 10 · 2.8s march",
-      body: "The reading route is drawn between marks as marching dashes on the sheet."
+      title: "Routes",
+      meta: "dashed 14 10",
+      body: "The sheet links navigation marks with marching dashes."
     },
     "relief": {
-      title: "Contours & hachures",
-      meta: "drawn paper · vignette + grain",
-      body: "Graticule, contours, hachures, surveyor crosses — the atlas is a drawn document, never a photo hero."
+      title: "Relief",
+      meta: "contours and hachures",
+      body: "The atlas is drawn, not photographed."
     }
   }
 };
@@ -625,8 +603,6 @@ function renderDetail(el, key, n) {
   if (n.meta) { var m = document.createElement("div"); m.className = "detail-meta"; m.textContent = n.meta; el.appendChild(m); }
   if (n.img) { var im = document.createElement("img"); im.className = "detail-media"; im.src = n.img; im.alt = ""; el.appendChild(im); }
   if (n.body) { var b = document.createElement("p"); b.className = "detail-body"; b.textContent = n.body; el.appendChild(b); }
-  var sh = document.createElement("div"); sh.className = "section-head";
-  sh.innerHTML = "<h4>file</h4><span class='section-rule'></span>"; el.appendChild(sh);
   var grid = document.createElement("div"); grid.className = "spec-grid";
   [["key", key], ["type", "detail"], ["state", "filed"]].forEach(function (p, idx) {
     var box = document.createElement("div"); box.className = "spec-box" + (idx === 0 ? " wide" : "");
@@ -660,11 +636,11 @@ themes.forEach(function (t) {
   themeList.appendChild(b);
 });
 var fontList = document.getElementById("font-list");
-[["helvetica", "'Helvetica Neue', Helvetica, Arial, sans-serif"], ["system", "system-ui, sans-serif"]].forEach(function (f) {
+[["helvetica", "Helvetica", "'Helvetica Neue', Helvetica, Arial, sans-serif"], ["system", "System", "system-ui, sans-serif"]].forEach(function (f) {
   var b = document.createElement("button"); b.className = "font-btn"; b.dataset.font = f[0]; b.type = "button";
-  b.textContent = f[0];
+  b.textContent = f[1];
   b.addEventListener("click", function () {
-    document.documentElement.style.setProperty("--font-body", f[1]);
+    document.documentElement.style.setProperty("--font-body", f[2]);
     save("osFont", f[0]);
     syncActive("font-btn", "font", f[0]);
   });
