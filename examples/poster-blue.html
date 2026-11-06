@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poster — Rapid transit</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Palette — blue over white, full contrast */
+      --blue: #0B24D8;
+      --white: #FFFFFF;
+      --hairline: rgba(255, 255, 255, 0.20);
+      --hairline-soft: rgba(255, 255, 255, 0.10);
+
+      /* Type — display grotesk over text grotesk */
+      --font-display: 'Cabinet Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-sans: 'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --text-display: clamp(72px, 12vw, 148px);
+      --text-title: 24px;
+      --text-body: 14px;
+      --text-meta: 12.5px;
+      --text-label: 9.5px;
+
+      --tracking-tight: -0.05em;
+      --tracking-snug: -0.02em;
+
+      --space-2: 8px; --space-3: 12px; --space-4: 16px;
+      --space-6: 32px; --space-8: 48px;
+      --grid-gap: 20px; --max-width: 1280px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--text-body);
+      letter-spacing: var(--tracking-snug);
+      line-height: 1.4;
+      background: var(--blue);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    .poster {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: var(--space-4) var(--space-6) var(--space-6);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Masthead — folio line */
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: var(--space-3);
+    }
+    .masthead .mark {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: var(--tracking-tight);
+      font-size: var(--text-title);
+    }
+    .masthead .folio { font-size: var(--text-meta); color: rgba(255,255,255,0.72); }
+    .masthead .folio b { font-weight: 600; color: var(--white); }
+
+    /* Exposed grid — the twelve columns are the instrument */
+    .stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
+      flex: 1;
+    }
+    .stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
+      pointer-events: none;
+    }
+    .stage::before > i, .col-rule {
+      border-left: 1px solid var(--hairline-soft);
+    }
+    .grid-rules {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
+      pointer-events: none;
+    }
+    .grid-rules i { border-left: 1px solid var(--hairline-soft); }
+    .grid-rules i:last-child { border-right: 1px solid var(--hairline-soft); }
+
+    /* Headline — the scale jump is the hierarchy */
+    .hero {
+      grid-column: 2 / 11;
+      margin-top: clamp(48px, 12vh, 130px);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: var(--text-display);
+      line-height: 0.92;
+      letter-spacing: var(--tracking-tight);
+      text-wrap: balance;
+    }
+    .hero h1 sup {
+      font-size: 0.22em;
+      font-weight: 500;
+      vertical-align: super;
+      letter-spacing: 0;
+      color: rgba(255,255,255,0.72);
+      margin-left: var(--space-2);
+    }
+    .hero .lead {
+      grid-column: 2 / 8;
+      margin-top: var(--space-4);
+      font-size: 19px;
+      font-weight: 400;
+      line-height: 1.35;
+      max-width: 34ch;
+      color: rgba(255,255,255,0.88);
+    }
+
+    /* Vertical marginalia */
+    .marginalia {
+      grid-column: 12 / 13;
+      grid-row: 1 / 3;
+      justify-self: end;
+      align-self: start;
+      margin-top: var(--space-6);
+      writing-mode: vertical-rl;
+      font-size: var(--text-label);
+      letter-spacing: 0;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* Icons — white line, 20px, hairline boxes */
+    .icon-row {
+      grid-column: 2 / 11;
+      margin-top: clamp(40px, 9vh, 96px);
+      display: flex;
+      gap: var(--grid-gap);
+    }
+    .icon-cell {
+      border: 1px solid var(--hairline);
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+    }
+    .icon-cell svg { display: block; stroke: var(--white); }
+
+    /* Data — filed at the base of the poster */
+    .data {
+      grid-column: 2 / 11;
+      margin-top: auto;
+      padding-top: var(--space-4);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--grid-gap);
+      align-items: end;
+    }
+    .spec { border-top: 1px solid var(--hairline); padding-top: var(--space-2); }
+    .spec .k {
+      font-size: var(--text-label);
+      letter-spacing: 0;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2px;
+    }
+    .spec .v { font-family: var(--font-display); font-weight: 700; font-size: var(--text-title); letter-spacing: var(--tracking-tight); }
+
+    .footer {
+      margin-top: var(--space-6);
+      border-top: 1px solid var(--hairline);
+      padding-top: var(--space-3);
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--text-meta);
+      color: rgba(255,255,255,0.72);
+    }
+
+    @media (max-width: 767px) {
+      .poster { padding: var(--space-4); }
+      .grid-rules { display: none; }
+      .hero { grid-column: 1 / -1; margin-top: var(--space-8); }
+      .hero .lead { grid-column: 1 / -1; font-size: 17px; }
+      .marginalia { display: none; }
+      .icon-row { grid-column: 1 / -1; margin-top: var(--space-6); }
+      .data { grid-column: 1 / -1; grid-template-columns: 1fr; gap: var(--space-3); }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <header class="masthead">
+      <span class="mark">Transit type</span>
+      <span class="folio">Poster series · <b>02</b> · 2026</span>
+    </header>
+
+    <section class="stage">
+      <div class="grid-rules" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+
+      <div class="hero">
+        <h1>Rapid<br>transit<sup>18</sup></h1>
+        <p class="lead">One blue field, one line of movement. The route is the headline; the timetable is the grid.</p>
+      </div>
+
+      <span class="marginalia">Type set over a 12-column field — printed at A0</span>
+
+      <div class="icon-row" aria-label="system icons">
+        <span class="icon-cell" title="Align">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke-width="1.5" aria-hidden="true">
+            <path d="M4 2v16M10 2v16M16 2v16" /><path d="M2 10h16" />
+          </svg>
+        </span>
+        <span class="icon-cell" title="Network">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke-width="1.5" aria-hidden="true">
+            <circle cx="5" cy="4" r="1.6" /><circle cx="15" cy="4" r="1.6" /><circle cx="10" cy="16" r="1.6" />
+            <path d="M6.5 4.8 8.8 14.4M13.5 4.8 11.2 14.4M6.6 4h6.8" />
+          </svg>
+        </span>
+        <span class="icon-cell" title="Route">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke-width="1.5" aria-hidden="true">
+            <path d="M3 15c3-6 5 2 8-4s4 0 6-4" /><path d="M14.5 4.5 17 6l-3 1.6" />
+          </svg>
+        </span>
+        <span class="icon-cell" title="Gauge">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke-width="1.5" aria-hidden="true">
+            <path d="M3 15a7.5 7.5 0 0 1 14 0" /><path d="M10 15 14 9" /><path d="M3.4 12.2l2 .5M10 6.6v-2M16.6 12.2l-2 .5" />
+          </svg>
+        </span>
+      </div>
+
+      <aside class="data">
+        <div class="spec"><div class="k">Route</div><div class="v">Line 2 — 18 stops</div></div>
+        <div class="spec"><div class="k">Opened</div><div class="v">1972 / rebuilt 2026</div></div>
+        <div class="spec"><div class="k">Headway</div><div class="v">Every 4 min</div></div>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <span>Printed in two inks over white stock</span>
+      <span>Series index → 392900</span>
+    </footer>
+  </div>
+</body>
+</html>

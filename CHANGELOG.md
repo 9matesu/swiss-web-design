@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.6.0 (2026-11-06)
+
+- Five new worked examples added, each demonstrating a distinct Swiss flavour:
+  `poster-blue` (A0 poster on blue field — Cabinet Grotesk + Switzer, exposed
+  12-column grid, icon set, vertical marginalia), `catalogue-red` (paper &
+  ink catalogue on off-white — Bespoke Sans + Switzer, asymmetric cards, spec
+  table), `specimen-type` (dark-canvas type specimen — Melodrama, Ranade,
+  Sentient from Fontshare; geometric icon grid; SVG displacement-map heatmap),
+  `spread-mag` (magazine spread with inverted page — Clash Display + General
+  Sans, gradient-map image overlay, justified body with drop cap, pull quote
+  as poster), and `grid-system` (the specification example refactored to
+  General Sans + Switzer, no personal references).
+- Brutalist template refactored: tighter type scale (14px base, 56px display,
+  -0.05em tracking), Courier system font retained, all caps content changed to
+  sentence case except the warning banner (intentional brutalist voice).
+- Matesu-grid-system example removed (contained personal references);
+  replaced by generic `grid-system.html` using Fontshare pairs and placehold.co
+  scaffolding.
+- README gallery expanded to 11 renders (5 templates + 6 examples), Fontshare
+  pairing table now includes all worked examples.
+- All examples and templates pass the doctrine: sentence case, zero
+  `text-transform`, display tracking `-0.05em`, body `-0.02em`, zero-tracked
+  labels, compact sizes, leading 1.45.
+
 ## 1.5.0 (2026-11-06)
 
 - Doctrine sweep across every template and the worked example: sentence case

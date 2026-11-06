@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spread — Architecture review</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@300,500,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0A0A; --fg: #F5F5F7; --muted: #8E8E93; --line: rgba(255,255,255,0.08);
+      --accent: #00E5A0;
+      --paper: #F9F9F9; --ink: #1A1A1A;
+      --font-display: 'Clash Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-sans: 'General Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --text-display: clamp(48px, 8vw, 84px);
+      --text-title: 24px; --text-body: 14px; --text-meta: 12.5px; --text-label: 9.5px;
+      --tracking-tight: -0.05em; --tracking-snug: -0.02em;
+      --space-3: 12px; --space-4: 16px; --space-6: 32px; --space-8: 48px;
+      --grid-gap: 16px; --max-width: 1400px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); font-size: var(--text-body); letter-spacing: var(--tracking-snug); line-height: 1.45; background: var(--bg); color: var(--fg); }
+    .wrap { max-width: var(--max-width); margin: 0 auto; padding: var(--space-6); display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap); }
+
+    /* Folio */
+    .folio { grid-column: 1 / -1; display: flex; justify-content: space-between; font-size: var(--text-label); color: var(--muted); letter-spacing: 0; margin-bottom: var(--space-4); }
+    .folio b { color: var(--fg); font-weight: 600; }
+
+    /* Inverted spread — left dark, right bright */
+    .spread { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .spread-left { background: var(--bg); padding: var(--space-8) var(--space-6); border-right: 1px solid var(--line); }
+    .spread-right { background: var(--paper); color: var(--ink); padding: var(--space-8) var(--space-6); }
+
+    .kicker { font-family: var(--font-display); font-weight: 700; font-size: var(--text-label); letter-spacing: var(--tracking-tight); color: var(--accent); margin-bottom: var(--space-3); }
+    .spread-left .kicker { color: var(--accent); }
+    .spread-right .kicker { color: var(--accent); }
+
+    h2 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-display); line-height: 0.95; letter-spacing: var(--tracking-tight); margin-bottom: var(--space-4); }
+    .lead { font-size: 19px; font-weight: 300; line-height: 1.35; max-width: 38ch; color: inherit; opacity: 0.8; }
+
+    .body { margin-top: var(--space-6); }
+    .body p { margin-bottom: var(--space-4); text-align: justify; hyphens: auto; text-justify: inter-word; text-align-last: left; max-width: 58ch; }
+    .body p:first-of-type::first-letter { font-family: var(--font-display); font-size: 4em; font-weight: 300; float: left; line-height: 0.75; margin-right: 0.15em; padding-top: 0.05em; color: var(--accent); }
+
+    /* Pull quote as poster */
+    .pull { grid-column: 1 / -1; margin: var(--space-6) 0; padding: var(--space-6) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; }
+    .pull q { font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 5vw, 44px); line-height: 1.05; letter-spacing: var(--tracking-tight); display: block; }
+    .pull cite { font-size: var(--text-meta); color: var(--muted); margin-top: var(--space-2); display: block; font-style: normal; }
+
+    /* Image with gradient map overlay */
+    .fig { grid-column: 1 / -1; margin-top: var(--space-6); aspect-ratio: 16/9; position: relative; border: 1px solid var(--line); overflow: hidden; }
+    .fig img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .fig .map-overlay { position: absolute; inset: 0; mix-blend-mode: color; opacity: 0.35; pointer-events: none; }
+    .fig figcaption { position: absolute; bottom: var(--space-4); left: var(--space-4); font-size: var(--text-meta); color: var(--fg); opacity: 0.8; }
+
+    /* Data sidebar */
+    .sidebar { grid-column: 1 / -1; margin-top: var(--space-8); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--grid-gap); }
+    .card { background: rgba(255,255,255,0.03); border: 1px solid var(--line); padding: var(--space-4); }
+    .card .k { font-size: var(--text-label); letter-spacing: 0; color: var(--muted); margin-bottom: 2px; }
+    .card .v { font-family: var(--font-display); font-weight: 700; font-size: var(--text-title); letter-spacing: var(--tracking-tight); }
+
+    footer { grid-column: 1 / -1; margin-top: var(--space-6); border-top: 1px solid var(--line); padding-top: var(--space-4); display: flex; justify-content: space-between; font-size: var(--text-meta); color: var(--muted); }
+
+    @media (max-width: 1023px) {
+      .spread { grid-template-columns: 1fr; }
+      .spread-left { border-right: none; border-bottom: 1px solid var(--line); }
+      .sidebar { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 767px) {
+      .wrap { grid-template-columns: 1fr; padding: var(--space-4); }
+      .sidebar { grid-template-columns: 1fr; }
+      .fig .map-overlay { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="folio">
+      <span>Architecture Review <b>22</b></span>
+      <span>Autumn 2026 <b>112–127</b></span>
+    </div>
+
+    <section class="spread">
+      <article class="spread-left">
+        <span class="kicker">Essay</span>
+        <h2>The grid<br>is not<br>the cage</h2>
+        <p class="lead">What looks like constraint from outside reads as freedom from within — the structure that lets the eye move without asking permission.</p>
+      </article>
+
+      <article class="spread-right">
+        <span class="kicker">Essay</span>
+        <h2>The grid<br>is not<br>the cage</h2>
+        <div class="body">
+          <p>Müller-Brockmann called the grid a system of order that makes the message more easily understood. The order is what creates the freedom. Once a layout sits on a shared structure, you can break it deliberately for emphasis — a full-bleed image, an oversized numeral, a column that refuses to align — and the break reads as intentional rather than accidental, because the eye has a baseline to measure it against.</p>
+          <p>On the web the constraint is variable. Screen widths shift, fonts load late or not at all, users zoom, translate, override. A rigid pixel grid fails here. A proportional grid — columns as fractions, gaps as ratios, type sizes in steps — survives the variance. The Swiss method was always proportional: the modular grid, the baseline grid, the type scale. These translate to CSS custom properties without loss.</p>
+          <p>The trap is mistaking the grid for the design. The grid is the instrument; the composition is the music. A page where every element snaps to the module without tension is a score played without dynamics. The Swiss masters knew this: Hofmann's posters breathe because the grid is felt, not seen. The white space is shaped as deliberately as the black marks.</p>
+        </div>
+      </article>
+    </section>
+
+    <blockquote class="pull">
+      <q>Order is not imposed from outside; it grows from the material itself.</q>
+      <cite>— Emil Ruder, Typographie (1967)</cite>
+    </blockquote>
+
+    <figure class="fig">
+      <img src="https://placehold.co/1400x788/0A0A0A/F5F5F7?text=BRUTALIST+FACADE+STUDY" alt="Concrete facade study">
+      <svg class="map-overlay" viewBox="0 0 1400 788">
+        <defs>
+          <linearGradient id="gm" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0A0A0A"/>
+            <stop offset="50%" stop-color="#00E5A0"/>
+            <stop offset="100%" stop-color="#F5F5F7"/>
+          </linearGradient>
+        </defs>
+        <rect width="1400" height="788" fill="url(#gm)"/>
+      </svg>
+      <figcaption>Concrete texture — gradient map overlay</figcaption>
+    </figure>
+
+    <aside class="sidebar">
+      <div class="card"><div class="k">Building</div><div class="v">Housing Block 12</div></div>
+      <div class="card"><div class="k">Location</div><div class="v">Zürich, CH</div></div>
+      <div class="card"><div class="k">Completed</div><div class="v">2024</div></div>
+      <div class="card"><div class="k">Architect</div><div class="v">Buro Stark</div></div>
+    </aside>
+
+    <footer>
+      <span>Set in Clash Display & General Sans</span>
+      <span>Printed signatures 112–127</span>
+    </footer>
+  </div>
+</body>
+</html>

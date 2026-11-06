@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catalogue — Paper & Ink</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=bespoke-sans@500,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #C80000; --ink: #1A1A1A; --paper: #F9F7F3; --off: #E8E4DD;
+      --font-display: 'Bespoke Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-sans: 'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --text-display: clamp(48px, 8vw, 84px);
+      --text-title: 22px; --text-body: 14px; --text-meta: 12.5px; --text-label: 9.5px;
+      --tracking-tight: -0.05em; --tracking-snug: -0.02em;
+      --space-3: 12px; --space-4: 16px; --space-6: 32px; --space-8: 48px;
+      --grid-gap: 16px; --max-width: 1100px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); font-size: var(--text-body); letter-spacing: var(--tracking-snug); line-height: 1.45; background: var(--paper); color: var(--ink); }
+    .wrap { max-width: var(--max-width); margin: 0 auto; padding: var(--space-8) var(--space-6); }
+
+    .cover { border: 2px solid var(--ink); margin-bottom: var(--space-8); }
+    .cover img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap); }
+    .mast { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--ink); padding-bottom: var(--space-3); margin-bottom: var(--space-6); }
+    .mast .title { font-family: var(--font-display); font-weight: 700; font-size: var(--text-title); letter-spacing: var(--tracking-tight); }
+    .mast .issue { font-size: var(--text-meta); color: var(--ink); opacity: 0.6; }
+
+    .spread { grid-column: 1 / -1; }
+    .spread h1 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-display); line-height: 0.95; letter-spacing: var(--tracking-tight); margin-bottom: var(--space-4); }
+    .spread .lead { grid-column: 1 / 7; font-size: 19px; font-weight: 300; line-height: 1.35; color: var(--ink); opacity: 0.8; }
+
+    .item { grid-column: span 6; display: grid; grid-template-columns: subgrid; gap: var(--space-3); margin-bottom: var(--space-6); }
+    .item img { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; }
+    .item h3 { font-family: var(--font-display); font-weight: 600; font-size: var(--text-title); letter-spacing: var(--tracking-tight); }
+    .item .meta { font-size: var(--text-meta); color: var(--ink); opacity: 0.6; }
+    .item .desc { font-size: var(--text-body); line-height: 1.4; max-width: 50ch; color: var(--ink); opacity: 0.85; }
+
+    .specs { grid-column: 1 / -1; margin-top: var(--space-8); border-top: 2px solid var(--ink); padding-top: var(--space-6); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--grid-gap); }
+    .spec { border-top: 1px solid var(--off); padding-top: var(--space-2); }
+    .spec .k { font-size: var(--text-label); letter-spacing: 0; color: var(--ink); opacity: 0.5; margin-bottom: 2px; }
+    .spec .v { font-family: var(--font-display); font-weight: 700; font-size: var(--text-title); letter-spacing: var(--tracking-tight); }
+
+    @media (max-width: 767px) {
+      .wrap { padding: var(--space-6) var(--space-4); }
+      .spread .lead { grid-column: 1 / -1; font-size: 17px; }
+      .item { grid-column: 1 / -1; }
+      .specs { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="cover">
+      <img src="https://placehold.co/1100x825/1A1A1A/F9F7F3?text=PAPER+%26+INK" alt="Catalogue cover">
+    </div>
+
+    <div class="grid">
+      <header class="mast">
+        <span class="title">Paper & Ink</span>
+        <span class="issue">Catalogue 04 · Autumn 2026</span>
+      </header>
+
+      <section class="spread">
+        <h1>Sheets<br>bound by<br>specification</h1>
+        <p class="lead">Every sheet is a decision — weight, grain, opacity, shade. This catalogue files them by use case.</p>
+      </section>
+
+      <article class="item">
+        <img src="https://placehold.co/600x400/E8E4DD/1A1A1A?text=OFFSET" alt="Offset stock">
+        <h3>Offset Natural 90</h3>
+        <div class="meta">Uncoated · 90 g/m² · warm white</div>
+        <p class="desc">Daily workhorse — books, annual reports, long-form reading. Ink sits on the surface; grain gives the hand something to hold.</p>
+      </article>
+
+      <article class="item">
+        <img src="https://placehold.co/600x400/C80000/FFFFFF?text=MATT" alt="Matte coated">
+        <h3>Matte Silk 130</h3>
+        <div class="meta">Matte coated · 130 g/m² · neutral</div>
+        <p class="desc">Photography and art books where colour fidelity matters. Subtle sheen without glare — deep blacks, clean midtones.</p>
+      </article>
+
+      <article class="item">
+        <img src="https://placehold.co/600x400/1A1A1A/F9F7F3?text=RECYCLED" alt="Recycled stock">
+        <h3>Post-Consumer 100</h3>
+        <div class="meta">100% recycled · 100 g/m² · grey-white</div>
+        <p class="desc">Sustainable spec for editorial and corporate. Flecks visible on close look — honesty of the material shown, not hidden.</p>
+      </article>
+
+      <article class="item">
+        <img src="https://placehold.co/600x400/F9F7F3/1A1A1A?text=BIBLE" alt="Bible paper">
+        <h3>Bible Thin 45</h3>
+        <div class="meta">Woodfree · 45 g/m² · high opacity</div>
+        <p class="desc">Mass pagination in minimum bulk — reference works, dictionaries, multi-volume sets. Holds ink both sides without show-through.</p>
+      </article>
+
+      <aside class="specs">
+        <div class="spec"><div class="k">Formats stocked</div><div class="v">B1, B2, A2, A3</div></div>
+        <div class="spec"><div class="k">Colours</div><div class="v">White, Cream, Grey</div></div>
+        <div class="spec"><div class="k">Min order</div><div class="v">500 sheets</div></div>
+        <div class="spec"><div class="k">Lead time</div><div class="v">3–5 working days</div></div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

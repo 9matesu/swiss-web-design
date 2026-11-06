@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grid System Specification</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --grid-columns: 12; --grid-gap: 20px; --max-width: 1200px;
+      --font-sans: 'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-display: 'General Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-grotesk: 'Cabinet Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --text-xs: 11px; --text-sm: 12.5px; --text-base: 14px; --text-md: 19px;
+      --text-lg: 24px; --text-xl: 30px; --text-2xl: 36px; --text-3xl: 44px;
+      --weight-light: 300; --weight-regular: 400; --weight-medium: 500; --weight-bold: 700;
+      --leading-tight: 1.05; --leading-body: 1.45;
+      --tracking-tight: -0.05em; --tracking-snug: -0.02em; --tracking-normal: 0;
+      --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 32px; --space-8: 48px;
+      --black: #1A1A1A; --white: #FFFFFF; --mid-grey: #6A6A6A; --accent: #D82C2C;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); font-size: var(--text-base); font-weight: var(--weight-regular); letter-spacing: var(--tracking-snug); line-height: var(--leading-body); color: var(--black); background: var(--white); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap); max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-6); }
+
+    /* Header */
+    .site-header { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; padding: var(--space-6) 0; border-bottom: 2px solid var(--black); margin-bottom: var(--space-8); }
+    .site-logo { grid-column: 1 / 3; font-family: var(--font-display); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: var(--tracking-tight); }
+    .site-nav { grid-column: 10 / 13; display: flex; gap: var(--space-6); list-style: none; justify-content: flex-end; }
+    .site-nav a { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--mid-grey); transition: color 0.2s; }
+    .site-nav a:hover { color: var(--accent); }
+
+    /* Poster Hero */
+    .poster-hero { grid-column: 1 / -1; min-height: 80vh; display: grid; grid-template-columns: subgrid; align-content: center; position: relative; margin-bottom: var(--space-8); }
+    .hero-accent { grid-column: 1 / 2; grid-row: 1 / 4; background: var(--accent); width: 4px; justify-self: end; }
+    .hero-headline { grid-column: 3 / 10; font-family: var(--font-grotesk); font-size: clamp(56px, 9vw, 104px); font-weight: 700; line-height: 0.92; letter-spacing: var(--tracking-tight); margin-bottom: var(--space-4); }
+    .hero-subtitle { grid-column: 3 / 9; font-size: var(--text-lg); font-weight: var(--weight-light); line-height: 1.4; letter-spacing: var(--tracking-tight); color: var(--mid-grey); max-width: 55ch; }
+    .hero-scroll { grid-column: 12 / 13; font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--mid-grey); writing-mode: vertical-rl; justify-self: end; align-self: end; padding-bottom: var(--space-6); }
+
+    /* Work Section */
+    .work-section { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; margin-bottom: var(--space-8); padding-top: var(--space-8); border-top: 2px solid var(--black); }
+    .work-label { grid-column: 1 / 3; font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--mid-grey); writing-mode: vertical-rl; transform: rotate(180deg); height: fit-content; padding-bottom: var(--space-4); }
+    .project-card { display: grid; grid-template-columns: subgrid; align-content: start; }
+    .project-card:nth-child(2) { grid-column: 3 / 7; }
+    .project-card:nth-child(3) { grid-column: 7 / 11; }
+    .project-card:nth-child(4) { grid-column: 11 / 13; }
+    .project-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; margin-bottom: var(--space-3); border: 1px solid var(--mid-grey); }
+    .project-card:nth-child(4) img { width: calc(100% + 2vw); max-width: none; }
+    .project-card h3 { font-family: var(--font-display); font-size: var(--text-md); font-weight: var(--weight-bold); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); margin-bottom: var(--space-1); }
+    .project-card .meta { font-size: var(--text-xs); font-weight: var(--weight-medium); color: var(--mid-grey); }
+    .work-footer { grid-column: 1 / -1; display: flex; justify-content: flex-end; padding: var(--space-6) 0 var(--space-4); border-bottom: 2px solid var(--black); margin-top: var(--space-8); }
+    .work-footer a { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--black); }
+
+    /* About Section */
+    .about-section { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; margin-bottom: var(--space-8); padding-top: var(--space-8); border-top: 2px solid var(--black); }
+    .about-marker { grid-column: 1 / 2; font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--accent); writing-mode: vertical-rl; transform: rotate(180deg); height: fit-content; padding-bottom: var(--space-4); }
+    .about-text { grid-column: 2 / 7; }
+    .about-text h2 { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: var(--weight-bold); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); margin-bottom: var(--space-5); }
+    .about-text p { font-size: var(--text-base); line-height: var(--leading-body); max-width: 55ch; margin-bottom: var(--space-4); color: var(--mid-grey); }
+    .about-text p:first-of-type { font-size: var(--text-md); font-weight: var(--weight-light); letter-spacing: var(--tracking-tight); color: var(--black); }
+    .about-credentials { margin-top: var(--space-6); list-style: none; }
+    .about-credentials li { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--mid-grey); padding: var(--space-2) 0; border-bottom: 1px solid var(--mid-grey); }
+    .about-credentials li:last-child { border-bottom: none; }
+    .about-visual { grid-column: 7 / 13; aspect-ratio: 4/5; background: #F4F3EE; border: 1px solid var(--mid-grey); position: relative; overflow: hidden; }
+    .about-visual::after { content: ''; position: absolute; bottom: var(--space-6); right: var(--space-6); width: 24px; height: 24px; background: var(--accent); border-radius: 50%; }
+
+    /* Services */
+    .services-section { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; margin-bottom: var(--space-8); padding-top: var(--space-8); border-top: 2px solid var(--black); }
+    .services-label { grid-column: 1 / 3; font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--mid-grey); writing-mode: vertical-rl; transform: rotate(180deg); height: fit-content; padding-bottom: var(--space-4); }
+    .service-item { display: grid; grid-template-columns: subgrid; align-content: start; }
+    .service-item:nth-child(2) { grid-column: 3 / 6; }
+    .service-item:nth-child(3) { grid-column: 6 / 9; }
+    .service-item:nth-child(4) { grid-column: 9 / 13; }
+    .service-item:nth-child(5) { grid-column: 4 / 10; margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--mid-grey); }
+    .service-number { font-family: var(--font-grotesk); font-size: var(--text-3xl); font-weight: 700; line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); color: var(--accent); margin-bottom: var(--space-2); }
+    .service-item h3 { font-family: var(--font-display); font-size: var(--text-lg); font-weight: var(--weight-bold); line-height: 1.1; letter-spacing: var(--tracking-tight); margin-bottom: var(--space-2); }
+    .service-item p { font-size: var(--text-sm); color: var(--mid-grey); line-height: var(--leading-body); max-width: 35ch; }
+
+    /* Contact */
+    .contact-section { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; margin-bottom: var(--space-8); padding: var(--space-8) 0; border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); }
+    .contact-marker { grid-column: 1 / 2; font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--accent); writing-mode: vertical-rl; transform: rotate(180deg); height: fit-content; padding-bottom: var(--space-4); }
+    .contact-headline { grid-column: 2 / 8; font-family: var(--font-display); font-size: var(--text-4xl); font-weight: var(--weight-bold); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); margin-bottom: var(--space-6); }
+    .contact-details { grid-column: 9 / 13; align-self: end; }
+    .contact-details p { font-size: var(--text-base); font-weight: var(--weight-regular); line-height: var(--leading-body); margin-bottom: var(--space-2); }
+    .contact-details a { font-size: var(--text-md); font-weight: var(--weight-bold); color: var(--black); border-bottom: 2px solid var(--accent); }
+    .contact-details .detail-label { font-size: var(--text-xs); font-weight: var(--weight-medium); color: var(--mid-grey); margin-bottom: var(--space-1); }
+    .contact-social { grid-column: 1 / -1; display: flex; gap: var(--space-3); padding-top: var(--space-6); margin-top: var(--space-6); border-top: 1px solid var(--mid-grey); font-size: var(--text-sm); font-weight: var(--weight-medium); }
+    .contact-social a { color: var(--mid-grey); transition: color 0.2s; }
+    .contact-social a:hover { color: var(--accent); }
+    .contact-social .sep { color: var(--mid-grey); }
+
+    /* Footer */
+    .site-footer { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; padding: var(--space-6) 0; font-size: var(--text-sm); color: var(--mid-grey); }
+    .footer-copy { grid-column: 1 / 4; }
+    .footer-back { grid-column: 10 / 13; text-align: right; }
+    .footer-back a { font-weight: var(--weight-medium); color: var(--black); }
+
+    /* Responsive */
+    @media (max-width: 1023px) {
+      .grid { grid-template-columns: repeat(8, 1fr); gap: 16px; padding: 0 var(--space-5); }
+      .site-logo { grid-column: 1 / 3; }
+      .site-nav { grid-column: 6 / 9; }
+      .hero-headline { grid-column: 2 / 8; font-size: clamp(40px, 8vw, 72px); }
+      .hero-subtitle { grid-column: 2 / 7; }
+      .hero-scroll { display: none; }
+      .work-label, .about-marker, .services-label, .contact-marker { writing-mode: horizontal-tb; transform: none; grid-column: 1 / 3; margin-bottom: var(--space-2); }
+      .project-card:nth-child(2) { grid-column: 2 / 6; }
+      .project-card:nth-child(3) { grid-column: 6 / 10; }
+      .project-card:nth-child(4) { grid-column: 2 / 10; }
+      .project-card:nth-child(4) img { width: 100%; }
+      .about-text { grid-column: 2 / 9; }
+      .about-visual { grid-column: 2 / 9; margin-top: var(--space-6); }
+      .service-item:nth-child(2) { grid-column: 2 / 5; }
+      .service-item:nth-child(3) { grid-column: 5 / 8; }
+      .service-item:nth-child(4) { grid-column: 2 / 5; margin-top: var(--space-6); }
+      .service-item:nth-child(5) { grid-column: 2 / 8; }
+      .contact-headline { grid-column: 2 / 9; font-size: var(--text-2xl); }
+      .contact-details { grid-column: 2 / 9; margin-top: var(--space-4); }
+      .site-footer { grid-template-columns: 1fr; gap: var(--space-2); text-align: center; }
+      .footer-copy { grid-column: 1; }
+      .footer-back { grid-column: 1; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <header class="site-header">
+      <span class="site-logo">Studio</span>
+      <nav>
+        <ul class="site-nav">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="poster-hero">
+      <div class="hero-accent"></div>
+      <h1 class="hero-headline">Studio</h1>
+      <p class="hero-subtitle">Strategic design at the intersection of Swiss modernism and contemporary visual culture. Branding, editorial, and digital experiences built on grid systems and typographic hierarchy.</p>
+      <span class="hero-scroll">Scroll</span>
+    </section>
+
+    <section class="work-section" id="work">
+      <span class="work-label">Selected Work</span>
+
+      <div class="project-card">
+        <img src="https://placehold.co/600x450/1A1A1A/FFFFFF?text=BRANDING" alt="Branding project">
+        <h3>Identity<br>System</h3>
+        <span class="meta">Branding · 2026</span>
+      </div>
+      <div class="project-card">
+        <img src="https://placehold.co/600x450/F4F3EE/1A1A1A?text=EDITORIAL" alt="Editorial project">
+        <h3>Annual<br>Report</h3>
+        <span class="meta">Editorial · 2025</span>
+      </div>
+      <div class="project-card">
+        <img src="https://placehold.co/600x450/1A1A1A/FFFFFF?text=DIGITAL" alt="Digital project">
+        <h3>Platform<br>Design</h3>
+        <span class="meta">Digital · 2026</span>
+      </div>
+
+      <div class="work-footer">
+        <a href="#">View all projects →</a>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <span class="about-marker">About</span>
+      <div class="about-text">
+        <h2>Design that earns<br>its position.</h2>
+        <p>
+          An independent design studio working between brand, editorial, and code. Every project begins with the same question: <em>what needs to be said?</em>
+        </p>
+        <p>
+          We build visual systems — not logos, not websites, not campaigns — but the underlying structures that make communication consistent, scalable, and unmistakable. The grid is our method, not our style.
+        </p>
+        <ul class="about-credentials">
+          <li>Active since 2018</li>
+          <li>Brand, editorial, digital</li>
+          <li>Swiss method, modern tools</li>
+        </ul>
+      </div>
+      <div class="about-visual" aria-hidden="true"></div>
+    </section>
+
+    <section class="services-section" id="services">
+      <span class="services-label">Services</span>
+      <div class="service-item">
+        <div class="service-number">01</div>
+        <h3>Brand Identity</h3>
+        <p>Logo systems, typographic lockups, colour architecture, brand guidelines. Modular identities that adapt across print, screen, and space.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-number">02</div>
+        <h3>Editorial Design</h3>
+        <p>Magazines, books, annual reports. Grid-driven layouts, typographic hierarchy, print production oversight.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-number">03</div>
+        <h3>Digital Design</h3>
+        <p>Responsive websites, design systems, interactive typography. Swiss rigour applied to variable-viewport environments.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-number">04</div>
+        <h3>Art Direction</h3>
+        <p>Campaign strategy, visual identity audits, creative direction for photo and video. We bring the grid to any medium.</p>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <span class="contact-marker">Contact</span>
+      <div class="contact-headline">
+        Let's work<br>together.
+      </div>
+      <div class="contact-details">
+        <p class="detail-label">Email</p>
+        <p><a href="mailto:studio@example.com">studio@example.com</a></p>
+        <p class="detail-label" style="margin-top: var(--space-4);">Location</p>
+        <p>City, Country</p>
+      </div>
+      <div class="contact-social">
+        <a href="#">Instagram</a>
+        <span class="sep">—</span>
+        <a href="#">LinkedIn</a>
+        <span class="sep">—</span>
+        <a href="#">Are.na</a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span class="footer-copy">&copy; 2026 Studio</span>
+      <span class="footer-back"><a href="#">Back to top</a></span>
+    </footer>
+  </div>
+</body>
+</html>

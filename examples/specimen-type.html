@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Specimen — Type system</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=melodrama@400,500,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=sentient@400,500,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0E0E0E; --fg: #F5F5F7; --muted: #8E8E93; --line: rgba(255,255,255,0.08);
+      --accent: #F0C000;
+      --font-melodrama: 'Melodrama', Georgia, serif;
+      --font-ranade: 'Ranade', Georgia, serif;
+      --font-sentient: 'Sentient', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-body: 'Sentient', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --text-display: clamp(56px, 10vw, 96px);
+      --text-title: 24px; --text-body: 14px; --text-meta: 12.5px; --text-label: 9.5px;
+      --tracking-tight: -0.05em; --tracking-snug: -0.02em;
+      --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 32px; --space-8: 48px;
+      --grid-gap: 20px; --max-width: 1200px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); font-size: var(--text-body); letter-spacing: var(--tracking-snug); line-height: 1.45; background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: var(--max-width); margin: 0 auto; padding: var(--space-8) var(--space-6); }
+
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap); }
+
+    header { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: var(--space-4); margin-bottom: var(--space-8); }
+    header h1 { font-family: var(--font-melodrama); font-weight: 700; font-size: var(--text-display); line-height: 0.95; letter-spacing: var(--tracking-tight); }
+    header .meta { font-size: var(--text-meta); color: var(--muted); }
+
+    /* Family cards */
+    .family { grid-column: span 4; border: 1px solid var(--line); padding: var(--space-6); display: flex; flex-direction: column; }
+    .family .name { font-family: var(--font-display, inherit); font-weight: 700; font-size: var(--text-title); letter-spacing: var(--tracking-tight); margin-bottom: var(--space-2); }
+    .family .class { font-size: var(--text-meta); color: var(--muted); margin-bottom: var(--space-4); }
+
+    .sample { font-family: var(--font-sample); font-size: 28px; line-height: 1.1; letter-spacing: var(--tracking-tight); margin-bottom: var(--space-3); }
+    .sample.sentient { font-weight: 400; }
+    .sample.melodrama { font-weight: 500; }
+    .sample.ranade { font-weight: 500; }
+
+    .weights { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-4); }
+    .weight { font-family: var(--font-sample); font-size: var(--text-body); letter-spacing: var(--tracking-snug); }
+    .weight.w400 { font-weight: 400; }
+    .weight.w500 { font-weight: 500; }
+    .weight.w600 { font-weight: 600; }
+    .weight.w700 { font-weight: 700; }
+
+    .chars { font-family: var(--font-sample); font-size: 22px; letter-spacing: 0.02em; color: var(--muted); }
+
+    /* Icon set — geometric, hairline */
+    .icons { grid-column: 1 / -1; margin-top: var(--space-8); border-top: 1px solid var(--line); padding-top: var(--space-6); }
+    .icons h2 { font-family: var(--font-melodrama); font-weight: 700; font-size: var(--text-title); letter-spacing: var(--tracking-tight); margin-bottom: var(--space-4); }
+    .icon-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap); }
+    .icon-cell { aspect-ratio: 1; border: 1px solid var(--line); display: grid; place-items: center; }
+    .icon-cell svg { width: 24px; height: 24px; stroke: var(--fg); stroke-width: 1.5; }
+
+    /* Heatmap — displacement map preview */
+    .heatmap { grid-column: 1 / -1; margin-top: var(--space-8); aspect-ratio: 4/3; position: relative; border: 1px solid var(--line); overflow: hidden; }
+    .heatmap svg { width: 100%; height: 100%; display: block; }
+
+    footer { grid-column: 1 / -1; margin-top: var(--space-8); border-top: 1px solid var(--line); padding-top: var(--space-4); display: flex; justify-content: space-between; font-size: var(--text-meta); color: var(--muted); }
+
+    @media (max-width: 1023px) { .family { grid-column: span 6; } }
+    @media (max-width: 767px) {
+      .wrap { padding: var(--space-6) var(--space-4); }
+      header h1 { font-size: 48px; }
+      .family { grid-column: 1 / -1; }
+      .icon-grid { grid-template-columns: repeat(6, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="grid">
+      <header>
+        <h1>Type<br>system</h1>
+        <div class="meta">Three families · one palette · dark canvas</div>
+      </header>
+
+      <section class="family" style="--font-sample: 'Melodrama', Georgia, serif; --font-display: 'Melodrama', Georgia, serif;">
+        <div class="name">Melodrama</div>
+        <div class="class">High-contrast serif · editorial display</div>
+        <p class="sample melodrama">The quick brown fox jumps</p>
+        <div class="weights">
+          <span class="weight w400">Regular 400 — the quiet voice</span>
+          <span class="weight w500">Medium 500 — the measured tone</span>
+          <span class="weight w700">Bold 700 — the headline</span>
+        </div>
+        <p class="chars">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</p>
+      </section>
+
+      <section class="family" style="--font-sample: 'Ranade', Georgia, serif; --font-display: 'Ranade', Georgia, serif;">
+        <div class="name">Ranade</div>
+        <div class="class">Contemporary serif · text & display</div>
+        <p class="sample ranade">The quick brown fox jumps</p>
+        <div class="weights">
+          <span class="weight w400">Regular 400 — body copy</span>
+          <span class="weight w500">Medium 500 — emphasis</span>
+          <span class="weight w700">Bold 700 — subheads</span>
+        </div>
+        <p class="chars">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</p>
+      </section>
+
+      <section class="family" style="--font-sample: 'Sentient', 'Helvetica Neue', Helvetica, Arial, sans-serif; --font-display: 'Sentient', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+        <div class="name">Sentient</div>
+        <div class="class">Neo-grotesk · UI & long-form</div>
+        <p class="sample sentient">The quick brown fox jumps</p>
+        <div class="weights">
+          <span class="weight w400">Regular 400 — body</span>
+          <span class="weight w500">Medium 500 — UI labels</span>
+          <span class="weight w600">SemiBold 600 — strong</span>
+        </div>
+        <p class="chars">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</p>
+      </section>
+
+      <section class="icons" aria-label="Icon set">
+        <h2>Icon set — 24px line</h2>
+        <div class="icon-grid">
+          <span class="icon-cell" title="Grid"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="12" y="3" width="9" height="6" rx="1"/><rect x="3" y="12" width="6" height="9" rx="1"/><rect x="12" y="12" width="9" height="9" rx="1"/></svg></span>
+          <span class="icon-cell" title="Type"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19h14M12 5v14"/></svg></span>
+          <span class="icon-cell" title="Columns"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="3" height="18"/><rect x="9" y="3" width="3" height="18"/><rect x="15" y="3" width="3" height="18"/><rect x="21" y="3" width="3" height="18"/></svg></span>
+          <span class="icon-cell" title="Baseline"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M8 7l4 5-4 5"/></svg></span>
+          <span class="icon-cell" title="Scale"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9"/><path d="M12 5v7M12 12h7"/></svg></span>
+          <span class="icon-cell" title="Kerning"><svg viewBox="0 0 24 24" fill="none"><path d="M6 19V5M12 19V5M18 19V5"/><path d="M6 12h12"/></svg></span>
+          <span class="icon-cell" title="Leading"><svg viewBox="0 0 24 24" fill="none"><path d="M6 19V5M18 19V5M6 12h12"/></svg></span>
+          <span class="icon-cell" title="Measure"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 16h18M3 8h18"/></svg></span>
+          <span class="icon-cell" title="Align left"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14M5 12h10M5 19h14"/></svg></span>
+          <span class="icon-cell" title="Align center"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16M6 12h12M8 19h8"/></svg></span>
+          <span class="icon-cell" title="Justify"><svg viewBox="0 0 24 24" fill="none"><path d="M3 5h18M3 12h18M3 19h18"/></svg></span>
+          <span class="icon-cell" title="Hyphenate"><svg viewBox="0 0 24 24" fill="none"><path d="M6 12h12M12 9v6"/></svg></span>
+          <span class="icon-cell" title="Ligatures"><svg viewBox="0 0 24 24" fill="none"><text x="6" y="16" font-size="12" font-family="serif">fi</text><text x="14" y="16" font-size="12" font-family="serif">fl</text></svg></span>
+        </div>
+      </section>
+
+      <section class="heatmap" aria-label="Displacement map preview">
+        <svg viewBox="0 0 800 600">
+          <defs>
+            <filter id="disp">
+              <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="4" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+            <linearGradient id="ramp" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0E0E0E"/>
+              <stop offset="40%" stop-color="#1A1A1A"/>
+              <stop offset="60%" stop-color="#2D2D2D"/>
+              <stop offset="100%" stop-color="#F0C000"/>
+            </linearGradient>
+          </defs>
+          <rect width="800" height="600" fill="url(#ramp)" filter="url(#disp)"/>
+        </svg>
+      </section>
+
+      <footer>
+        <span>Specimen generated from Fontshare families</span>
+        <span>Build a84a3c0 · GLM-5.3-Flash</span>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

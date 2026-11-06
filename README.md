@@ -95,14 +95,27 @@ Five standalone HTML templates — open in any browser or drop into your CMS.
 
 Screenshots rendered from these files:
 
+**Templates**
+
 | | |
 | --- | --- |
 | <img src="docs/examples/archive-os.jpg" width="560" alt=""> | <img src="docs/examples/portfolio-swiss.jpg" width="560" alt=""> |
 | `archive-os` | `portfolio-swiss` |
 | <img src="docs/examples/editorial-article.jpg" width="560" alt=""> | <img src="docs/examples/archive-grid.jpg" width="560" alt=""> |
 | `editorial-article` | `archive-grid` |
-| <img src="docs/examples/matesu-grid-system.jpg" width="560" alt=""> | <img src="docs/examples/portfolio-brutalist.jpg" width="560" alt=""> |
-| `matesu-grid-system` (example) | `portfolio-brutalist` |
+| <img src="docs/examples/portfolio-brutalist.jpg" width="560" alt=""> |
+| `portfolio-brutalist` |
+
+**Worked examples**
+
+| | |
+| --- | --- |
+| <img src="docs/examples/grid-system.jpg" width="560" alt=""> | <img src="docs/examples/poster-blue.jpg" width="560" alt=""> |
+| `grid-system` | `poster-blue` |
+| <img src="docs/examples/catalogue-red.jpg" width="560" alt=""> | <img src="docs/examples/specimen-type.jpg" width="560" alt=""> |
+| `catalogue-red` | `specimen-type` |
+| <img src="docs/examples/spread-mag.jpg" width="560" alt=""> |
+| `spread-mag` |
 
 Rendered in OpenCode on the GLM-5.3-Flash model, November 2026.
 
@@ -110,11 +123,14 @@ Rendered in OpenCode on the GLM-5.3-Flash model, November 2026.
 
 ## Examples
 
-The `examples/` folder ships the working tools and two reference sheets —
-your own photography stays yours.
+The `examples/` folder ships the working tools, reference sheets, and worked specifications — your own photography stays yours.
 
 - `img/` — two Helvetica-as-interface reference sheets (transit and traffic signage). The archive template ships with empty photo slots, not stock photos.
-- `matesu-grid-system.html` — the grid-system specification example on the token set, using scaffolding images where photos would go.
+- `grid-system.html` — the grid-system specification example on the token set (General Sans + Switzer), with scaffolding images.
+- `poster-blue.html` — A0 poster on blue field: Cabinet Grotesk display, Switzer text, exposed 12-column grid, hairline rules, icon set, vertical marginalia.
+- `catalogue-red.html` — Paper & ink catalogue on off-white: Bespoke Sans display, Switzer text, red accent, asymmetric 6+6 card grid, spec table.
+- `specimen-type.html` — Dark-canvas type specimen: Melodrama, Ranade, Sentient from Fontshare; geometric icon grid; SVG displacement-map heatmap.
+- `spread-mag.html` — Magazine spread with inverted page (dark/bright), Clash Display + General Sans, gradient-map image overlay, justified body with drop cap, pull quote as poster.
 - `analyze-images.js` — extracts metadata (dimensions, dominant colour, entropy, palette) into `references.yaml` for the agents.
 - `treat-images.js` — the refactor pipeline: resize cap, threshold print, halftone build. Declare your own recipes; originals are never touched.
 
@@ -181,8 +197,8 @@ swiss-web-design/
       design-critic.md                 —   Review & QA (Archive OS checklist included)
       cargo-builder.md                 —   Cargo.site builder
   templates/                           — 5 HTML templates (Fontshare type)
-  examples/                            — Analysis/refactor tools + signage sheets
-  docs/examples/                       — Rendered gallery screenshots
+  examples/                            — 6 worked examples + analysis/refactor tools + signage sheets
+  docs/examples/                       — 11 rendered gallery screenshots
   bin/install.js                       — Multi-agent installer
   test/                                — Test suite
   package.json                         — npm package
@@ -191,15 +207,20 @@ swiss-web-design/
 
 ## Typefaces
 
-Templates load display/body pairs from [Fontshare](https://www.fontshare.com):
+Templates and worked examples load from [Fontshare](https://www.fontshare.com):
 
-| Template | Display | Body |
+| Surface | Display | Body |
 | --- | --- | --- |
 | `archive-os` | Switzer | Switzer |
 | `portfolio-swiss` | General Sans | Switzer |
 | `editorial-article` | Clash Display | Switzer |
 | `archive-grid` | Satoshi | Satoshi |
 | `portfolio-brutalist` | system (Courier) | system |
+| `grid-system` (example) | General Sans | Switzer |
+| `poster-blue` (example) | Cabinet Grotesk | Switzer |
+| `catalogue-red` (example) | Bespoke Sans | Switzer |
+| `specimen-type` (example) | Melodrama, Ranade | Sentient |
+| `spread-mag` (example) | Clash Display | General Sans |
 
 The brutalist template stays on system fonts on purpose — that is its point.
 
