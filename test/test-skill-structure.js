@@ -38,7 +38,7 @@ function assert(condition, msg) {
 
 // --- Parse frontmatter from a .md file ---
 function parseFrontmatter(filePath) {
-  const content = fs.readFileSync(filePath, 'utf-8');
+  const content = fs.readFileSync(filePath, 'utf-8').replace(/\r\n/g, '\n');
   const match = content.match(/^---\n([\s\S]*?)\n---\n/);
   if (!match) return null;
 
@@ -175,10 +175,10 @@ console.log('\nTemplates:');
 
 const expectedTemplates = [
   'archive-grid.html',
+  'archive-os.html',
   'editorial-article.html',
   'portfolio-brutalist.html',
   'portfolio-swiss.html',
-  'wayfinder-landing.html',
 ];
 
 for (const tmpl of expectedTemplates) {
@@ -199,10 +199,10 @@ for (const tmpl of expectedTemplates) {
       // Brutalist template intentionally uses raw values, not custom properties
       assert(content.includes('font-family'), 'Missing font declarations');
       assert(content.includes('#000') || content.includes('#0000EE'), 'Missing colours');
-    } else if (tmpl === 'wayfinder-landing.html') {
-      // Wayfinder uses its own token set
-      assert(content.includes('--bg') && content.includes('--text'), 'Missing Wayfinder tokens');
-      assert(content.includes('--font-display') || content.includes('--font-body'), 'Missing Wayfinder font tokens');
+    } else if (tmpl === 'archive-os.html') {
+      // Archive OS uses its own canvas/text token pair
+      assert(content.includes('--bg') && content.includes('--text'), 'Missing Archive OS tokens');
+      assert(content.includes('--font-display') || content.includes('--font-body'), 'Missing Archive OS font tokens');
     } else {
       assert(content.includes('--font-sans'), 'Missing --font-sans token');
       assert(content.includes('--accent'), 'Missing --accent token');

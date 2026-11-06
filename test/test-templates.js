@@ -64,8 +64,8 @@ for (const tmpl of templates) {
       assert(content.includes('Courier') || content.includes('monospace'), 'Missing monospace font');
       assert(content.includes('#0000EE'), 'Missing default link colour');
     });
-  } else if (tmpl === 'wayfinder-landing.html') {
-    test(`${tmpl}: has Wayfinder tokens`, () => {
+  } else if (tmpl === 'archive-os.html') {
+    test(`${tmpl}: has Archive OS tokens`, () => {
       assert(content.includes('--bg') && content.includes('--text'), 'Missing --bg/--text');
       assert(content.includes('--font-display') || content.includes('--font-body'), 'Missing font tokens');
     });
@@ -135,9 +135,9 @@ for (const tmpl of templates) {
     });
   }
 
-  if (tmpl.includes('wayfinder')) {
-    test(`${tmpl}: Wayfinder dark canvas`, () => {
-      assert(content.includes('#000') || content.includes('black') || content.includes('#1A1A1A'), 'Wayfinder should use dark background');
+  if (tmpl.includes('archive-os')) {
+    test(`${tmpl}: Archive OS dark canvas`, () => {
+      assert(content.includes('#141414') || content.includes('rgba(255, 255, 255'), 'Archive OS should use the matesu.me dark canvas tokens');
     });
   }
 }

@@ -232,10 +232,23 @@ async function analyzeFile(filePath) {
   return result;
 }
 
+function walkImages(dirPath, rootDir) {
+  const out = [];
+  const SKIP_DIRS = new Set(['original', 'node_modules', '.git']);
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      if (SKIP_DIRS.has(entry.name)) continue;
+      out.push(...walkImages(path.join(dirPath, entry.name), rootDir));
+    } else if (SUPPORTED.includes(path.extname(entry.name).toLowerCase())) {
+      out.push(path.relative(rootDir, path.join(dirPath, entry.name)).split(path.sep).join('/'));
+    }
+  }
+  return out;
+}
+
 async function scanDirectory(dirPath) {
-  const files = fs.readdirSync(dirPath)
-    .filter(f => SUPPORTED.includes(path.extname(f).toLowerCase()))
-    .sort();
+  const files = walkImages(dirPath, dirPath).sort();
 
   if (files.length === 0) {
     console.log('No image files found in', dirPath);

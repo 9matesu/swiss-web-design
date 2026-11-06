@@ -15,24 +15,35 @@ type as the primary interface element.
 ## Process
 
 1. Read the content hierarchy from the brief.
-2. Select ONE typeface family (Inter / Helvetica Neue / Akzidenz-Grotesk /
-   Enreal for Wayfinder). Mono for code/data only.
-3. Assign sizes from the modular scale (perfect fourth 1.25).
-4. Assign weights: 300 for display, 400 body, 500 UI, 700 headings.
-5. Set leading: 1.0–1.1 for display, 1.4–1.6 for body.
-6. Set tracking: -0.02em for display, 0 for body, 0.042em for Wayfinder.
-7. Constrain body measure to 66ch.
-8. Flush left, ragged right. No justified text. No serifs.
+2. Select ONE typeface family — Helvetica Neue is the sovereign choice
+   (Inter only as fallback, Akzidenz-Grotesk for classic campaigns). Mono for
+   code/data only.
+3. Pick the scale: **editorial** (perfect fourth 1.25) for essays and posters,
+   **app** (--text-item 26px … --text-spec 8.5px) for Archive OS interfaces.
+4. Assign weights: 300 display (editorial), 400 body/items, 500
+   active/UI/keywords, 700 headings and brand.
+5. Set leading: 1.0–1.1 for display and 26px items, 1.4–1.6 for body.
+6. Set tracking at the correct pole:
+   - Tight: `-0.04em` on 26px items/titles, `-0.01 … -0.015em` on body.
+   - Wide: `0.15–0.16em` ONLY on 8.5–10px uppercase micro-labels.
+   Never wide tracking on a large title; never tight tracking on micro-labels.
+7. Constrain body measure to 66ch (editorial) or 46ch (OS detail columns).
+8. Flush left, ragged right. Justification only in narrow columns with
+   `hyphens: auto` (the one documented exception). No serifs.
+9. Data numerals are tabular: `font-variant-numeric: tabular-nums`.
 
 ## Reference
 
 ```css
---font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+--font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 --text-xs: 0.75rem;  --text-sm: 0.875rem;  --text-base: 1rem;
 --text-md: 1.25rem;  --text-lg: 1.563rem;  --text-xl: 1.953rem;
 --text-2xl: 2.441rem; --text-3xl: 3.052rem; --text-4xl: 3.815rem;
+/* app scale */
+--text-item: 26px; --text-body-app: 13px; --text-ui: 12px; --text-meta: 11px;
+--text-label: 10px; --text-section: 9px; --text-spec: 8.5px;
 --weight-light: 300; --weight-regular: 400; --weight-medium: 500; --weight-bold: 700;
 --leading-tight: 1.0; --leading-heading: 1.1; --leading-body: 1.6;
---tracking-tight: -0.02em; --tracking-wide: 0.042em; --tracking-upper: 0.05em;
+--tracking-tight: -0.04em; --tracking-snug: -0.01em; --tracking-label: 0.15em;
 --measure: 66ch;
 ```

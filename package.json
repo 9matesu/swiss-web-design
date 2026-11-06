@@ -11,17 +11,17 @@
     "typography",
     "graphic-design",
     "grid-system",
-    "wayfinder",
+    "archive-os",
     "brutalist",
     "cargo-site",
     "agent-skills"
   ],
-  "homepage": "https://github.com/matco/swiss-web-design#readme",
+  "homepage": "https://github.com/9matesu/swiss-web-design#readme",
   "bugs": {
-    "url": "https://github.com/matco/swiss-web-design/issues"
+    "url": "https://github.com/9matesu/swiss-web-design/issues"
   },
   "license": "MIT",
-  "author": "matco",
+  "author": "9matesu",
   "bin": {
     "swiss-web-design": "./bin/install.js"
   },
@@ -40,6 +40,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matco/swiss-web-design.git"
+    "url": "git+https://github.com/9matesu/swiss-web-design.git"
   }
 }

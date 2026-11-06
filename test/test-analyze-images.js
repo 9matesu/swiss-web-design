@@ -2,7 +2,7 @@
  * test-analyze-images.js
  *
  * Tests for the analyze-images.js script.
- * Uses the existing example images (b1.jpg, b2.jpg).
+ * Uses the existing example images (img/signage-toronto.jpg, img/signage-swiss.jpg).
  *
  * Run: cd examples && npm install && node ../test/test-analyze-images.js
  */
@@ -41,12 +41,12 @@ function assert(condition, msg) {
 // --- 1. Example images exist ---
 console.log('\nExample images:');
 
-test('b1.jpg exists', () => {
-  assert(fs.existsSync(path.join(EXAMPLES_DIR, 'b1.jpg')), 'b1.jpg not found');
+test('img/signage-toronto.jpg exists', () => {
+  assert(fs.existsSync(path.join(EXAMPLES_DIR, 'img', 'signage-toronto.jpg')), 'img/signage-toronto.jpg not found');
 });
 
-test('b2.jpg exists', () => {
-  assert(fs.existsSync(path.join(EXAMPLES_DIR, 'b2.jpg')), 'b2.jpg not found');
+test('img/signage-swiss.jpg exists', () => {
+  assert(fs.existsSync(path.join(EXAMPLES_DIR, 'img', 'signage-swiss.jpg')), 'img/signage-swiss.jpg not found');
 });
 
 test('analyze-images.js exists', () => {
@@ -59,41 +59,41 @@ console.log('\nAnalysis:');
 (async () => {
   try {
     const sharp = require(moduleResolve('sharp'));
-    const image = sharp(path.join(EXAMPLES_DIR, 'b1.jpg'));
+    const image = sharp(path.join(EXAMPLES_DIR, 'img', 'signage-toronto.jpg'));
     const metadata = await image.metadata();
     const stats = await image.stats();
 
-    test('b1.jpg is a JPEG', () => {
+    test('signage-toronto.jpg is a JPEG', () => {
       assert(metadata.format === 'jpeg', `Expected jpeg, got ${metadata.format}`);
     });
 
-    test('b1.jpg has dimensions', () => {
+    test('signage-toronto.jpg has dimensions', () => {
       assert(metadata.width > 0, 'Width is 0');
       assert(metadata.height > 0, 'Height is 0');
     });
 
-    test('b1.jpg has dominant colour', () => {
+    test('signage-toronto.jpg has dominant colour', () => {
       assert(stats.dominant, 'No dominant colour');
       assert(typeof stats.dominant.r === 'number', 'No red channel');
       assert(typeof stats.dominant.g === 'number', 'No green channel');
       assert(typeof stats.dominant.b === 'number', 'No blue channel');
     });
 
-    test('b1.jpg has 3 channels', () => {
+    test('signage-toronto.jpg has 3 channels', () => {
       assert(metadata.channels === 3, `Expected 3 channels, got ${metadata.channels}`);
     });
 
     // Test palette extraction
-    const image2 = (require(moduleResolve('sharp')))(path.join(EXAMPLES_DIR, 'b2.jpg'));
+    const image2 = (require(moduleResolve('sharp')))(path.join(EXAMPLES_DIR, 'img', 'signage-swiss.jpg'));
     const meta2 = await image2.metadata();
     const stats2 = await image2.stats();
 
-    test('b2.jpg is a JPEG', () => {
+    test('signage-swiss.jpg is a JPEG', () => {
       assert(meta2.format === 'jpeg', `Expected jpeg, got ${meta2.format}`);
     });
 
-    test('b2.jpg has larger dimensions than b1.jpg', () => {
-      assert(meta2.width > metadata.width, 'b2 width should be larger than b1 width');
+    test('signage-swiss.jpg has larger dimensions than signage-toronto.jpg', () => {
+      assert(meta2.width > metadata.width, 'signage-swiss width should be larger than signage-toronto width');
     });
 
   } catch (err) {

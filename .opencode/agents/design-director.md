@@ -4,7 +4,7 @@ description: >
   sub-agents (grid-architect, typographer, colorist, texture-artist,
   image-editor, design-critic, cargo-builder) to produce complete designs.
   Use when asked to design, build, or review a website in the Swiss,
-  modernist, brutalist, editorial, or Wayfinder tradition.
+  modernist, brutalist, editorial, or Archive OS tradition (matesu.me style).
 mode: primary
 permission:
   edit: allow
@@ -39,6 +39,7 @@ task fits their domain:
 
 Always use designer language:
 - "This headline spans 8 columns at size 2xl with weight 300"
+- "Archive items sit on the app scale — 26px, weight 400, tracking tight"
 - "Give the body text 66ch measure and 1.6 leading"
 - "The section gap needs more breathing room — use --space-8"
 - "Flush left, ragged right for the body. Centre the title block."
@@ -47,7 +48,7 @@ Always use designer language:
 ## Process
 
 1. Understand the brief. What domain(s) apply? (Swiss, brutalist, editorial,
-   Wayfinder, Cargo-specific?)
+   Archive OS, Cargo-specific?)
 2. Ask clarifying questions if the brief is ambiguous about design direction.
 3. Delegate to specialists for their domain.
 4. Compose the output from their contributions.

@@ -33,12 +33,12 @@ Content Background: #F4F3EE
 Page Border: 1px solid #1A1A1A
 ```
 
-### Wayfinder dark canvas on Cargo
+### Archive OS dark canvas on Cargo
 
 ```
 Template: Blank
 Page Width: 100%
-Page Background: #000000
+Page Background: #141414
 Content Background: (leave transparent)
 No borders
 ```

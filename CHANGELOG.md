@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.3.0 (2026-11-06)
+
+- Rebased the dark direction on **www.matesu.me** (Archive OS): the skill's
+  tokens, system anatomy, interaction vocabulary, and atlas hero now come from
+  that site's production CSS. Removed the Wayfinder tradition, the `Enreal`
+  typeface reference, and all Wide tracking values (`0.042em`) that contradicted
+  the reference (`tracking tight —0.04em / micro-labels 0.15em`).
+- New Section 9 **Archive OS Pattern (matesu.me)**: layout anatomy (sidebar,
+  topbar, atlas hero, archive stage, novidades sheet), spec boxes, the archive
+  tree, the adjustments panel contract, and interaction vocabulary (inversion
+  hover, cursors as affordances, push animation, sidebar collapse to a 48px
+  tab).
+- Reference hygiene: removed non-relevant references (personal Pinterest board,
+  Pulumi/Apple/Medium/Stripe name-drops, HEX.inc/Wayfinder case studies) and
+  added platform references (Neocities, Bandcamp, are.na, HTML Energy) plus
+  `www.matesu.me` as the live reference. Documented a "Reference Hygiene"
+  contract for maintainers.
+- Replaced the `wayfinder-landing.html` template with **`archive-os.html`**
+  (dark canvas, sidebar, search/filter/order, atlas SVG hero, spec boxes,
+  settings panel with persisted theme/font/grain/hue). Updated the test suite.
+- Agent corpus updated to the Archive OS doctrine: typographer (Helvetica-first,
+  two-scale system with the app scale, tracking poles, tabular numerals),
+  colorist (matesu.me dark palette with five text steps), grid-architect
+  (panel maps), texture-artist (threshold print, atlas vignette), image-editor
+  (threshold/dots treatments), design-critic (Archive OS checklist),
+  design-director and cargo-builder (dark canvas recipe at `#141414`).
+- Examples rebuilt with treated images: added `treat-images.js`
+  (resize cap, threshold print, halftone build — originals untouched), reorganised
+  `examples/img/` (photo refactors + signage sheets), refreshed
+  `references.yaml`, and refactored `matesu-grid-system.html` to the token set.
+
 ## 1.2.0 (2026-07-20)
 
 - Removed all personalized portfolio examples (`matesu-portfolio.html` and `portfolio-yellow-black.html`) from templates and examples.

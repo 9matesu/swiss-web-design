@@ -2,19 +2,21 @@
 name: swiss-web-design
 description: >
   Use when building or reviewing websites in the Swiss Style / International
-  Typographic tradition — cargo.site portfolios, Wayfinder-style brand sites,
+  Typographic tradition — dark archive/OS interfaces, cargo.site portfolios,
   and European modernist web design. Emphasises grid systems, typographic
-  hierarchy, asymmetric composition, and whitespace as an active material.
-  Framed for graphic designers directing web output, not frontend developers.
-  Trigger words: Swiss, cargo.site, Wayfinder, modernist, grid system,
-  Helvetica, International Typographic Style, graphic designer portfolio.
+  hierarchy, asymmetric composition, hairline rules, and whitespace as an
+  active material. The live reference for the dark "Archive OS" direction is
+  www.matesu.me. Framed for graphic designers directing web output, not
+  frontend developers. Trigger words: Swiss, archive, OS interface, cargo.site,
+  modernist, grid system, Helvetica, International Typographic Style, dark
+  canvas, graphic designer portfolio.
 ---
 
 # Swiss Web Design
 
 A design skill for building websites the way a graphic designer would —
 composing with type, grid, and space rather than components, state, and
-breakpoints. This skill covers three overlapping traditions:
+breakpoints. This skill covers two overlapping traditions:
 
 - **Swiss Style / International Typographic Style** — the 1950s movement
   (Müller-Brockmann, Ruder, Hofmann, Bill) that made grids, sans-serif
@@ -23,10 +25,13 @@ breakpoints. This skill covers three overlapping traditions:
   artists who refuse template-looking templates. Cargo's constraint model
   (pinned pages, overlaid layers, image-centric grids) rewards a Swiss
   approach.
-- **Wayfinder Design** — a 2020s evolution that pushes Swiss rigour into
-  dark-canvas, ultra-thin type, path-based typographic illustration, and
-  asynchronous gradients. Think black backgrounds, weight-300 display faces,
-  and 0.042em tracking.
+- **Archive OS** — a 2020s direction that turns the portfolio into an
+  *instrument*: a dark, appliance-like interface where content is navigated
+  like an archive or file system. The live reference is
+  [www.matesu.me](https://www.matesu.me) — fixed bio sidebar, search-and-filter
+  topbar, typographic navigation columns, a topographic atlas as hero,
+  hairline spec boxes, and photographic threshold/halftone treatments. All
+  tokens in this skill were extracted from that site's production CSS.
 
 ---
 
@@ -40,7 +45,7 @@ breakpoints. This skill covers three overlapping traditions:
 6. Photography over Illustration
 7. Asymmetric Composition
 8. Cargo.site Patterns
-9. Wayfinder Design Patterns
+9. Archive OS Pattern (matesu.me)
 10. CSS Framework / Design Tokens
 11. Spacing Scale
 12. Responsive Behaviour
@@ -68,6 +73,14 @@ decision:
 | **Objectivity** | Personal taste is subordinate to the message. Neutrality makes the design a vehicle, not a destination. |
 | **Mathematics** | Proportion, scale, and alignment follow rational systems — grids, ratios, modular scales — not intuition. |
 | **Typography is the interface** | Type does the work that chrome, shadows, and illustrations do elsewhere. The page is a typographic composition. |
+
+For the Archive OS direction, add three more:
+
+| Principle | Meaning |
+|-----------|---------|
+| **The site is an instrument** | The portfolio behaves like an appliance: searchable, filterable, adjustable. The visitor *operates* the site, they do not just scroll it. |
+| **Honesty of the apparatus** | Show the interface's bones — hairline rules, dotted separators, data tables, filing codes. Do not polish the apparatus into invisibility. |
+| **Sovereign defaults, personal adjustments** | Ship strong default design decisions, then give the visitor honest controls: theme, font, grain, hue. Defaults carry; controls never decorate. |
 
 When making decisions, ask: *Does this help someone understand something
 faster?* If the answer is no, remove it.
@@ -122,6 +135,22 @@ Content sections vary:
 Grid column assignment should vary per section. Never repeat the same grid
 template for every row — that is not a Swiss grid, it is a spreadsheet.
 
+### OS Chrome — Panel Math, Not Column Math
+
+Archive OS layouts do not live on a 12-column canvas. They live in a fixed
+appliance frame measured in *panels*:
+
+```
+| sidebar 250px | main: header 52px + atlas hero (vh) + stage + sheet (vh) |
+```
+
+- Heights are tokenised (`--header-h`, `--sheet-h`, `--hero-h`), widths are
+  fixed (`--sidebar-w: 250px`, collapse to `48px`).
+- Separation inside panels comes from **hairline rules** (`1px`, ~5% alpha)
+  and **gaps**, not from cards or shadows.
+- Where a 12-column grid does appear (spec sheets, data, novidades), it is
+  built from tokenised `fr` splits (`1.35fr 1fr`), not an equal-3 template.
+
 ### Cargo-Specific Grid Notes
 
 Cargo 3 uses a freeform coordinate system rather than a strict CSS grid, but
@@ -153,22 +182,28 @@ text doing the work.
 
 | Use | Primary | Fallback Stack |
 |-----|---------|----------------|
-| Display / UI | Inter | `'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif` |
-| Display / UI (alt) | Helvetica Neue | `'Helvetica Neue', Helvetica, Arial, sans-serif` |
-| Classic Swiss | Akzidenz-Grotesk | `'Akzidenz-Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif` |
-| Wayfinder-style | Enreal (or substitute) | `'Enreal', 'Jost Light', 'DM Sans Light', 'Outfit Light', 'Helvetica Neue', Helvetica, Arial, sans-serif` |
+| Everything (default) | Helvetica Neue | `'Helvetica Neue', Helvetica, Arial, sans-serif` |
+| Wide-availability | Inter | `'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif` |
+| Classic Swiss era | Akzidenz-Grotesk | `'Akzidenz-Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif` |
 | Mono (code / data) | JetBrains Mono | `'JetBrains Mono', 'SF Mono', 'Fira Code', monospace` |
 
-Rules:
-- **One family. Two weights. Three sizes.** Never use more than one typeface
-  family (except mono for data).
+Rules (from the matesu.me reference):
+
+- **One family. Two weights per surface. Three sizes per zone.** Never more
+  than one typeface family (except mono for data).
+- **Helvetica is the sovereign choice.** Everything on the Archive OS
+  reference — 26px nav items, 8.5px spec labels, the atlas map text — is
+  Helvetica Neue / Helvetica / Arial.
 - **No serifs.** Ever. Garamond, Caslon, Times — all forbidden.
 - **No decorative fonts.** The typeface must be neutral, well-drawn, and
   invisible. The message, not the font, is what should be noticed.
+- **No modern sans impostors** ('Inter' is acceptable as a fallback only when
+  Helvetica Neue cannot be loaded).
 
-### Modular Type Scale
+### Two Scales: Editorial + App
 
-Use a consistent ratio. Perfect fourth (1.25) or augmented fourth (1.333):
+The **editorial scale** follows a consistent ratio. Perfect fourth (1.25) or
+augmented fourth (1.333):
 
 ```css
 :root {
@@ -186,55 +221,73 @@ Use a consistent ratio. Perfect fourth (1.25) or augmented fourth (1.333):
 }
 ```
 
+The **app scale** (Archive OS) is built from *actual interface sizes*, in px:
+
+```css
+:root {
+  --text-item:      26px;  /* archive items / detail titles */
+  --text-body:      13px;  /* detail body, rows, novidades lead */
+  --text-ui:        12px;  /* controls, dropdowns, links */
+  --text-meta:      11px;  /* meta lines, captions, sidebar footer */
+  --text-label:     10px;  /* uppercase control labels */
+  --text-section:   9px;   /* section heads (ficha técnica) */
+  --text-spec:      8.5px; /* spec box labels, ISRC, explicit tag */
+}
+```
+
+Two opposite tracking poles do all the expressive work in an Archive OS page:
+
+| Pole | Value | Used for |
+|------|-------|----------|
+| **Tight** | `-0.01em` … `-0.04em` | Everything typographic: 26px items and titles use `-0.04em`; body/meta use `-0.01em … -0.015em`. |
+| **Wide** | `0.08em … 0.16em` | Micro-labels only — 9–10px uppercase section heads and control labels. |
+
+Negative tracking on display + wide tracking on micro-labels is the signature
+pair. If a draft uses wide tracking on a big title, it is wrong.
+
 ### Weight Distribution
 
 | Token | Value | Used For |
 |-------|-------|----------|
-| `--font-weight-light` | 300 | Display headlines, Wayfinder-style titles |
-| `--font-weight-regular` | 400 | Body text, labels |
-| `--font-weight-medium` | 500 | UI labels, captions, buttons |
-| `--font-weight-bold` | 700 | Headings, emphasis |
+| `--font-weight-light` | 300 | Display headlines in editorial Swiss layouts |
+| `--font-weight-regular` | 400 | Archive items, body text |
+| `--font-weight-medium` | 500 | Active archive items, bold micro-labels, bio keywords |
+| `--font-weight-bold` | 700 | Headlines, brand name, emphasis |
 
-Swiss design uses weight as a **structural tool**, not decoration. Bold
-headings are bold because the content hierarchy demands it, not because bold
-looks nice.
+Weight is a **structural tool**, not decoration. In the OS frame the bright
+hierarchy goes: active `500` > idle `400` > dimmed defaults `400` at lower
+alpha steps (never pure grey blocks — stepped alphas, see §10).
 
 ### Line Height
 
 | Role | Line Height | Notes |
 |------|-------------|-------|
-| Headings / Display | 1.0 – 1.1 | Tight for impact |
-| Body text | 1.4 – 1.6 | Generous for readability |
-| Captions / Meta | 1.2 | Compact |
-
-### Letter Spacing (Tracking)
-
-| Role | Tracking | Notes |
-|------|----------|-------|
-| Display (standard) | `-0.02em` | Tight for headlines |
-| Body | `0` | Normal |
-| UI Labels / Captions | `0.01em – 0.05em` | Slight looseness |
-| Wayfinder display | `0.042em` | Wide — cinematic, breathing |
-| Uppercase labels | `0.05em – 0.1em` | Deliberate, wide |
+| Items / display | 1.0 – 1.1 | Tight. 26px items run at 1.1. |
+| Body text | 1.4 – 1.6 | Detail body 1.45; editorial body 1.6. |
+| Captions / Meta | 1.2 – 1.45 | Spec labels 1.2; detail meta 1.25. |
 
 ### Alignment
 
-- **Flush left, ragged right.** Always. Justified text creates uneven rivers of
-  whitespace. Centred text is reserved for specific compositional moments
-  (Wayfinder-style title cards). Never right-align body text.
-- **Left-align everything** on the grid. Logo, nav, headlines, body, captions.
+- **Flush left, ragged right** is the default. Justified text creates uneven
+  rivers of whitespace — but the Archive OS reference does justify narrow bio
+  columns (`text-align: justify; hyphens: auto`). If you justify, follow that
+  recipe exactly: narrow column (≤ 320px), `hyphens: auto`,
+  `text-justify: inter-word`. Never justify > 66ch measures.
+- Centred text is reserved for atlas legenda moments. Never right-align body
+  text.
 
 ### Measure (Line Length)
 
 - Body text: **45–75 characters per line** (ideal: ~66).
 - Constrain width on text-heavy sections:
+
   ```css
   max-width: 66ch;
   ```
 
-### OpenType Features
+- Detail bodies (OS frame): 46ch soft limit, `line-clamp` where needed.
 
-Always enable standard ligatures and contextual alternates:
+### OpenType & Numerals
 
 ```css
 body {
@@ -242,7 +295,15 @@ body {
 }
 ```
 
-For Inter specifically, enable single-story `a` (`cv11`).
+Data is set in **tabular figures** — durations, counts, dates, ISRC codes:
+
+```css
+.track-num, .track-dur, .result-path {
+  font-variant-numeric: tabular-nums;
+}
+```
+
+Data columns that jitter as you read are broken typography.
 
 ---
 
@@ -262,6 +323,10 @@ deliberately as around the type.
    will breathe better.
 4. **Don't fill the margins.** Resist the reflex to add a banner, a button, or
    a third image just because there is room.
+5. **On dark, emptiness is the canvas.** In the Archive OS frame the void
+   (`#141414`) is the material; hairlines only ever *divide* it. A page of
+   nothing but 26px neutral type floating in the dark is a composed page —
+   not an empty one.
 
 ### Section Gaps
 
@@ -270,6 +335,13 @@ deliberately as around the type.
   --section-gap: clamp(4rem, 8vw, 8rem);
 }
 ```
+
+In OS layouts, rhythm comes from three tokenised breathing rates instead of
+one section gap:
+
+- **Row gap:** 7–9px (track rows, link rows)
+- **Group gap:** 12–20px (stage padding, sidebar gap, spec boxes)
+- **Zone gap:** 24–28px (atlas padding, sheet padding, panel insets)
 
 A headline given a full column of air reads as confident. The same headline
 boxed in by three buttons and a banner reads as anxious. Nothing about the
@@ -282,7 +354,7 @@ headline changed — only what surrounds it.
 Swiss colour is minimalist. The palette does the work of hierarchy and does
 not compete with content.
 
-### Core Palette
+### Core Palette (Light)
 
 ```css
 :root {
@@ -311,27 +383,43 @@ not compete with content.
 
 ### Rules
 
-- **One accent colour maximum.** Red is the canonical Swiss accent.
+- **One accent colour maximum.** Signal red is the canonical Swiss accent.
   Occasionally blue (#2B5FD7) or yellow (#E8B82C) for specific brands.
 - **Monochromatic + one accent.** Every other colour should be a grey.
-- **No gradients unless Wayfinder.** Standard Swiss is flat colour.
-  Wayfinder-style uses asynchronous gradients as a deliberate, system-level
-  exception — not a decorative afterthought.
+- **No gradients except inside illustration canvases.** Standard Swiss is flat
+  colour. The Archive OS reference allows gradients *only* inside the atlas
+  (vignette over the drawn paper), never on UI surfaces.
 - **No drop shadows, no glow, no card layers.** Swiss design is flat. Depth
-  comes from hierarchy, not from shadows.
+  comes from hierarchy, not from shadows. (Sole exception: one soft shadow on
+  floating *chrome* — a settings panel — never on content.)
+- **Theme is a token pair.** Every theme (dark `#141414`, light `#f5f5f7`
+  base) must define a complete matching set: canvas, text steps, borders,
+  fields. A theme with undefined members is a bug, and the visitor's choice
+  persists (`localStorage`).
 
-### Wayfinder Expandida Palette
+### Archive OS Palette (matesu.me, dark / default)
 
 ```css
 :root {
-  --color-void-black:       #000000;
-  --color-smolder-earth:    #0B0502;
-  --color-charcoal:         #1A1A1A;
-  --color-bone-white:       #FFFFFF;
-  --color-ash:              #E3E3E2;
-  --color-driftwood:        #C0BFBE;
+  --bg-main:        #141414;  /* canvas — warm dark, never pure black */
+  --text-bright:    #f5f5f7;  /* brightest level — names, active items */
+  --text-active:    #d1d1d6;
+  --text-body:      #a1a1a6;
+  --text-muted:     #8e8e93;
+  --text-dim:       #636366;
+  --text-faint:     #48484a;
+  --border-subtle:  rgba(255, 255, 255, 0.05);  /* hairline: panels, rows */
+  --border-link:    rgba(255, 255, 255, 0.15);  /* hairline: interactive */
+  --field-bg:       rgba(255, 255, 255, 0.07);  /* search field, photo slot */
+  --map-shade:      #080808;  /* atlas vignette */
+
+  /* Light theme pair (same tokens, swapped) */
+  /* --bg-main: #f5f5f7 family; text steps invert via rgba(0,0,0,α) */
 }
 ```
+
+Five text steps on one canvas. If your dark UI has fewer than four text
+levels, it is not legible; more than six, it is noise.
 
 ---
 
@@ -344,15 +432,19 @@ reality without the designer's hand interposing.
 
 - **Use photography as the primary visual content.** Not illustration, not
   3D renders, not decorative iconography.
-- **Full-bleed images** are the default. Let images reach the edge of the
-  grid or the viewport.
-- **Scale by width, not height.** Images should fill their container
-  horizontally and crop vertically.
-- **No drop shadows on images.** No rounded corners. No decorative frames.
-- **Black-and-white or desaturated** photography reads as more objective and
-  integrates better with typography.
-- **Wayfinder exception:** illustration is allowed when it is the *entire
-  viewport canvas* — a world the type floats on, not a decorative sidebar.
+- **Full-bleed images** are the default in editorial layouts. Let images reach
+  the edge of the grid or the viewport. In OS layouts, images live in *slots*
+  with hairline borders (`--field-bg` fits behind the slot).
+- **Scale by width, not height.** Images fill their container horizontally and
+  crop vertically (`object-fit: cover`).
+- **No drop shadows on images. No rounded corners. No decorative frames.**
+- **Treat, don't decorate.** The reference site normalises every photo into
+  two canonical states (§9): a grayscale **threshold** print (grayscale +
+  extreme contrast) and a **halftone dots** print. Colour photos are the
+  exception, not the default.
+- **Images are documents.** They answer crosshair/grab cursors, not pointer
+  cursor toys. Interactions are precise: edge outline on hover, scroll-to-pan
+  on the photo, invert on hover.
 
 ---
 
@@ -365,20 +457,24 @@ strong element to a quieter one, guided by the grid.
 
 ```
 Pattern A: Off-centre hero
-  [  empty (3)  |  headline (7)  |  nav (2)  ]
+   [  empty (3)  |  headline (7)  |  nav (2)  ]
 
 Pattern B: Split content
-  [  body text (5)  |  image (7)  ]
+   [  body text (5)  |  image (7)  ]
 
 Pattern C: Full-bleed interruption
-  [  image (12) — full viewport width  ]
+   [  image (12) — full viewport width  ]
 
-Pattern D: Wayfinder title card
-  [  empty (4)  |  centred title (4)  |  empty (4)  ]
-  Content vertically and horizontally centred in the viewport.
+Pattern D: Atlas card
+   [  empty (4)  |  centred title (4)  |  empty (4)  ]
+   Content vertically and horizontally centred in the viewport.
 
 Pattern E: Three-column data
-  [  stat (4)  |  stat (4)  |  stat (4)  ]
+   [  stat (4)  |  stat (4)  |  stat (4)  ]
+
+Pattern F: OS frame
+   [  bio sidebar (fixed)  |  archive stage (horizontal tree)  ]
+   Sidebar carries identity; the stage carries the archive.
 ```
 
 ### Rules
@@ -411,7 +507,7 @@ approach because the platform itself is image-and-type-centric.
 | Feature | Swiss Application |
 |---------|-------------------|
 | **Page Width** | Set 80–92%. Gives generous margins. |
-| **Content Background** | Set to white or off-white. Page Background stays the same or slight tint. |
+| **Content Background** | Set to white or off-white (or the Archive OS `#141414` for a dark archive). |
 | **Page Border** | Thin black border (1–2px). Acts like a typographic rule framing the composition. |
 | **Site Border** | Optional outer border. Creates a printed-page feeling. |
 | **Pinned pages** | Use for persistent navigation sidebar or nameplate. |
@@ -469,104 +565,196 @@ nav, .nav, [role="navigation"] {
 
 ---
 
-## 9. Wayfinder Design Patterns
+## 9. Archive OS Pattern (matesu.me)
 
-Wayfinder (the SF-based venture fund rebrand by HEX.inc) represents a
-contemporary evolution of Swiss principles into a dark, cinematic direction.
+The Archive OS is the dark, appliance-like evolution of Swiss discipline used
+on [www.matesu.me](https://www.matesu.me). The site is a **personal file
+system**: identity in a fixed sidebar, the archive navigated like a tree of
+folders and items, detail views filed like data cards, and every control the
+visitor may touch tokenised and adjustable. It reads as an instrument, not a
+brochure.
 
-### Core Characteristics
+### Layout Anatomy
 
-| Element | Specification |
-|---------|---------------|
-| Canvas | Pure black (`#000000`). The black is a stage, not a background. |
-| Display type | Weight 300 (ultra-thin), 0.042em tracking, all-caps or sentence case |
-| Body type | Weight 400, same family |
-| Composition | Vertically and horizontally centred in the viewport |
-| UI | Icon-only, monochrome, no labels, no tooltips, no backgrounds |
-| Illustration | Full-viewport illustration or animation — never cropped, never overlaid |
-| Buttons | Filled white for primary action; dark outlined for secondary |
-| Atmosphere | Cinematic, title-card quality. Every screen is a composed frame. |
-
-### Design Tokens (Wayfinder Variant)
-
-```css
-:root {
-  /* Typography */
-  --font-display: 'Enreal', 'Jost Light', 'DM Sans Light', 'Outfit Light', ui-sans-serif, system-ui, sans-serif;
-  --font-body:    'Enreal', 'Jost', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-
-  --text-display: clamp(3rem, 5vw, 4rem);
-  --text-subtitle: 14px;
-  --text-body: 16px;
-  --text-caption: 13px;
-
-  --tracking-display: 0.042em;
-  --tracking-body: 0.67px;
-
-  --leading-display: 1.0;
-  --leading-body: 1.2;
-
-  /* Colours */
-  --color-bg: #000000;
-  --color-text: #FFFFFF;
-  --color-text-muted: rgba(255, 255, 255, 0.7);
-  --color-border: #333333;
-}
+```
+┌─────────────┬──────────────────────────────────────────────┐
+│             │ #topbar                        52px          │
+│             │  search · results · filter · order · gear    │
+│  #sidebar   ├──────────────────────────────────────────────┤
+│  250px      │ #hero — topographic atlas sheet   38–44vh    │
+│  bio photo  │  contours, hachures, routes, marks           │
+│  (normal +  ├──────────────────────────────────────────────┤
+│   dots)     │ grabber (20px, drag to resize the atlas)     │
+│  "matesu"   ├──────────────────────────────────────────────┤
+│  bio text   │ #stage — horizontal archive columns          │
+│  keyword    │  folder → folder → item → detail             │
+│  bold words │  26px / -0.04em · counts superscripted       │
+│  link list  ├──────────────────────────────────────────────┤
+│  footer     │ #homepage — novidades sheet        26vh      │
+│             │  lead + rows, resizable from the grabber     │
+└─────────────┴──────────────────────────────────────────────┘
 ```
 
-### When to Use Wayfinder vs Standard Swiss
+- **Everything is fixed inside `100vh`; the archive scrolls horizontally.**
+  Vertical scrolling is reserved for two surfaces only: the novidades sheet
+  and detail columns (`overflow-y: auto`).
+- **Sidebar collapse = 48px tab**, not a hamburger. A vertical-rl label
+  (`writing-mode: vertical-rl; transform: rotate(180deg)`) replaces the whole
+  bio. Full collapse or full detail — never half-states.
+- **Hairline separation.** Panel edges and rows are divided by
+  `1px solid var(--border-subtle)` (5% white). Interactive tops get the
+  15% line. No card backgrounds, no shadows.
+
+### Type-on-Canvas
+
+| Zone | Spec |
+|------|------|
+| Archive items | 26px / weight 400 / `-0.04em` / brightens on hover / active = 500 |
+| Item count badges | 13px superscripted, faint |
+| Detail title | 26px / 600 / `-0.04em` |
+| Detail meta/body | 12.5–13px / muted / justified with `hyphens: auto` |
+| Track rows | 12.5px titles, 10.5px numbers+durations, 9px ISRC |
+| Section heads | 9px caps, `0.16em`, with a hairline rule filling the rest of the row |
+| Spec labels | 8.5px caps `0.15em` over 12px values |
+| Dropdown labels | 10px caps `0.03em` |
+
+### Interaction Vocabulary
+
+Honest, machine-like, and restrained:
+
+1. **Inversion instead of pills.** Hovering a link or row paints an opaque
+   bright rectangle behind the text and flips the text colour to the canvas
+   colour. `box-decoration-break: clone` keeps multi-line hits whole.
+   Transition: `0.16s`.
+2. **Colour change, never geometry games.** No scale-up hovers, no shadows on
+   hover, no bounce. One exception exists in the reference: a small 5px
+   horizontal "push" on click, defined as keyframes — copy it exactly or use
+   nothing.
+3. **Cursors are documentation.** `grab` for canvas, `crosshair` for photos,
+   `grabbing` while dragging, `ns-resize` on the grabber, `pointer` on items.
+   The cursor answers "am I allowed to press/take/move this?".
+4. **Scrollbars disappear where scroll is horizontal**, and the interface
+   offers scrollbar-free motion (wheel, drag, touch) instead.
+5. **Anchors open target blanks** with `rel="noopener"`. Every external link
+   is honest about leaving the instrument.
+
+### The Archive Tree (data as content)
+
+Content ships as one JS tree object; the UI is a renderer over it:
+
+```js
+var tree = {
+  "música": {
+    "participações": {
+      "blackmesa hz": {
+        title: "BLACKMESA Hz",
+        meta: "07/06/2026",
+        body: "Identidade visual e cartaz do BLACKMESA Hz…",
+        img: "img/bmhz0/frente.png"
+      }
+    }
+  }
+};
+```
+
+Rules:
+
+- Keys are user-visible words. What you see at the top level must equal the
+  filter list ("tudo", "design", "música"…).
+- Details carry their own metadata: `title`, `meta`, `body`, `img`/`images[]`,
+  optional `link`. The renderer never invents content.
+- Item counts are computed from the tree, not hardcoded.
+- Galleries are arrays rendered into a single-column figure list with captions
+  — never a carousel.
+
+### The Atlas Hero (topographic SVG sheet)
+
+The hero is not photography — it is a **drawn document**: a topographic paper
+sheet as an atlas of the archive, drawn in native SVG with JS:
+
+```css
+/* Tokens (light-on-dark, or the paper pair in light theme) */
+--map-paper: #141414;      --map-ink: #f5f5f7;
+--map-ink-2: rgba(245,245,247,0.72);
+--map-ink-3: rgba(245,245,247,0.52);
+--map-ink-4: rgba(245,245,247,0.34);
+--map-grid: rgba(245,245,247,0.22);
+--map-shade: #080808;
+```
+
+Drawing vocabulary:
+
+- **Graticule pattern** — 100px squares as a `<pattern>` fill at 0.6 stroke.
+- **Contours** — `map-contour` stroked paths (1px), major contours brighter
+  (1.8px) at ink-2. Forms the terrain.
+- **Hachures** — short strokes on slopes at ink-4, classic relief marks.
+- **Folds & cracks** — straight folds at grid colour; thin paper cracks with a
+  paper-coloured "gap" stroke underneath so folds/cracks clearly *cut* the
+  print.
+- **Crosses** — small surveyor's crosses at grid intersections.
+- **Route lines** — dashed `stroke-dasharray: 14 10` marching-ants animation
+  (`@keyframes mapMarch { to { stroke-dashoffset: -24; } }` at 2.8s) linking
+  the navigation marks.
+- **Marks** — 11px dots with paper fill + 2px ink stroke; labels in 26px
+  Helvetica (`paint-order: stroke` with a 6px paper stroke so type never
+  collides with linework); active marks bold; the current mark pulses a halo
+  (3s ease-in-out).
+- **Vignette** — radial gradient to `--map-shade` at 0.55 outer opacity.
+- **Grain** — `feTurbulence` noise rect over the sheet at 0.07 overlay.
+
+Interaction: the sheet pans (grab cursor), `touch-action: none`, pause on
+`prefers-reduced-motion`. The atlas may be cropped slightly at the bottom edge
+for fold realism — but *crops are part of the drawing*, never lazy sizing.
+
+### Spec Boxes (ficha técnica)
+
+Data is filed in a one-pixel-gap grid, not cards:
+
+```css
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border-subtle);   /* the grid shows as hairlines */
+  border: 1px solid var(--border-subtle);
+}
+.spec-box { padding: 8px 10px; background: var(--bg-main); }
+.spec-label { font-size: 8.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-faint); }
+.spec-value { font-size: 12px; color: var(--text-bright); overflow-wrap: anywhere; }
+```
+
+- The *gaps* are the rules. Box interiors return to canvas colour.
+- Wide entries span `grid-column: 1 / -1` (long values, track lists ledes).
+- Values are fields, not prose: dates, credits, ISRC, roles.
+
+### Adjustments Panel (the sovereign-settings contract)
+
+The instrument ships an honest settings panel ("ajustes"), fixed under the
+gear button, with:
+
+| Group | Control |
+|-------|---------|
+| Tema | swatch pairs (dark/light at minimum), grid 1fr 1fr |
+| Fonte | button list — Helvetica by default; alternates only if licensed |
+| Cursor | choice of the three appropriate cursors |
+| Grão | 0–100 slider over the grain overlay (`mix-blend-mode: overlay`, SVG `feTurbulence` 0.82/4 octaves) |
+| Matiz | −180°–180° slider via `filter: hue-rotate()` |
+
+Contract: **all choices persist in `localStorage`**, apply globally
+(`:root[data-theme]`, body `filter`), and note it to the visitor in a small
+footnote. Defaults stay strong — every slider starts neutral (grain 0, hue 0°).
+
+### When to Use Archive OS vs Standard Swiss
 
 | Context | Approach |
 |---------|----------|
-| Portfolio site, light background | Standard Swiss |
-| Brand site, dark / tech / premium | Wayfinder-inspired |
-| Full-screen experience | Wayfinder |
-| Content-heavy reading site | Standard Swiss |
-| Art / experimental | Either, leaning Wayfinder |
-
-### Decorative Symbols (Wayfinder & Metro)
-
-Modernist wayfinding design heavily utilizes geometric and functional symbols rather than illustrative icons. These should be set in-line with display text or used in background layouts as framing devices.
-
-#### Arrow Set (Directional Navigation)
-- `→` Arrow Right (Standard navigation / button accents)
-- `↳` Arrow Down-Right (Index sub-items, tree menus)
-- `▲` Triangle Up (Back to top / ascending status)
-- `▼` Triangle Down (Collapsible indicators / descending status)
-- `↗` / `↘` Diagonal Arrows (Outbound links / transition signs)
-
-#### Star Set (Status & Accentuation)
-- `✦` Black Four Pointed Star (Primary wayfinder accent, clean)
-- `✧` White Four Pointed Star (Secondary wayfinder accent)
-- `★` Black Star / `☆` White Star (Status / bookmarking)
-- `✶` Six Pointed Star (Archival / catalog indicators)
-
-#### Metro & Architectural Symbols (Structural Framing)
-- `⊞` Squared Plus / `⊟` Squared Minus (Expand / collapse system structures)
-- `⊠` Squared Times (Close, delete, absolute boundary)
-- `⏀` / `⏁` / `⏂` Phase / Terminal Symbols (Terminal block endpoints, technical status)
-- `⊚` Circle Bullseye / `⊛` Circle Star / `⊜` Circle Equal (System junction points, node states)
-- `⏎` Return Key symbol (Actions, submission triggers)
-
-#### Application Guidelines
-- **Alignment:** Always align symbols using exact baseline adjustments (`vertical-align: middle` or `transform: translateY(...)`) so they feel part of the grid line.
-- **Scale:** Decorative background symbols can be blown up to huge scales (e.g., `15vw`) at low opacity (e.g., `0.05`), acting as watermarks or grid intersections.
-
-### Modernist Multi-Layering
-
-True modernist design is flat, but "Wayfinder" and "Cargo" styles create depth through structural layering. Use the following techniques to construct dimensional compositions without resorting to drop shadows or realistic gradients:
-
-1. **Overlaid Canvas Layouts:**
-   - Stack full-screen or column-wide absolute containers on top of each other.
-   - Example: A base layer containing a large background text grid, a middle layer containing desaturated imagery, and a top layer containing menus and layout rules.
-
-2. **Contrast & Difference Layering:**
-   - Use `mix-blend-mode: difference` or `mix-blend-mode: exclusion` on white text layers sitting on top of black/white images or overlapping shapes. The text will automatically invert color when crossing boundaries, creating high-contrast graphic tension.
-   - Use `mix-blend-mode: multiply` on monochrome images inside colored backgrounds (e.g., black-and-white image in a yellow box) to merge the image dynamically into the color scheme.
-
-3. **Text Border-Crossings:**
-   - Anchor large display text directly onto structural border lines using negative margins or absolute offsets (e.g. `bottom: -0.5em`).
-   - Split headings so that they cross between two colored sections, creating an asymmetric visual link.
+| Personal archive / multidisciplinary practice | Archive OS |
+| Catalogue with data rows (releases, tracks, ISRC) | Archive OS |
+| Site as searchable reference (tags, filters, sort) | Archive OS |
+| Editorial essays, long-form reading | Standard Swiss |
+| Print-led portfolio posters | Standard Swiss |
+| Brand/agency site with campaign photography | Standard Swiss |
+| Archivo dark + editorial light, same owner | Both: archive frame, editorial spreads inside detail views |
 
 ---
 
@@ -583,12 +771,10 @@ as the single source of truth for any Swiss-Style web project.
 
   /* Families */
   --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-sans-alt: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
   --font-classic: 'Akzidenz-Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-wayfinder: 'Enreal', 'Jost Light', 'DM Sans Light', 'Outfit Light', ui-sans-serif, system-ui, sans-serif;
 
-  /* Size scale — Perfect Fourth (1.25) */
+  /* Editorial size scale — Perfect Fourth (1.25) */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -599,6 +785,15 @@ as the single source of truth for any Swiss-Style web project.
   --text-3xl: 3.052rem;
   --text-4xl: 3.815rem;
   --text-5xl: 4.768rem;
+
+  /* App size scale (Archive OS) */
+  --text-item: 26px;
+  --text-body-app: 13px;
+  --text-ui: 12px;
+  --text-meta: 11px;
+  --text-label: 10px;
+  --text-section: 9px;
+  --text-spec: 8.5px;
 
   /* Weights */
   --weight-light: 300;
@@ -613,10 +808,11 @@ as the single source of truth for any Swiss-Style web project.
   --leading-caption: 1.2;
 
   /* Tracking */
-  --tracking-tight: -0.02em;
+  --tracking-tight: -0.04em;     /* OS items & display */
+  --tracking-snug: -0.01em;      /* body & meta */
   --tracking-normal: 0;
-  --tracking-wide: 0.042em;
   --tracking-upper: 0.05em;
+  --tracking-label: 0.15em;      /* micro-labels (spec/section) */
 
   /*
    * ─── Spacing (8px base) ──────────────────────────────────
@@ -648,7 +844,19 @@ as the single source of truth for any Swiss-Style web project.
   --accent:      #D82C2C;
   --accent-blue: #2B5FD7;
 
-  /* Semantic */
+  /* Archive OS canvas set (dark default; pair with a light theme) */
+  --canvas:        #141414;
+  --text-bright:   #f5f5f7;
+  --text-active:   #d1d1d6;
+  --text-body:     #a1a1a6;
+  --text-muted:    #8e8e93;
+  --text-dim:      #636366;
+  --text-faint:    #48484a;
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-link:   rgba(255, 255, 255, 0.15);
+  --field-bg:      rgba(255, 255, 255, 0.07);
+
+  /* Semantic (light contexts) */
   --text-primary:   var(--black);
   --text-secondary: var(--mid-grey);
   --text-inverse:   var(--white);
@@ -658,7 +866,7 @@ as the single source of truth for any Swiss-Style web project.
   --border:         var(--black);
 
   /*
-   * ─── Grid ─────────────────────────────────────────────────
+   * ─── Grid / OS frame ─────────────────────────────────────
    */
 
   --grid-columns: 12;
@@ -667,12 +875,19 @@ as the single source of truth for any Swiss-Style web project.
   --content-width: 960px;
   --measure: 66ch;
 
+  --sidebar-w: 250px;
+  --sidebar-w-collapsed: 48px;
+  --header-h: 52px;
+  --hero-h: 38vh;
+  --sheet-h: 26vh;
+
   /*
    * ─── Section ──────────────────────────────────────────────
    */
 
   --section-gap: clamp(4rem, 8vw, 8rem);
-  --border-radius: 0px;
+  --border-radius: 0px;   /* fields may use small radii; content never does */
+  --transition-ui: 0.16s ease;
 }
 ```
 
@@ -704,10 +919,12 @@ arbitrary values.
 | Body padding (page edge) | `--space-6` | 32px |
 | Gap between sections | `--space-8` or `--section-gap` | 48px – 8rem |
 | Gap between grid items | `--grid-gap` | 20px |
-| Padding inside a card | `--space-4` | 16px |
+| Padding inside a spec box | `--space-2` + 2px | 8–10px |
 | Margin below a heading | `--space-3` | 12px |
 | Margin below a paragraph | `--space-4` | 16px |
 | Small element separation | `--space-2` | 8px |
+| OS row padding | tokenised rows | 7–9px |
+| Spec grid gap (the rule itself) | hairline grid | 1px |
 
 ---
 
@@ -734,10 +951,19 @@ columns. It is about preserving the composition across screen sizes.
 | 768 – 1023px | 8-column grid, reduce gap to 16px, reduce padding to 24px |
 | < 768px | Single column, 16px padding. One image per row. Type sizes reduce one step on the scale. |
 
+Archive OS collapses by **panel strategy**, not column stacking:
+
+- < 1024px: sidebar collapses to the 48px vertical tab automatically.
+- < 760px: spec grids go single-column; detail covers shrink; atlas labels
+  drop to 15px; hero and novidades heights reduce; the archive stage keeps its
+  horizontal scroll (touch `pan-y` drag).
+- The **hamburger is only allowed with more than 6 nav items**, and the two
+  documented OS collapse modes are the sidebar tab and scrollable stages.
+
 ### Mobile Non-Negotiables
 
-- **No hamburger menu** unless the user has >6 nav items. Use a horizontal word
-  list, or stack vertically.
+- **No hamburger menu** unless the user has >6 nav items. Use the sidebar tab,
+  a horizontal word list, or one of the OS collapse modes.
 - **Typography does not reflow wildly.** The same hierarchy applies. H1 is
   still bold, still the largest size on the page.
 - **Images stay full-width** on mobile. No side-by-side images below 640px.
@@ -774,7 +1000,7 @@ columns. It is about preserving the composition across screen sizes.
 | *Typographie* (1967) | Emil Ruder | Typography as the foundation of communication |
 | *Graphic Design Manual* (1965) | Armin Hofmann | Systematic approach to visual fundamentals |
 | *Die neue Typographie* (1928) | Jan Tschichold | Early modernist typography manifesto |
-| *Form + Communication* | Josef Müller-Brockmann | Swiss design philosophy extended |
+| *Designing Programmes* (1962) | Karl Gerstner | Programme-driven design — the ancestor of the Archive OS idea |
 
 ### Key Designers
 
@@ -785,64 +1011,70 @@ columns. It is about preserving the composition across screen sizes.
 | **Armin Hofmann** | Basel School, reductionist visual language, colour theory |
 | **Max Bill** | Bauhaus connection, Art Concret, geometric abstraction |
 | **Adrian Frutiger** | Univers, Frutiger, Avenir — rational typeface design |
-| **Karl Gerstner** | Programmatic design, *Designing Programmes* |
+| **Karl Gerstner** | Programmatic design, mathematical colour |
 | **Wim Crouwel** | Grid-obsessed, New Alphabet, Stedelijk Museum catalogues |
 | **Wolfgang Weingart** | Pushed Swiss into postmodernism, "Swiss Punk" typography |
 | **April Greiman** | Brought Swiss Style to US, blended with new wave |
+| **Hans Neuburg & Richard P. Lohse** | Information graphics and constructive colour systems |
 
 ### Iconic Works to Study
 
 - Müller-Brockmann — Tonhalle Zürich concert posters (1950s–60s)
-- Müller-Brockmann — *Der Film* poster
+- Müller-Brockmann — *Der Film* poster and *Automobil Club der Schweiz* posters
 - Armin Hofmann — Basel Theatre posters
 - Emil Ruder — *Typographie* spreads
 - Max Bill — Ulm School of Design identity
 - Wim Crouwel — Stedelijk Museum catalogues
-- Josef Müller-Brockmann — *Automobil Club der Schweiz* posters
-- Karl Gerstner — *Review* magazine spreads
+- Swiss traffic and transit signage systems — the reason the "interface"
+  metaphor exists at all (see the signage sheets in `examples/`)
 
 ---
 
 ## 14. Contemporary Reference Sites
 
-### Cargo Sites (Study the layout, typography, and grid approach)
+### The Live Reference
 
 | Site | URL | Notes |
 |------|-----|-------|
-| Cargo Community | `cargo.site/community/in-use` | Browse the best current Cargo sites |
-| Noble Design | `kendesign.cargo.site` | Portfolio with Swiss-leaning composition |
-| Cargo Templates | `cargo.site/templates` | See the available starting points |
+| **matesu.me** | `www.matesu.me` | The canonical Archive OS implementation. Fixed sidebar, search/filter/order, atlas hero, archive tree, spec boxes, adjustments panel. All tokens in this skill come from this site's production CSS. |
+
+### Platforms & Scenes (where this aesthetic lives)
+
+| Site | URL | Notes |
+|------|-----|-------|
+| Cargo | `cargo.site` | Portfolio platform for designers who refuse templates |
+| Cargo Community | `cargo.site/community` | Browse the best current Cargo sites |
+| Neocities | `neocities.org` | The personal web scene — small, hand-made, honest |
+| Bandcamp | `bandcamp.com` | Music catalogue conventions; strong on plain-field design |
+| are.na | `are.na` | Channel-based reference collecting; use as a moodboard tool |
+| HTML Energy | `html.energy` | Pamphlet of people making pages that feel like pages |
 
 ### Swiss-Style Web Design
 
 | Site | URL | Notes |
 |------|-----|-------|
-| Swiss in CSS | `swissincss.com` | Historical Swiss posters recreated in CSS and animation |
+| Swiss in CSS | `swissincss.com` | Historical Swiss posters recreated and animated in CSS (Jon Yablonski) |
 | Swiss Themes | `swissthemes.design` | Modern Swiss design templates for Framer |
-| Swiss UI Design Tokens | `github.com/swiss-ui/tokens` | Design tokens based on Swiss principles |
+| Swiss UI Tokens | `github.com/swiss-ui/tokens` | Token set built on Swiss principles (AGPL — check licensing before reuse) |
 
-### Wayfinder & Contemporary Swiss
+### Local Reference Images
 
-| Site | URL | Notes |
-|------|-----|-------|
-| Wayfinder Ventures | `wayfinder.com` | Dark-canvas, ultra-thin type, path illustration |
-| HEX.inc Wayfinder case study | `hex.inc/work/wayfinder` | Full branding case study |
-| HEX.inc | `hex.inc` | Studio behind Wayfinder — see their other work |
+| File | Notes |
+|------|-------|
+| `examples/img/signage-toronto.jpg` | Subway signage: Helvetica as a working interface |
+| `examples/img/signage-swiss.jpg` | Swiss traffic signage montage: red/blue field system, wayfinding shorthand |
 
-### Personal Reference Board
+### Reference Hygiene (for skill maintainers)
 
-| Source | URL | Notes |
-|--------|-----|-------|
-| Pinterest Imagery Board | `br.pinterest.com/mytezy/imagery/` | ~500 pins — graphic design posters, brutalism, experimental typography, halftone/texture, retro sports graphics, archive aesthetics, event design, kinetic type. The user's personal visual vocabulary — the intersection of Swiss rigour with expressive/experimental elements. |
-
-### Broader Inspirations
-
-| Site | URL | Why |
-|------|-----|-----|
-| Apple | `apple.com` | Grid, photography, whitespace, typographic hierarchy |
-| Medium | `medium.com` | Typographic reading experience, single-column Swiss |
-| Stripe | `stripe.com` | Asymmetric layouts, grid discipline, limited palette |
-| Pulumi brand | `brand.pulumi.com` | Inter typeface, typographic scale, Swiss-adjacent |
+- Every reference must be **verifiable, public, and relevant** to the skill's
+  domain. Never ship someone's personal moodboard (Pinterest boards, private
+  channels) as a reference.
+- Never invent URLs, case-study slugs, or vendor case studies you have not
+  checked.
+- Cut references whose only use is name-dropping. A reference should change
+  how the agent designs.
+- When adapting this skill for a person, the *person's own site belongs in
+  "The Live Reference"* — theirs, not anyone else's.
 
 ---
 
@@ -851,35 +1083,37 @@ columns. It is about preserving the composition across screen sizes.
 Before considering any design complete, evaluate every point:
 
 ### Grid & Layout
-- [ ] Is every element aligned to the grid?
+- [ ] Is every element aligned to the grid (or OS panel math)?
 - [ ] Are column spans varied across sections (no repeated equal columns)?
-- [ ] Is the max-width constrained and centred?
+- [ ] Is the max-width constrained and centred (editorial) / panels tokenised (OS)?
 - [ ] Are gutters consistent?
 - [ ] Are any grid breaks deliberate rather than accidental?
 
 ### Typography
 - [ ] Is only one typeface family used (plus mono where appropriate)?
-- [ ] Are all font sizes from the modular scale?
-- [ ] Is hierarchy carried by weight + size, not by colour or decoration?
-- [ ] Is body text flush left, ragged right?
+- [ ] Are all font sizes from the editorial modular scale or the app scale?
+- [ ] Is hierarchy carried by weight + size + alpha steps, not by colour?
+- [ ] Is body text flush left, ragged right (or justified only in narrow hyphenated columns)?
 - [ ] Is the measure constrained to ~66ch on text-heavy sections?
 - [ ] Are line heights generous (1.4–1.6 for body)?
-- [ ] Is tracking intentional (tight for display, normal for body)?
+- [ ] Is tracking at the correct pole (display tight, micro-labels wide)?
+- [ ] Are all data numerals tabular?
 
 ### Whitespace
 - [ ] Could any element be removed without losing communication?
-- [ ] Is the section gap generous?
+- [ ] Is the section gap (or zone gap) generous?
 - [ ] Are margins and padding using the spacing scale?
 - [ ] Is there at least one moment of deliberate emptiness?
 
 ### Colour
 - [ ] Is the palette limited to neutrals + one accent?
 - [ ] Is the accent used sparingly and meaningfully?
-- [ ] Are there any drop shadows, gradients (unless Wayfinder), or rounded corners?
+- [ ] Are there any drop shadows (outside chrome), gradients (outside atlas), or rounded corners on content?
+- [ ] Do dark themes use the five text steps instead of inline greys?
 
 ### Content
 - [ ] Is photography the primary visual content?
-- [ ] Are images full-bleed or aligned to the grid?
+- [ ] Are images full-bleed, slotted, or aligned to the grid?
 - [ ] Would the design work as well in black and white?
 
 ### Communication
@@ -888,13 +1122,18 @@ Before considering any design complete, evaluate every point:
 - [ ] Is the hierarchy clear without needing to interpret it?
 - [ ] Does the design say the same thing to everyone?
 
-### Wayfinder-Specific (if applicable)
-- [ ] Is the canvas pure black?
-- [ ] Is display type weight 300 with 0.042em tracking?
-- [ ] Is the composition centred in the viewport?
-- [ ] Are UI controls icon-only, monochrome, no labels?
-- [ ] Does illustration occupy the full viewport?
-- [ ] Is there a single, composed moment rather than a scroll of sections?
+### Archive-OS-Specific (if applicable)
+- [ ] Is the canvas `#141414` (or the theme's token), not pure black?
+- [ ] Are nav items 26px with `-0.04em` tracking?
+- [ ] Is the sidebar a real panel with a real 48px collapse tab, not a hamburger?
+- [ ] Does every interactive element use inversion/hairline feedback at `0.16s`?
+- [ ] Does wheeled/touched/drag navigation move the archive without vertical page jumps?
+- [ ] Are data sections filed as spec boxes with 1px-gap hairline rules?
+- [ ] Does the atlas use the documented drawing vocabulary (graticule, contours, hachures, route dashes, marks, vignette, grain)?
+- [ ] Do theme/font/grain/hue controls persist to `localStorage`, defaulting neutral?
+- [ ] Are cursors documenting affordances (grab, crosshair, grabbing, ns-resize)?
+- [ ] Does `prefers-reduced-motion` stop routes, halos, and pushes?
+- [ ] Are hidden scrollbars compensated by visible affordances (grabber, marks)?
 
 ### Poster-to-Web / Graphic Design Transfer (if applicable)
 - [ ] Does the composition translate to a screen with variable height?
@@ -972,6 +1211,10 @@ Grid cells that maintain poster-like aspect ratios (4:3, 3:4, 2:3).
 }
 ```
 
+The atlas hero of the Archive OS is a fifth pattern: **the printed document
+as interface** — a paper sheet drawn in SVG, pan-able, with the reading route
+animated between navigation marks. Use it when the content *is* the route.
+
 ### Choosing What to Translate
 
 When analysing a print poster for web translation, identify:
@@ -1026,12 +1269,12 @@ but replaces mathematical neutrality with aggressive directness.
 |---------|----------|
 | Portfolio — minimal work | Swiss |
 | Portfolio — loud, political, urgent work | Brutalist |
-| Personal site / experimental | Brutalist |
+| Personal site / experimental | Brutalist or Archive OS |
 | Corporate / brand site | Swiss |
 | Art / gallery | Either |
 | Blog — content-first | Swiss editorial |
 | Blog — manifesto / polemic | Brutalist |
-| Archive / directory | Brutalist |
+| Archive / directory | Brutalist or Archive OS |
 
 ### Code Pattern
 
@@ -1085,19 +1328,19 @@ but replaces mathematical neutrality with aggressive directness.
 ## 18. Texture & Material
 
 Swiss design traditionally favours flat, untextured surfaces — but the
-contemporary Swiss-adjacent vocabulary (including your Pinterest board) often
-incorporates material texture: halftone dots, paper grain, ink bleed, noise,
-and complex gradients.
+contemporary Swiss-adjacent vocabulary often incorporates material texture:
+halftone dots, paper grain, ink bleed, noise, and drawn gradients. In the
+Archive OS, texture is *adjustable* and always one level quieter than the type.
 
-### Texture Typeface
+### Texture Repertoire
 
 | Texture | Technique | Performance |
 |---------|-----------|-------------|
-| **Halftone** | SVG pattern or Canvas-generated dots | Medium |
+| **Halftone** | SVG pattern or sharp-generated dot screens | Medium |
 | **Paper grain** | CSS `::after` with SVG noise filter | Good |
-| **Photographic grain** | CSS `filter: contrast(1.2) brightness(0.9) saturate(0.3)` | Good |
+| **Threshold print** | `filter: grayscale(1) contrast(16)` or `.threshold()` pre-baked | Best |
 | **Ink bleed / spread** | SVG filter `feGaussianBlur` + `feColorMatrix` | Medium |
-| **Asynchronous gradient** | CSS `background` with multiple radial stops, `animation` | Good |
+| **Atlas mesh** | Radial vignette over drawn paper (atlas only) | Good |
 | **Noise texture** | CSS `::after` with tiny base64 noise PNG or SVG filter | Best |
 | **Scan lines / CRT** | CSS `repeating-linear-gradient` overlay | Best |
 
@@ -1112,6 +1355,21 @@ and complex gradients.
   background: transparent;
   pointer-events: none;
   filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3C/svg%3E#n");
+}
+```
+
+Production grade (the reference's own recipe):
+
+```css
+#grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 55;
+  opacity: 0;                          /* driven by the gião/adjustments slider */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
 }
 ```
 
@@ -1134,14 +1392,25 @@ and complex gradients.
 }
 ```
 
-### Asynchronous Gradient (Wayfinder-style)
+### Threshold Print (photo treatment)
 
 ```css
-.gradient-mesh {
+.bio-photo.threshold {
+  filter: grayscale(1) brightness(1) contrast(16);
+  outline: 1px solid var(--text-bright);
+  outline-offset: -1px;
+}
+```
+
+Pair a normal photo and a thresholded photo in the same slot and crossfade on
+hover — the document answer replaces the photograph answer.
+
+### Atlas Mesh (atmospheric, atlas canvases only)
+
+```css
+.map-vignette {
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(255,100,50,0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(50,100,255,0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(255,50,150,0.08) 0%, transparent 50%);
+    radial-gradient(ellipse at 50% 44%, rgba(8,8,8,0) 52%, rgba(8,8,8,0.55) 100%);
 }
 ```
 
@@ -1150,10 +1419,10 @@ and complex gradients.
 | Context | Texture Recommendation |
 |---------|----------------------|
 | Swiss portfolio (light) | None or very subtle paper grain |
-| Swiss portfolio (dark) | Subtle noise |
+| Archive OS (dark) | Grain slider, default 0 — visitor opt-in |
 | Editorial / magazine | Paper grain, ink bleed |
 | Brutalist | Halftone, scan lines, CRT |
-| Wayfinder-style | Asynchronous gradients, noise |
+| Atlas hero | Vignette + drawn grain at 0.07, always |
 | Poster hero section | Halftone, grain |
 | Archive / collection | Halftone, paper texture |
 
@@ -1267,6 +1536,9 @@ type maps to a different grid pattern.
 | Data | 3–4 columns of stats/charts | Evidence |
 | Close | Full-bleed image or single strong statement | Resolve |
 
+Inside the Archive OS, editorial entries are filed as detail views — the
+anatomy stays, the container changes.
+
 ---
 
 ## 20. Image Analysis & Design Extraction
@@ -1295,6 +1567,14 @@ structured data:
 cd examples
 node analyze-images.js                # outputs references.yaml
 node analyze-images.js --format json  # outputs references.json
+```
+
+If `examples/treat-images.js` also exists, run it *after* analysis to
+normalise working copies (resize cap, threshold print, halftone build) without
+touching the originals:
+
+```bash
+node treat-images.js    # originals stay untouched in examples/img/original/
 ```
 
 The output contains per-image metadata with these fields and design uses:
@@ -1340,13 +1620,13 @@ references:
 Use image characteristics to drive design decisions:
 
 | Image trait | Layout response | Typography response | Colour response |
-|-------------|----------------|-------------------|-----------------|
-| Low entropy, minimal | Generous whitespace, wide margins | Light weight (300), wide tracking | Off-white background, dark accent |
+|-------------|----------------|---------------------|-----------------|
+| Low entropy, minimal | Generous whitespace, wide margins | Light weight (300), tight display tracking | Off-white background, dark accent |
 | High entropy, textured | Full-bleed, simple grid | Bold weight (700), tight tracking | Solid colour background, reduce noise |
 | Dark tones | Light background or white text overlay | Thin weight on dark bg | High contrast accent |
 | Light tones | Dark text, thin borders | Regular weight, standard leading | Strong accent for hierarchy |
 | Portrait orientation | 6–8 col inset, vertical composition | Size 2xl headline, tight leading | Soft palette |
-| Landscape / wide | Full-bleed hero, 12 col | Size 4xl display, wide tracking | Bold accent |
+| Landscape / wide | Full-bleed hero, 12 col | Size 4xl display, tight tracking | Bold accent |
 
 ### Colour Palette Extraction Algorithm
 
@@ -1367,7 +1647,7 @@ If the project has no reference images, the agent should:
 
 1. Ask the user for image descriptions or keywords.
 2. Use placehold.co scaffolding images (e.g. `https://placehold.co/800x600`).
-3. Propose a colour palette based on the brief's domain (Swiss, Wayfinder,
+3. Propose a colour palette based on the brief's domain (Swiss, Archive OS,
    brutalist, editorial) rather than extracted from images.
 4. Note which design tokens are provisional and need real image data to
    finalise.
@@ -1379,26 +1659,34 @@ When a designer provides reference images:
 1. **Analyse** — run the analysis tool to get structured data.
 2. **Read** — study the extracted metadata with the image-editor agent.
 3. **Extract** — pull palette candidates and composition cues.
-4. **Map** — map extracted colours to design tokens.
-5. **Design** — make grid, type, and colour decisions informed by the data.
-6. **Validate** — delegate to design-critic to review the result.
+4. **Treat** — run the refactor pipeline (`treat-images.js`): resize cap,
+   threshold print, halftone build. Originals stay untouched.
+5. **Map** — map extracted colours to design tokens.
+6. **Design** — make grid, type, and colour decisions informed by the data.
+7. **Validate** — delegate to design-critic to review the result.
 
 ---
 
 ## Usage Notes
 
-When a user says "Swiss style", "cargo.site", "Wayfinder", "modernist", or
-asks for a "graphic designer portfolio", invoke this skill's full context.
+When a user says "Swiss style", "archive", "OS interface", "cargo.site",
+"modernist", or asks for a "graphic designer portfolio", invoke this skill's
+full context. If the brief mentions matesu, matesu.me, or "archive OS",
+Section 9 governs precedence over Section 7 patterns.
 
 Output decisions as a designer would: reference grid columns, type scale
 steps, and spacing units rather than breakpoints or component props. For
 example, say *"this headline spans 8 columns at size 2xl"* not *"this h1 is
-32px at desktop"*.
+32px at desktop"* — or *"archive item at app scale, weight 400, tracking
+tight"* not *"26px button"*.
 
 When writing CSS, always use the design tokens defined above. Never use
 arbitrary values. Every margin, font-size, and colour should come from the
 token system.
 
-Prefer utility-first CSS (Tailwind-style) with the token set mapped to
-utilities, or plain CSS with custom properties. Do not introduce a component
-framework unless the user explicitly asks for one.
+Content language follows the owner of the reference: Portuguese (pt-BR) for
+matesu.me and its scene. Write UI microcopy in lowercase for brand words
+(matesu, bloodworm trax) — never auto-capitalise a brand.
+
+Do not introduce a component framework unless the user explicitly asks for
+one. Plain CSS with custom properties is the default.

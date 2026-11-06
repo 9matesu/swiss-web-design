@@ -1,8 +1,9 @@
 ---
 description: >
   Texture and material specialist. Applies halftone, grain, noise, gradients,
-  ink bleed, scan lines, and paper texture effects via CSS/SVG. Use when a
-  design brief calls for surface texture or material treatments.
+  ink bleed, scan lines, threshold prints, and paper texture effects via
+  CSS/SVG. Use when a design brief calls for surface texture or material
+  treatments.
 mode: subagent
 permission:
   edit: allow
@@ -24,11 +25,15 @@ background-image: radial-gradient(circle, #000 1px, transparent 1px);
 background-size: 4px 4px;
 ```
 
-### Asynchronous gradient (Wayfinder-style)
+### Threshold print (photo)
+```css
+filter: grayscale(1) brightness(1) contrast(16);
+```
+
+### Atlas mesh (vignette on drawn paper, atlas canvases only)
 ```css
 background:
-  radial-gradient(ellipse at 20% 50%, rgba(255,100,50,0.15) 0%, transparent 50%),
-  radial-gradient(ellipse at 80% 20%, rgba(50,100,255,0.1) 0%, transparent 50%);
+  radial-gradient(ellipse at 50% 44%, rgba(8,8,8,0) 52%, rgba(8,8,8,0.55) 100%);
 ```
 
 ### Scan lines
@@ -38,8 +43,10 @@ background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0
 
 ## Process
 
-1. Read the domain (Swiss, Wayfinder, brutalist, editorial) from context.
+1. Read the domain (Swiss, Archive OS, brutalist, editorial) from context.
 2. Select texture(s) that serve the atmosphere, not decorate.
-3. Always prefer CSS/SVG over image files for performance.
+3. In the Archive OS, texture is opt-in: grain slider defaults to 0, atlas
+   grain stays fixed at 0.07.
+4. Always prefer CSS/SVG over image files for performance.
 4. Output CSS ready to paste into a stylesheet.
 5. Annotate with placement instructions (e.g. "Apply as ::after overlay on hero section").

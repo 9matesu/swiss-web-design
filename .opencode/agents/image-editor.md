@@ -19,7 +19,9 @@ typography.
 |-----------|-----|------|
 | Desaturate | `filter: saturate(0)` | Objective / archival |
 | High contrast | `filter: contrast(1.4) brightness(0.9)` | Dramatic / editorial |
-| Duotone | See duotone recipe below | Wayfinder / archival |
+| Duotone | See duotone recipe below | Archive OS / archival |
+| Threshold print | `filter: grayscale(1) contrast(16)` | Archive OS bio photos, archival covers |
+| Halftone dots | Generated dot screen over grayscale build | Archive OS alternate photo state |
 | Colour overlay | `::after` with `mix-blend-mode: hue` | Brand integration |
 | Grain overlay | Delegate to @texture-artist | Atmosphere |
 

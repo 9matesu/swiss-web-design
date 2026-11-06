@@ -39,8 +39,23 @@ Always output a grid map showing column allocation:
 | logo|    headline     | gap |   nav    |
 ```
 
+For Archive OS briefs, output a **panel map** instead:
+
+```
+| sidebar 250px | topbar 52px ────────────────────── |
+| bio photo     | atlas hero 38–44vh (fixed)        |
+| "matesu"      | grabber 20px (resizable)          |
+| bio text      | stage: horizontal archive tree    |
+| links         | novidades sheet 26vh (scroll)     |
+```
+
+Panel heights are tokens (`--header-h`, `--hero-h`, `--sheet-h`), the sidebar
+collapses to 48px, and hairlines (1px, 5% alpha) do the dividing — no cards,
+no shadows.
+
 ## Breakpoints
 
-- ≥ 1024px: full grid
-- 768–1023px: 8 columns, gap 16px
-- < 768px: 1 column, gap 0
+- ≥ 1024px: full grid / full OS frame
+- 768–1023px: 8 columns, gap 16px · OS sidebar collapses to 48px tab
+- < 768px: 1 column, gap 0 · spec grids single-column, archive stays
+  horizontally scrolled (no hamburger unless >6 items)

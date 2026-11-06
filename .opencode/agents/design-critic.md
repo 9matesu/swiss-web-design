@@ -1,7 +1,7 @@
 ---
 description: >
   Design review specialist. Evaluates Swiss Style, brutalist, editorial,
-  Wayfinder, and cargo.site designs against comprehensive checklists.
+  Archive OS, and cargo.site designs against comprehensive checklists.
   Use before finalising any design. Read-only — no edits.
 mode: subagent
 permission:
@@ -42,7 +42,7 @@ End with a summary: what is working, what needs fixing, priority items.
 ### Colour
 - [ ] Is the palette limited to neutrals + one accent?
 - [ ] Is the accent used sparingly and meaningfully?
-- [ ] Are there any drop shadows, gradients (unless Wayfinder), or rounded corners?
+- [ ] Are there any drop shadows (outside floating chrome), gradients (outside illustration/atlas canvases), or rounded corners on content?
 
 ### Content
 - [ ] Is photography the primary visual content?
@@ -54,17 +54,18 @@ End with a summary: what is working, what needs fixing, priority items.
 - [ ] Would removing the decorative elements change anything?
 - [ ] Is the hierarchy clear without needing to interpret it?
 
-### Domain-specific checklists
+### Archive-OS-Specific (if applicable)
+- [ ] Is the canvas `#141414` (or the theme token), not pure black?
+- [ ] Are nav items 26px with `-0.04em` tracking?
+- [ ] Is the sidebar a real panel with a real 48px collapse tab, not a hamburger?
+- [ ] Do interactive elements use inversion/hairline feedback at `0.16s`, with no scale/shadow hovers?
+- [ ] Are data sections filed as spec boxes with 1px-gap hairline rules?
+- [ ] Do theme/font/grain/hue controls persist to `localStorage`, defaulting neutral?
+- [ ] Are cursors documenting affordances (grab, crosshair, grabbing, ns-resize)?
+- [ ] Does `prefers-reduced-motion` stop animations (routes, halos, pushes)?
+- [ ] Are hidden scrollbars compensated by visible affordances (grabber, marks)?
 
-If the design is **Wayfinder-inspired**, also run:
-- [ ] Is the canvas pure black?
-- [ ] Is display type weight 300 with 0.042em tracking?
-- [ ] Is the composition centred in the viewport?
-- [ ] Are UI controls icon-only, monochrome, no labels?
-- [ ] Does illustration occupy the full viewport?
-- [ ] Is there a single, composed moment rather than a scroll of sections?
-
-If **poster-to-web**, also run:
+If **poster-to-web** (or the design uses an atlas hero), also run:
 - [ ] Does the composition translate to a screen with variable height?
 - [ ] Is there a clear focal point?
 - [ ] Does type scale appropriately for the viewport?

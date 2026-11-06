@@ -1,25 +1,177 @@
-generated: '2026-07-20T22:37:13.736Z'
-total: 2
+generated: '2026-11-06T12:27:48.205Z'
+total: 7
 references:
-  - file: b1.jpg
+  - file: BMV1-21.jpg
     format: jpeg
-    width: 590
-    height: 388
-    aspectRatio: '1.521'
-    sizeKB: 26
-    dominantColour: '#f8f8f8'
+    width: 1200
+    height: 1600
+    aspectRatio: '0.750'
+    sizeKB: 294
+    dominantColour: '#080808'
+    palette:
+      - hex: '#101010'
+        frequency: 0.206
+      - hex: '#000000'
+        frequency: 0.169
+      - hex: '#202020'
+        frequency: 0.156
+      - hex: '#303030'
+        frequency: 0.097
+      - hex: '#404040'
+        frequency: 0.067
+    classifiedTokens:
+      background: '#404040'
+      text: '#000000'
+      accent: '#D82C2C'
+      muted: '#6A6A6A'
+      offWhite: '#F4F3EE'
     channels: 3
     hasAlpha: false
-    entropy: 3.63
+    entropy: 7.22
     exif: null
-  - file: b2.jpg
+  - file: BMV1-9.jpg
+    format: jpeg
+    width: 1200
+    height: 1600
+    aspectRatio: '0.750'
+    sizeKB: 286
+    dominantColour: '#080808'
+    palette:
+      - hex: '#101010'
+        frequency: 0.131
+      - hex: '#202020'
+        frequency: 0.13
+      - hex: '#000000'
+        frequency: 0.117
+      - hex: '#303030'
+        frequency: 0.104
+      - hex: '#404040'
+        frequency: 0.082
+    classifiedTokens:
+      background: '#404040'
+      text: '#000000'
+      accent: '#D82C2C'
+      muted: '#6A6A6A'
+      offWhite: '#F4F3EE'
+    channels: 3
+    hasAlpha: false
+    entropy: 7.58
+    exif: null
+  - file: matesu-dots.jpg
+    format: jpeg
+    width: 800
+    height: 1071
+    aspectRatio: '0.747'
+    sizeKB: 50
+    dominantColour: '#f8f8f8'
+    palette:
+      - hex: '#f0f0f0'
+        frequency: 0.474
+      - hex: '#101010'
+        frequency: 0.228
+      - hex: '#909090'
+        frequency: 0.099
+      - hex: '#202020'
+        frequency: 0.075
+    classifiedTokens:
+      background: '#f0f0f0'
+      text: '#101010'
+      accent: '#D82C2C'
+      muted: '#909090'
+      offWhite: '#f0f0f0'
+    channels: 3
+    hasAlpha: false
+    entropy: 4.29
+    exif: null
+  - file: matesu-normal.jpg
+    format: jpeg
+    width: 800
+    height: 1071
+    aspectRatio: '0.747'
+    sizeKB: 52
+    dominantColour: '#f8f8f8'
+    palette:
+      - hex: '#f0f0f0'
+        frequency: 0.531
+      - hex: '#101010'
+        frequency: 0.245
+      - hex: '#202020'
+        frequency: 0.076
+    classifiedTokens:
+      background: '#f0f0f0'
+      text: '#101010'
+      accent: '#D82C2C'
+      muted: '#6A6A6A'
+      offWhite: '#f0f0f0'
+    channels: 3
+    hasAlpha: false
+    entropy: 4.2
+    exif: null
+  - file: matesu-threshold.jpg
+    format: jpeg
+    width: 800
+    height: 1071
+    aspectRatio: '0.747'
+    sizeKB: 33
+    dominantColour: '#f8f8f8'
+    palette:
+      - hex: '#f0f0f0'
+        frequency: 0.595
+      - hex: '#000000'
+        frequency: 0.365
+    classifiedTokens:
+      background: '#f0f0f0'
+      text: '#000000'
+      accent: '#D82C2C'
+      muted: '#6A6A6A'
+      offWhite: '#f0f0f0'
+    channels: 3
+    hasAlpha: false
+    entropy: 1.3
+    exif: null
+  - file: signage-swiss.jpg
     format: jpeg
     width: 1024
     height: 643
     aspectRatio: '1.593'
     sizeKB: 141
     dominantColour: '#f8f8f8'
+    palette:
+      - hex: '#f0f0f0'
+        frequency: 0.202
+      - hex: '#000000'
+        frequency: 0.169
+      - hex: '#f03000'
+        frequency: 0.075
+    classifiedTokens:
+      background: '#f0f0f0'
+      text: '#000000'
+      accent: '#f03000'
+      muted: '#6A6A6A'
+      offWhite: '#f0f0f0'
     channels: 3
     hasAlpha: false
     entropy: 6.4
+    exif: null
+  - file: signage-toronto.jpg
+    format: jpeg
+    width: 590
+    height: 388
+    aspectRatio: '1.521'
+    sizeKB: 26
+    dominantColour: '#f8f8f8'
+    palette:
+      - hex: '#f0f0f0'
+        frequency: 0.663
+      - hex: '#101010'
+        frequency: 0.052
+    classifiedTokens:
+      background: '#f0f0f0'
+      text: '#101010'
+      accent: '#D82C2C'
+      muted: '#6A6A6A'
+      offWhite: '#f0f0f0'
+    channels: 3
+    hasAlpha: false
+    entropy: 3.63
     exif: null

@@ -25,7 +25,7 @@
       --measure: 66ch;
 
       /* Typography — Perfect Fourth (1.25) */
-      --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
 
       --text-xs:   0.75rem;   /* 12px */
@@ -53,12 +53,12 @@
       --leading-body:    1.6;
       --leading-caption: 1.2;
 
-      /* Tracking */
+      /* Tracking — two-pole doctrine: display tight, micro-labels wide */
       --tracking-tight:  -0.02em;
+      --tracking-snug:   -0.01em;
       --tracking-normal:  0;
-      --tracking-wide:    0.042em;
       --tracking-upper:   0.05em;
-      --tracking-wider:   0.1em;
+      --tracking-label:   0.15em;   /* 8.5–10px uppercase micro-labels only */
 
       /* Spacing — 8px base unit */
       --space-0:  0px;
@@ -161,7 +161,7 @@
      * │   huge display weight, tracking-tight                       │
      * │                                                             │
      * │   subtitle text: 6 cols, starts at col 2                    │
-     * │   weight-light, tracking-wide                               │
+     * │   weight-light, tracking-tight                               │
      * │                                                             │
      * │   ↓ scroll indicator: col 12, bottom                        │
      * │                                                             │
@@ -208,7 +208,7 @@
       font-size: var(--text-lg);
       font-weight: var(--weight-light);
       line-height: var(--leading-body);
-      letter-spacing: var(--tracking-wide);
+      letter-spacing: var(--tracking-tight);
       color: var(--text-secondary);
       max-width: var(--measure);
     }
@@ -411,7 +411,7 @@
 
     /*
      * ─── Section: About ──────────────────────────────
-     * Pattern B: Split content — text left, placeholder right
+     * Pattern B: Split content — text left, image right
      *
      * Grid Map:
      * ┌─────────────────────────────────────────────────────────────┐
@@ -419,7 +419,7 @@
      * │  col 1           │                                           │
      * │  section marker  │                                           │
      * ├──────────────────┼──────────────────────────────────────────┤
-     * │  Bio text        │  Image / Placeholder                     │
+     * │  Bio text        │  Image                                     │
      * │  5 cols          │  6 cols (offset by 1)                    │
      * │  col 2-6         │  col 7-12                                │
      * │                  │                                          │
@@ -477,7 +477,7 @@
     .about-text p:first-of-type {
       font-size: var(--text-md);
       font-weight: var(--weight-light);
-      letter-spacing: var(--tracking-wide);
+      letter-spacing: var(--tracking-tight);
       color: var(--text-primary);
     }
 
@@ -507,6 +507,14 @@
       border: 1px solid var(--light-grey);
       position: relative;
       overflow: hidden;
+    }
+
+    .about-visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.2);
     }
 
     .about-visual::after {
@@ -624,9 +632,9 @@
      * │  marker           │                                           │
      * ├──────────────────┼──────────────────────────────────────────┤
      * │  "Let's work     │  Contact details:                        │
-     * │   together."     │  hello@matesu.studio                     │
-     * │  6 cols          │  +41 44 123 45 67                        │
-     * │  col 2-7         │  Zürich, CH                              │
+     * │   together."     │  matesubeats@gmail.com                     │
+     * │  6 cols          │  Vale do Paraíba, SP                        │
+     * │  col 2-7         │  São Paulo, BR                              │
      * │  display text    │  4 cols  (col 9-12)                      │
      * │                  │                                          │
      * ├──────────────────┴──────────────────────────────────────────┤
@@ -1141,32 +1149,33 @@
       <span class="work-label">Selected Work</span>
 
       <div class="project-card">
-        <img src="https://placehold.co/600x450/1A1A1A/F4F3EE?text=Branding" alt="Branding project">
-        <h3>Brand Identity<br>for Forma</h3>
-        <span class="project-meta">Branding · 2026</span>
+        <img src="img/signage-toronto.jpg" alt="Transit signage reference sheet">
+        <h3>Signage<br>Study</h3>
+        <span class="project-meta">Reference · Helvetica as interface</span>
         <p class="project-description">
-          Modular identity system for an architecture studio.
-          Grid-based logo, mono-weight type, signal red accent.
+          Transit signage studied as working typography — the reason the
+          interface metaphor exists in the modernist tradition.
         </p>
       </div>
 
       <div class="project-card">
-        <img src="https://placehold.co/600x450/F4F3EE/1A1A1A?text=Editorial" alt="Editorial project">
-        <h3>No. 12<br>— The Grid Issue</h3>
-        <span class="project-meta">Editorial · 2026</span>
+        <img src="img/BMV1-9.jpg" alt="Field notes photograph">
+        <h3>Field<br>Notes</h3>
+        <span class="project-meta">Photography · grayscale build</span>
         <p class="project-description">
-          Art-directed quarterly publication. 12-column grid
-          throughout. Perfect-bound, 96 pages, two-colour print.
+          Landscape records entering the archive as documents:
+          grayscale, contrast-lifted, never rounded, never shadowed.
         </p>
       </div>
 
       <div class="project-card">
-        <img src="https://placehold.co/600x450/1A1A1A/FFFFFF?text=Digital" alt="Digital project">
-        <h3>Wayfinder<br>Digital Presence</h3>
-        <span class="project-meta">Digital · 2025</span>
+        <img src="img/matesu-threshold.jpg" alt="Threshold print">
+        <h3>Archive OS<br>Digital Presence</h3>
+        <span class="project-meta">Interface · 2026</span>
         <p class="project-description">
-          Responsive brand site for a venture fund. Dark canvas,
-          ultra-thin display type, asynchronous gradient system.
+          Dark canvas #141414 archive: bio sidebar, 26px items at
+          tracking tight, hairline spec boxes, threshold prints over
+          photographs. Reference: www.matesu.me.
         </p>
       </div>
 
@@ -1182,9 +1191,10 @@
       <div class="about-text">
         <h2>Design that earns<br>its position.</h2>
         <p>
-          Matesu is a Zürich-based design studio working with
-          cultural institutions, publishers, and technology
-          companies. Every project begins with the same question:
+          Matesu is an independent designer and producer working
+          between music, photography, and code — from the Vale do
+          Paraíba, interior de São Paulo. Every project begins with
+          the same question:
           <em>what needs to be said?</em>
         </p>
         <p>
@@ -1194,15 +1204,15 @@
           unmistakable. The grid is our method, not our style.
         </p>
         <ul class="about-credentials">
-          <li>Founded 2021 — Zürich, CH</li>
-          <li>Clients in 12 countries</li>
-          <li>Teaching at ZHdK (Design Methodology)</li>
-          <li>Published in <em>Eye Magazine</em>, <em>It's Nice That</em></li>
+          <li>Active since 2015 — Vale do Paraíba, SP</li>
+          <li>Producing with @blackmesaent and bloodworm trax</li>
+          <li>Sound, image, and code as one practice</li>
+          <li>Published at www.matesu.me</li>
         </ul>
       </div>
 
       <div class="about-visual">
-        <!-- Placeholder for a photographic portrait or studio image -->
+        <img src="img/matesu-dots.jpg" alt="Halftone dots portrait build">
       </div>
     </section>
 
@@ -1260,23 +1270,20 @@
 
       <div class="contact-details">
         <p class="detail-label">Email</p>
-        <p><a href="mailto:hello@matesu.studio">hello@matesu.studio</a></p>
+        <p><a href="mailto:matesubeats@gmail.com">matesubeats@gmail.com</a></p>
 
-        <p class="detail-label" style="margin-top: var(--space-4);">Phone</p>
-        <p>+41 44 123 45 67</p>
-
-        <p class="detail-label" style="margin-top: var(--space-4);">Studio</p>
-        <p>Müllerstrasse 12<br>8004 Zürich, Switzerland</p>
+        <p class="detail-label" style="margin-top: var(--space-4);">Location</p>
+        <p>Vale do Paraíba, SP<br>São Paulo, BR</p>
       </div>
 
       <div class="contact-social">
         <a href="#">Instagram</a>
         <span class="separator">—</span>
-        <a href="#">Twitter</a>
+        <a href="#">Bandcamp</a>
         <span class="separator">—</span>
-        <a href="#">LinkedIn</a>
+        <a href="#">Behance</a>
         <span class="separator">—</span>
-        <a href="#">Are.na</a>
+        <a href="#">GitHub</a>
       </div>
     </section>
 
@@ -1330,7 +1337,7 @@
        │  ┌───────────────────────────────────────────────────┐    │
        │  │  ABOUT (Pattern B — Split Content)                 │    │
        │  ├──────┬──────────────────────┬──────────────────────┤    │
-       │  │marker│  Bio text            │  Image / placeholder │    │
+       │  │marker│  Bio text            │  Image / halftone    │    │
        │  │  1   │  2—6 (5 cols)        │  7—12 (6 cols)       │    │
        │  │vert  │  h2: 2—6             │  aspect: 4/5         │    │
        │  │      │  p: 2—6              │  accent dot bottom-  │    │
