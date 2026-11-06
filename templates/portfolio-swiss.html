@@ -4,27 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Portfolio — Swiss</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=switzer@300,400,500,600&display=swap" rel="stylesheet">
   <style>
     :root {
       --black: #1A1A1A; --white: #FFFFFF; --accent: #D82C2C;
       --mid-grey: #6A6A6A; --off-white: #F4F3EE;
-      --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      --text-sm: 0.875rem; --text-base: 1rem;
-      --text-lg: 1.563rem; --text-xl: 1.953rem;
-      --text-2xl: 2.441rem; --text-3xl: 3.052rem; --text-4xl: 3.815rem;
+      --font-sans: 'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-display: 'General Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --text-sm: 12.5px; --text-base: 14px;
+      --text-lg: 22px; --text-xl: 28px;
+      --text-2xl: 36px; --text-3xl: 44px; --text-4xl: 56px;
       --weight-light: 300; --weight-regular: 400; --weight-bold: 700;
-      --leading-tight: 1.0; --leading-body: 1.6;
-      --tracking-tight: -0.02em; --tracking-upper: 0.05em;
+      --leading-tight: 1.05; --leading-body: 1.45;
+      --tracking-tight: -0.05em; --tracking-snug: -0.02em;
       --space-2: 8px; --space-4: 16px; --space-6: 32px;
       --space-8: 48px; --space-10: 64px;
       --grid-gap: 20px; --max-width: 1200px;
-      --measure: 66ch;
+      --measure: 60ch;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font-sans);
       font-size: var(--text-base);
       font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-snug);
       line-height: var(--leading-body);
       color: var(--black);
       background: var(--white);
@@ -48,6 +51,7 @@
       margin-bottom: var(--space-8);
     }
     .logo {
+      font-family: var(--font-display);
       font-size: var(--text-lg);
       font-weight: var(--weight-bold);
       letter-spacing: var(--tracking-tight);
@@ -55,18 +59,20 @@
     .nav { display: flex; gap: var(--space-6); list-style: none; }
     .nav a {
       font-size: var(--text-sm);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       text-decoration: none;
       color: var(--black);
     }
     .nav a:hover { color: var(--accent); }
     .hero {
       grid-column: 1 / 13;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
       margin-bottom: var(--space-10);
     }
     .hero h1 {
       grid-column: 1 / 9;
+      font-family: var(--font-display);
       font-size: var(--text-4xl);
       font-weight: var(--weight-bold);
       line-height: var(--leading-tight);
@@ -98,16 +104,16 @@
       margin-bottom: var(--space-4);
     }
     .project h2 {
+      font-family: var(--font-display);
       font-size: var(--text-xl);
       font-weight: var(--weight-bold);
       line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
       margin-bottom: var(--space-2);
     }
     .project .meta {
       font-size: var(--text-sm);
       color: var(--mid-grey);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
     }
     .about {
       grid-column: 1 / 7;
@@ -116,9 +122,11 @@
       margin-bottom: var(--space-8);
     }
     .about h2 {
+      font-family: var(--font-display);
       font-size: var(--text-2xl);
       font-weight: var(--weight-bold);
       line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
       margin-bottom: var(--space-4);
     }
     .about p {

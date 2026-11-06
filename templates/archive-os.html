@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
   <title>Archive OS — Template</title>
   <style>
     /* ═══════════════════════════════════════════════════════
@@ -29,8 +30,8 @@
       --map-shade: #080808;
 
       /* Type */
-      --font-display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-display: 'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-body: 'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
       --text-item: 24px;
       --text-body-app: 12.5px;
@@ -291,7 +292,7 @@
     .home-row img { width: 24px; height: 24px; object-fit: cover; flex-shrink: 0; filter: grayscale(1); }
     .home-row-title { color: var(--text-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .home-row:hover .home-row-title { color: var(--text); }
-    .home-row-meta { font-size: var(--text-label); color: var(--text-faint); letter-spacing: 0.02em; }
+    .home-row-meta { font-size: var(--text-label); color: var(--text-faint); letter-spacing: 0; }
 
     /* ─── Adjustments panel (persistent, honest) ──────────── */
     #settings-panel {

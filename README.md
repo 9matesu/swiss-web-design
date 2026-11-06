@@ -28,13 +28,13 @@ Then restart your AI assistant and ask:
 
 ## What this skill covers
 
-The master skill at `.opencode/skills/swiss-web-design/SKILL.md` contains **20 sections** spanning two traditions:
+The master skill at `.opencode/skills/swiss-web-design/SKILL.md` contains **21 sections** spanning two traditions:
 
 | | Tradition | Description |
 | --- | --- | --- |
 | **Swiss Style** | International Typographic Style (1950s) | Grids, sans-serif type, asymmetric balance — Müller-Brockmann, Ruder, Hofmann |
 | **Cargo.site** | Contemporary portfolio platform | Constraint model, pinned pages, image-centric grids, CSS overrides |
-| **Archive OS** | 2020s dark direction (reference: [www.matesu.me](https://www.matesu.me)) | Dark canvas `#141414`, fixed bio sidebar, search/filter topbar, typographic archive columns, topographic atlas hero, hairline spec boxes, adjustable canvas |
+| **Archive OS** | 2020s dark direction | Dark canvas `#141414`, fixed bio sidebar, search/filter topbar, typographic archive columns, topographic atlas hero, hairline spec boxes, adjustable canvas |
 
 ### 21 skill domains
 
@@ -42,18 +42,18 @@ The master skill at `.opencode/skills/swiss-web-design/SKILL.md` contains **20 s
 | --- | --- | --- |
 | 1 | Philosophy | 6 principles + the archive ethics: the site is an instrument, honesty of the apparatus, sovereign defaults |
 | 2 | Grid Systems | 12-column modular grid, asymmetric spans, OS panel math |
-| 3 | Typography as Interface | Helvetica-first doctrine, editorial *and* app scales, tracking poles (tight display / wide micro-labels), tabular numerals |
+| 3 | Typography as Interface | Typeface doctrine, editorial *and* app scales, Fontshare pairs, tracking poles (tight display, snug body, zero-tracked sentence-case labels), tabular numerals |
 | 4 | Whitespace as Material | Section gaps, breathing room, 20% emptiness rule, dark-on-canvas emptiness |
 | 5 | Colour | Minimal palette, single accent, five text steps on the dark canvas, theme token pairs |
 | 6 | Photography over Illustration | Image treatment, threshold prints, halftone, documents not decoration |
 | 7 | Asymmetric Composition | 6 compositional patterns incl. the OS frame |
 | 8 | Cargo.site Patterns | Template mapping, CSS injection, pinned/overlaid pages |
-| 9 | Archive OS Pattern (matesu.me) | Layout anatomy, archive tree, spec boxes, atlas SVG hero, adjustments panel contract, interaction vocabulary |
+| 9 | Archive OS Pattern | Layout anatomy, archive tree, spec boxes, atlas SVG hero, adjustments panel contract, interaction vocabulary |
 | 10 | CSS Framework / Design Tokens | Custom properties for every decision — no arbitrary values |
 | 11 | Spacing Scale | 8px-based, plus OS row/group/zone beats |
 | 12 | Responsive Behaviour | Breakpoints, sidebar collapse to a 48px tab, no hamburger under 6 items |
 | 13 | Key Historical References | Foundational texts, designers, manifestos |
-| 14 | Contemporary Reference Sites | matesu.me (live reference), platforms and scenes, **reference hygiene contract** |
+| 14 | Contemporary Reference Sites | Platforms and scenes, **reference hygiene contract** |
 | 15 | Design Review Checklist | 40+ point evaluation across grid, type, colour, archive-OS specifics |
 | 16 | Poster-to-Web Translation | Print-to-screen adaptation patterns, atlas as printed document |
 | 17 | Brutalist Web Design | Raw, intentional anti-aesthetic — system fonts, high contrast |
@@ -90,8 +90,21 @@ Five standalone HTML templates — open in any browser or drop into your CMS.
 | `portfolio-swiss.html` | Swiss grid, off-white, red accent | Design portfolio |
 | `portfolio-brutalist.html` | System fonts, raw, high contrast | Loud/urgent portfolio |
 | `editorial-article.html` | Multi-column, hero spread | Magazine, long-form |
-| `archive-os.html` | Dark canvas `#141414`, bio sidebar, search/filter/order, atlas SVG hero, spec boxes, photo slots awaiting your treated images, adjustable canvas | Archive OS portfolio (matesu.me direction) |
+| `archive-os.html` | Dark canvas `#141414`, bio sidebar, search/filter/order, atlas SVG hero, spec boxes, photo slots awaiting your treated images, adjustable canvas | Dark archive portfolio |
 | `archive-grid.html` | Dense 6-column gallery | Photography, archive |
+
+Screenshots rendered from these files:
+
+| | |
+| --- | --- |
+| <img src="docs/examples/archive-os.jpg" width="560" alt=""> | <img src="docs/examples/portfolio-swiss.jpg" width="560" alt=""> |
+| `archive-os` | `portfolio-swiss` |
+| <img src="docs/examples/editorial-article.jpg" width="560" alt=""> | <img src="docs/examples/archive-grid.jpg" width="560" alt=""> |
+| `editorial-article` | `archive-grid` |
+| <img src="docs/examples/matesu-grid-system.jpg" width="560" alt=""> | <img src="docs/examples/portfolio-brutalist.jpg" width="560" alt=""> |
+| `matesu-grid-system` (example) | `portfolio-brutalist` |
+
+Rendered in OpenCode on the GLM-5.3-Flash model, November 2026.
 
 ---
 
@@ -157,7 +170,7 @@ cp -r .opencode/skills/swiss-web-design .claude/skills/swiss-web-design
 ```
 swiss-web-design/
   .opencode/
-    skills/swiss-web-design/SKILL.md   — 20-section master skill definition
+    skills/swiss-web-design/SKILL.md   — 21-section master skill definition
     agents/                            — 8 agent definitions
       design-director.md               —   Orchestrator (primary)
       grid-architect.md                —   Grid, panel maps, responsive collapse
@@ -167,29 +180,28 @@ swiss-web-design/
       image-editor.md                  —   Photography, extraction, treatments
       design-critic.md                 —   Review & QA (Archive OS checklist included)
       cargo-builder.md                 —   Cargo.site builder
-  templates/                           — 5 HTML templates
-  examples/                            — Treated images + analysis/refactor tools
+  templates/                           — 5 HTML templates (Fontshare type)
+  examples/                            — Analysis/refactor tools + signage sheets
+  docs/examples/                       — Rendered gallery screenshots
   bin/install.js                       — Multi-agent installer
   test/                                — Test suite
   package.json                         — npm package
   README.md                            — This file
 ```
 
-## References
+## Typefaces
 
-- Josef Müller-Brockmann — *Grid Systems in Graphic Design*
-- Emil Ruder — *Typographie*
-- Armin Hofmann — *Graphic Design Manual*
-- Jan Tschichold — *Die neue Typographie*
-- Karl Gerstner — *Designing Programmes*
-- [matesu.me](https://www.matesu.me) — the live Archive OS reference (all dark-canvas tokens extracted from its production CSS)
-- [cargo.site](https://cargo.site) — platform for designer portfolios
-- [neocities.org](https://neocities.org) — the personal web scene
-- [bandcamp.com](https://bandcamp.com) — music catalogue conventions
-- [are.na](https://are.na) — channel-based reference collecting
-- [html.energy](https://html.energy) — pages that feel like pages
-- [swissincss.com](https://swissincss.com) — Swiss posters recreated and animated in CSS
-- [swissthemes.design](https://swissthemes.design) — Swiss design templates for Framer
+Templates load display/body pairs from [Fontshare](https://www.fontshare.com):
+
+| Template | Display | Body |
+| --- | --- | --- |
+| `archive-os` | Switzer | Switzer |
+| `portfolio-swiss` | General Sans | Switzer |
+| `editorial-article` | Clash Display | Switzer |
+| `archive-grid` | Satoshi | Satoshi |
+| `portfolio-brutalist` | system (Courier) | system |
+
+The brutalist template stays on system fonts on purpose — that is its point.
 
 ## Licence
 

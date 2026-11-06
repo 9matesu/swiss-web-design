@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Matesu — Grid System Specification</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=switzer@300,400,500,600&display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════════════════
        MATESU — Swiss Grid System
@@ -24,22 +25,23 @@
       --content-width: 960px;
       --measure: 66ch;
 
-      /* Typography — Perfect Fourth (1.25) */
-      --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      /* Typography — Perfect Fourth (1.25), compacted  */
+      --font-sans: 'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-display: 'General Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
 
-      --text-xs:   0.75rem;   /* 12px */
-      --text-sm:   0.875rem;  /* 14px */
-      --text-base: 1rem;      /* 16px */
-      --text-md:   1.25rem;   /* 20px */
-      --text-lg:   1.563rem;  /* 25px */
-      --text-xl:   1.953rem;  /* 31px */
-      --text-2xl:  2.441rem;  /* 39px */
-      --text-3xl:  3.052rem;  /* 49px */
-      --text-4xl:  3.815rem;  /* 61px */
-      --text-5xl:  4.768rem;  /* 76px */
-      --text-6xl:  5.96rem;   /* 95px */
-      --text-7xl:  7.45rem;   /* 119px */
+      --text-xs:   11px;
+      --text-sm:   12.5px;
+      --text-base: 14px;
+      --text-md:   19px;
+      --text-lg:   24px;
+      --text-xl:   30px;
+      --text-2xl:  36px;
+      --text-3xl:  44px;
+      --text-4xl:  56px;
+      --text-5xl:  68px;
+      --text-6xl:  84px;
+      --text-7xl:  104px;
 
       /* Weights */
       --weight-light:   300;
@@ -50,15 +52,13 @@
       /* Line heights */
       --leading-tight:   1.0;
       --leading-heading: 1.1;
-      --leading-body:    1.6;
-      --leading-caption: 1.2;
+      --leading-body:    1.45;
+      --leading-caption: 1.3;
 
-      /* Tracking — two-pole doctrine: display tight, micro-labels wide */
-      --tracking-tight:  -0.02em;
-      --tracking-snug:   -0.01em;
+      /* Tracking — tight everywhere; size carries the hierarchy */
+      --tracking-tight:  -0.05em;
+      --tracking-snug:   -0.02em;
       --tracking-normal:  0;
-      --tracking-upper:   0.05em;
-      --tracking-label:   0.15em;   /* 8.5–10px uppercase micro-labels only */
 
       /* Spacing — 8px base unit */
       --space-0:  0px;
@@ -110,6 +110,7 @@
       font-family: var(--font-sans);
       font-size: var(--text-base);
       font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-snug);
       line-height: var(--leading-body);
       color: var(--text-primary);
       background: var(--bg-primary);
@@ -194,13 +195,13 @@
 
     .hero-headline {
       grid-column: 3 / 10;        /* starts at col 3, spans 7 cols */
+      font-family: var(--font-display);
       font-size: var(--text-7xl);
       font-weight: var(--weight-bold);
       line-height: var(--leading-tight);
       letter-spacing: var(--tracking-tight);
       color: var(--text-primary);
       margin-bottom: var(--space-5);
-      text-transform: uppercase;
     }
 
     .hero-subtitle {
@@ -217,8 +218,6 @@
       grid-column: 12 / 13;       /* anchored to far right */
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--mid-grey);
       writing-mode: vertical-rl;
       justify-self: end;
@@ -252,10 +251,10 @@
 
     .site-logo {
       grid-column: 1 / 3;
+      font-family: var(--font-display);
       font-size: var(--text-sm);
       font-weight: var(--weight-bold);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
+      letter-spacing: var(--tracking-tight);
     }
 
     .site-nav {
@@ -269,8 +268,6 @@
     .site-nav a {
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--text-secondary);
       transition: color 0.2s ease;
     }
@@ -319,8 +316,6 @@
       grid-column: 1 / 3;
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--text-secondary);
       writing-mode: vertical-rl;
       transform: rotate(180deg);
@@ -366,6 +361,7 @@
     }
 
     .project-card h3 {
+      font-family: var(--font-display);
       font-size: var(--text-md);
       font-weight: var(--weight-bold);
       line-height: var(--leading-heading);
@@ -374,10 +370,8 @@
     }
 
     .project-card .project-meta {
-      font-size: var(--text-sm);
+      font-size: var(--text-xs);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--text-secondary);
     }
 
@@ -400,8 +394,6 @@
     .work-footer a {
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--text-primary);
     }
 
@@ -445,8 +437,6 @@
       grid-column: 1 / 2;
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--accent);
       writing-mode: vertical-rl;
       transform: rotate(180deg);
@@ -459,6 +449,7 @@
     }
 
     .about-text h2 {
+      font-family: var(--font-display);
       font-size: var(--text-3xl);
       font-weight: var(--weight-bold);
       line-height: var(--leading-tight);
@@ -489,8 +480,6 @@
     .about-credentials li {
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--text-secondary);
       padding: var(--space-2) 0;
       border-bottom: 1px solid var(--light-grey);
@@ -564,8 +553,6 @@
       grid-column: 1 / 3;
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--text-secondary);
       writing-mode: vertical-rl;
       transform: rotate(180deg);
@@ -599,6 +586,7 @@
     }
 
     .service-number {
+      font-family: var(--font-display);
       font-size: var(--text-3xl);
       font-weight: var(--weight-bold);
       line-height: var(--leading-tight);
@@ -608,9 +596,11 @@
     }
 
     .service-item h3 {
+      font-family: var(--font-display);
       font-size: var(--text-lg);
       font-weight: var(--weight-bold);
       line-height: var(--leading-heading);
+      letter-spacing: var(--tracking-tight);
       margin-bottom: var(--space-2);
     }
 
@@ -659,8 +649,6 @@
       grid-column: 1 / 2;
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--accent);
       writing-mode: vertical-rl;
       transform: rotate(180deg);
@@ -670,6 +658,7 @@
 
     .contact-headline {
       grid-column: 2 / 8;
+      font-family: var(--font-display);
       font-size: var(--text-4xl);
       font-weight: var(--weight-bold);
       line-height: var(--leading-tight);
@@ -704,8 +693,6 @@
     .contact-details .detail-label {
       font-size: var(--text-xs);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--text-secondary);
       margin-bottom: var(--space-1);
     }
@@ -719,8 +706,6 @@
       border-top: 1px solid var(--light-grey);
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
     }
 
     .contact-social a {
@@ -767,8 +752,6 @@
 
     .footer-back a {
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-upper);
-      text-transform: uppercase;
       color: var(--text-primary);
     }
 
@@ -1173,7 +1156,7 @@
         <h3>Archive OS<br>Digital Presence</h3>
         <span class="project-meta">Interface · 2026</span>
         <p class="project-description">
-          Dark canvas #141414 archive: bio sidebar, 26px items at
+          Dark canvas #141414 archive: bio sidebar, 24px items at
           tracking tight, hairline spec boxes, threshold prints over
           photographs. Reference: www.matesu.me.
         </p>

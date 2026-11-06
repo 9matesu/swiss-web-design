@@ -137,7 +137,7 @@ for (const tmpl of templates) {
 
   if (tmpl.includes('archive-os')) {
     test(`${tmpl}: Archive OS dark canvas`, () => {
-      assert(content.includes('#141414') || content.includes('rgba(255, 255, 255'), 'Archive OS should use the matesu.me dark canvas tokens');
+      assert(content.includes('#141414') || content.includes('rgba(255, 255, 255'), 'Archive OS should use the dark canvas tokens');
     });
   }
 }
